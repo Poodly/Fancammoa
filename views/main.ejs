@@ -4,9 +4,241 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+
     <title>main</title>
 </head>
+
+<style>
+
+    body {
+        display: flex;
+        flex-direction: column;
+
+        font-family: 'Inter';
+        font-style: normal;
+        color: #000000;
+    }
+
+    p {
+        margin-left: 15px;
+    }
+
+
+    /* class ----------------------------- */
+    .head_container {
+        margin-left : 80px;
+        margin-right: 80px;
+    }
+
+    .head_nev_1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100px;
+
+        margin-bottom: 30px;
+    }
+
+    .head_nev_2 {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .head_search {
+        display: flex;
+        align-items: center;
+    }
+
+    .head_list {
+        display: flex;
+        flex-direction: row;
+    }
+    /* class ----------------------------- */
+    
+    /* 상단 바 -----------------------------*/
+
+    #title {
+        font-weight: 400;
+        font-size: 30px;
+
+    }
+
+    #login {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+    }
+
+    #cam_search {
+        margin-left: 0;
+    }
+
+    #search_box {
+        width: 230px;
+        height: 35px;
+
+        background: #E5E5E5;
+        border-radius: 25px;
+        border: 0px;
+        margin-left: 10px;
+    }
+
+    #line {
+        height: 3px;
+
+        background   : #ECECEC;
+        border-radius: 10px;
+        margin-top   : 10px;
+        margin-bottom: 30px;
+    }
+    /* 상단 바 -----------------------------*/
+
+    /* 검색결과 css */
+    #search-container {
+        display: flex;
+        flex-direction: row;
+
+        border: 0px;
+    }
+
+    /* #search-container img {
+        width: 880px;
+        height: 320px;
+    } */
+
+    /* .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    } */
+
+    /* .card img {
+        width: 120px;
+        height: 90px;
+    }
+
+    .card-text {
+        margin-left: 10px;
+    }
+
+    .card-text span {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+    } */
+
+</style>
+
+
 <body>
-    <h1>main</h1>
+    <div class="head_container">
+        <div class="head_nev_1">
+            <h1 id="title">직캠 모아😙</h1>
+            <h2 id="login">Login</h2>
+        </div>
+    
+        <div class="head_nev_2">
+            <div class="head_search">
+                <p id="cam_search">직캠 검색</p>
+                <input id="search_box" type="text" placeholder="   검색어를 입력하세요." title="검색">
+                <button id="search-button">검색</button>
+            </div>
+        
+            <div class="head_list">
+                <p>아이돌 순위</p>
+                <p>아이돌 프로필</p>
+                <p>마이페이지</p>
+            </div>
+        </div>
+    
+        <div id="line"></div>
+    </div>
+
+    <p id="search-container">
+    </p>
+
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#search-button').click(function() {
+            let query = $('#search_box').val();
+            let url = 'https://www.googleapis.com/youtube/v3/search';
+            let params = {
+                part: 'snippet',
+                q: query,
+                type: 'video',
+                key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+                maxResults: 10,
+                order: 'relevance'
+            };
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: params,
+                success: function(response) {
+                    let items = response.items;
+                    let tempHtml = '';
+                    $.each(items, function(index, item) {
+                        let videoId = item.id.videoId;
+                        let thumbnailUrl = item.snippet.thumbnails.high.url;
+                        let title = item.snippet.title;
+                        let description = item.snippet.description;
+                        
+                    
+                        // Convert the image file format to JPG 
+                        thumbnailUrl = thumbnailUrl.replace('png', 'jpg');
+
+                        
+
+                        tempHtml += `<div class="card" style="width: 20rem;">
+                                        <a href="https://www.youtube.com/watch?v=${videoId}">
+                                        <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                        </div>
+                                    </div>`
+                        });
+
+                    $('#search-container').append(tempHtml)
+                },
+                error: function(response) {
+                    console.log('Error: ' + response);
+                }
+            });
+        });
+    });
+
+    
+</script>
 </html>
