@@ -25,7 +25,6 @@
 </head>
 
 <style>
-
     body {
         display: flex;
         flex-direction: column;
@@ -39,7 +38,18 @@
         margin-left: 15px;
     }
 
+    a {
+        text-align: center;
+        text-decoration: none; /* 링크의 밑줄 제거 */
+        color: inherit;        /* 링크의 색상 제거 */ 
+    }
 
+    a:hover {
+        color: rgb(156, 156, 156);
+        background-color: transparent;
+        text-decoration: none;
+    }
+    
     /* class ----------------------------- */
     .head_container {
         margin-left : 80px;
@@ -69,6 +79,7 @@
         display: flex;
         flex-direction: row;
     }
+    
     /* class ----------------------------- */
     
     /* 상단 바 -----------------------------*/
@@ -115,12 +126,13 @@
         display: flex;
         flex-direction: row;
 
-        border: 0px;
+        margin-left: 80px;
+        margin-right: 80px;
     }
 
     /* #search-container img {
-        width: 880px;
-        height: 320px;
+        width: 480px;
+        height: 360px;
     } */
 
     /* .card {
@@ -154,6 +166,11 @@
         font-size: 14px;
         color: #666;
     } */
+/* 
+    #cardId {
+        display: block;
+
+    } */
 
 </style>
 
@@ -180,64 +197,150 @@
         </div>
     
         <div id="line"></div>
-    </div>
 
-    <p id="search-container">
-    </p>
+    <main class="mt-3">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-12">
+                </div>
+            </div>
+            <div class="row g-3" id="search-container">
+            </div>
+        </div>
+    </main>
 
 </body>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+        searchVideo();
+    });
+
+    function searchVideo() {
         $('#search-button').click(function() {
+            
             let query = $('#search_box').val();
             let url = 'https://www.googleapis.com/youtube/v3/search';
             let params = {
                 part: 'snippet',
                 q: query,
                 type: 'video',
-                key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
-                maxResults: 10,
+                key: 'AIzaSyCJClqf3zSSC-ltsVXPWNKAoUbTAIwp7FM',
+                maxResults: 50,
                 order: 'relevance'
             };
+
+            // 이전 검색 결과 지우기
+            $('#search-container').html('');
 
             $.ajax({
                 url: url,
                 type: 'GET',
                 data: params,
                 success: function(response) {
+
+                    // let tempHtml = ""
                     let items = response.items;
-                    let tempHtml = '';
-                    $.each(items, function(index, item) {
-                        let videoId = item.id.videoId;
-                        let thumbnailUrl = item.snippet.thumbnails.high.url;
-                        let title = item.snippet.title;
-                        let description = item.snippet.description;
+                    console.log("items-----------------",items[0])
+
+                    // var viewCount = response.items[0].statistics.viewCount;
+                    // console.log('동영상 조회수:', viewCount);
+
+                    for (let i in items) {
+                        let videoId      = items[i].id.videoId;
+                        let thumbnailUrl = items[i].snippet.thumbnails.high.url;
+                        let title        = items[i].snippet.title;
+                        let description  = items[i].snippet.description;
                         
-                    
-                        // Convert the image file format to JPG 
-                        thumbnailUrl = thumbnailUrl.replace('png', 'jpg');
+                        const exTitleKeywords = isKeywordsIncluded(title);
+                        const exDescriptionKeywords  = isKeywordsIncluded(title);
 
-                        
+                        if (exTitleKeywords || exDescriptionKeywords) {
 
-                        tempHtml += `<div class="card" style="width: 20rem;">
-                                        <a href="https://www.youtube.com/watch?v=${videoId}">
-                                        <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
-                                        </a>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${title}</h5>
-                                        </div>
-                                    </div>`
-                        });
+                            tempHtml = `<div id="card_id" class="col-xl-4 col-lg-4 col-md-6">
+                                                <div class="card" style="width: 18rem;">
+                                                    <a href="https://www.youtube.com/watch?v=${videoId}">
+                                                    <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${title}</h5>
+                                                    </div>
+                                                    </a>
+                                                </div>
+                                            </div>`
 
-                    $('#search-container').append(tempHtml)
-                },
-                error: function(response) {
-                    console.log('Error: ' + response);
+                                $('#search-container').append(tempHtml)
+                            }
+                        }                         
+                    },
+                    error: function(response) {
+                        console.log('Error: ' + response);
+                    }
+                });
+            });    
+
+            function isKeywordsIncluded(str) {
+                const keywords = ['직캠', '캠', '뮤비', '뮤직비디오', '입덕', 'fancam', 'cam']
+                const lowerCaseStr = str.toLowerCase();
+                for (const keyword of keywords) {
+                    if (lowerCaseStr.includes(keyword)) {
+                    return true;
+                    }
                 }
-            });
-        });
-    });
+                return false;
+            }
+
+
+            // function isShortsIncluded(str) {
+            //     return str.toLowerCase().includes('shorts');
+            //     // true or false 반환
+            // }
+
+            // const exShorts = isShortsIncluded(description);
+            // if (!exShorts) { // false일때만 검색결과에 들어간다.
+
+        //     $.ajax({
+        //         url: url,
+        //         type: 'GET',
+        //         data: params,
+        //         success: function(response) {
+        //             let items = response.items;
+        //             console.log("items-----------------",items)
+        //             let tempHtml = '';
+        //             $.each(items, function(index, item) {
+        //                 let videoId = item.id.videoId;
+        //                 let thumbnailUrl = item.snippet.thumbnails.high.url;
+        //                 let title = item.snippet.title;
+        //                 let description = item.snippet.description;
+                        
+                            // console.log("videoId-----------------",videoId)
+                            // console.log("thumbnailUrl-----------------",thumbnailUrl)
+                            // console.log("title-----------------",title)
+                            // console.log("description-----------------",description)
+                    
+        //                 // Convert the image file format to JPG 
+        //                 thumbnailUrl = thumbnailUrl.replace('png', 'jpg');
+
+                        
+
+        //                 tempHtml += `<div class="card" style="width: 20rem;">
+        //                                 <a href="https://www.youtube.com/watch?v=${videoId}">
+        //                                 <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
+        //                                 </a>
+        //                                 <div class="card-body">
+        //                                     <h5 class="card-title">${title}</h5>
+        //                                 </div>
+        //                             </div>`
+        //                 });
+
+        //             $('#search-container').append(tempHtml)
+        //         },
+        //         error: function(response) {
+        //             console.log('Error: ' + response);
+        //         }
+        //     });
+        // });
+    }
+
 
     
 </script>
