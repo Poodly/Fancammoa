@@ -1,8 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 
-const { renderMain } = require('../src/controllers/pages.controller')
+const Render = require('../src/controllers/pages.controller')
+const render = new Render();
 
-router.get('/', renderMain) // GET /
+router.get('/', render.main)           // GET /
+router.get('/login', render.login)     // GET /login
+router.get('/signUp', render.sginUp)   // GET /signUp
 
 module.exports = router;
