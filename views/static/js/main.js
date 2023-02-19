@@ -57,7 +57,7 @@ function searchVideo() {
             part: 'snippet',
             q: query,
             type: 'video',
-            key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+            key: 'AIzaSyCJClqf3zSSC-ltsVXPWNKAoUbTAIwp7FM',
             maxResults: 9,
             order: 'viewCount'
         };
