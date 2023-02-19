@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
+    "bootstrap-icons": "^1.10.3",
     "chokidar": "^3.5.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",

@@ -10,9 +10,9 @@
 </head>
 <body>
     <div class="loginOutBox">
-        <h1><a id="title" href="/">💜 직캠모아 💚</a></h1>
+        <h1><a id="title" href="/">💜 FANCAM MOA 💚</a></h1>
 
-        <form id="login-form" action="" method="post">
+        <form id="login-form" action="/auth/login" method="post">
           <div class="input-group">
             <input id="email" type="email" name="email" placeholder="email" required autofocus>
           </div>
@@ -22,7 +22,14 @@
           <button id="login"  type="submit" class="btn">로그인</button>
           <button id="signup" type="button" onclick="location.href='/signUp'" class="btn">회원가입</button>
         </form>
-
-      </div>
+        <div class="search_id_pw">
+          <a href="#">아이디 찾기</a>
+          <a href="#">비밀번호 찾기</a>
+        </div>
+    </div>
 </body>
+
+<!-- Mouse Effect -->
+<script src="./static/js/mouseeffect.js"></script>
+
 </html>

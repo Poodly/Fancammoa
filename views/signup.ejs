@@ -12,21 +12,28 @@
     <div class="signUpBox">   
         
         <div class="loginOutBox">
-        <h1><a id="title" href="/">💜 직캠모아 💚</a></h1>
+        <h1><a id="title" href="/auth/signup">💜 FANCAM MOA 💚</a></h1>
 
         <form id="signup-form" action="/auth/signup" method="post">
             <div class="input-group">
             <input id="signup-email" type="email" name="email" placeholder="email" required autofocus>
             </div>
             <div class="input-group">
-            <input id="signup-password" type="password" name="password" placeholder="password" required autofocus>
+            <input id="signup-nick" type="text" name="nick" placeholder="nick" required autofocus>
             </div>
             <div class="input-group">
-            <input id="signup-phone" type="text" name="phone" placeholder="phone" required autofocus>
+            <input id="signup-password" type="password" name="password" placeholder="password" required autofocus>
             </div>
+            <!-- <div class="input-group">
+            <input id="signup-password-confirm" type="password" name="passwordConfirm" placeholder="password confirm" required autofocus>
+            </div> -->
             <button type="submit" onclick="" class="btn">회원가입</button>
             <button type="button" onclick="location.href='/login'" class="btn">로그인</button>
         </form>
       </div>
 </body>
+
+<!-- Mouse Effect -->
+<script src="./static/js/mouseeffect.js"></script>
+
 </html>

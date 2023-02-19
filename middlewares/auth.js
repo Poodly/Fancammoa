@@ -5,7 +5,7 @@ exports.isLoggedIn = (req, res, next) => {
     else {
         // res.status(403).send('로그인 필요');
         const message = "pleaselogin"
-        res.redirect(`/auth/login/?error=${message}`);
+        res.redirect(`/login/?error=${message}`);
     }
 };
 
@@ -19,10 +19,11 @@ exports.isNotLoggedIn = (req, res, next) => {
     }
 };
 
-exports.isGeneralIn = (req, res, next) => {
-    const userType = req.user.userType;
-    if (userType === 1) {
-        console.log("user.userType---------------", res.locals.user.userType);
+// Type check -----------------------------------------------------------------------------------------------
+exports.onlyGeneral  = (req, res, next) => {
+    const userTypeKey = req.user.userTypeKey;
+    if (userTypeKey === 'General') {
+        console.log("user.userTypeKey---------------", res.locals.user.userTypeKey);
         next();
     }
     else {
@@ -31,9 +32,9 @@ exports.isGeneralIn = (req, res, next) => {
     }
 };
 
-exports.isAdminIn = (req, res, next) => {
-    const userType = req.user.userType;
-    if (userType === 2) {
+exports.onlyAdmin = (req, res, next) => {
+    const adminKey = req.user.adminKey;
+    if (adminKey === "Fancam(30523") {
         next();
     }
     else {
@@ -41,3 +42,4 @@ exports.isAdminIn = (req, res, next) => {
         res.redirect(`/?error=${message}`);
     }
 };
+// -------------------------------------------------------------------------------------------------

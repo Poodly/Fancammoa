@@ -12,11 +12,11 @@ dotenv.config();
 
 // ----------------------------------------- connect routes ----------------------------------------
 const pagesRouter = require('./routes/pages.router');
-// const authRouter  = require('./routes/auth.router')
-
+const authRouter  = require('./routes/auth.router');
+const passportConfig = require('./src/controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
-
+passportConfig();
 app.set('port', process.env.PORT);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -34,10 +34,23 @@ app.use(express.static(path.join(__dirname, "./views")));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended:false} ));
+app.use(cookieParser(process.env.COOKIE_SECRET)); 
+app.use(session({ 
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        maxAge: 1 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: false,
+    }
+}));
+app.use(passport.initialize()); 
+app.use(passport.session()); 
 
 // ------------------------------------------ routes -----------------------------------------------
-app.use('/', pagesRouter); 
-// app.use('/auth', authRouter); 
+app.use('/'    , pagesRouter); 
+app.use('/auth', authRouter); 
 
 
 
