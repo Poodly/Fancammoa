@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign UP</title>
+    <link rel="stylesheet" href="./static/css/auth.css">
+</head>
+<body>
+    <div class="signUpBox">   
+        
+        <div class="loginOutBox">
+        <h1><a id="title" href="/">💜 FANCAM MOA 💚</a></h1>
+
+        <form id="signup-form" action="/auth/signup" method="post">
+            <div class="input-group">
+            <input id="signup-email" type="email" name="email" placeholder="email" required autofocus>
+            </div>
+            <div class="input-group">
+            <input id="signup-nick" type="text" name="nick" placeholder="nick" required autofocus>
+            </div>
+            <div class="input-group">
+            <input id="signup-password" type="password" name="password" placeholder="password" required autofocus>
+            </div>
+            <!-- <div class="input-group">
+            <input id="signup-password-confirm" type="password" name="passwordConfirm" placeholder="password confirm" required autofocus>
+            </div> -->
+            <button type="submit" onclick="" class="btn">회원가입</button>
+            <button type="button" onclick="location.href='/login'" class="btn">로그인</button>
+        </form>
+      </div>
+</body>
+
+<!-- Mouse Effect -->
+<script src="./static/js/mouseeffect.js"></script>
+
+</html>
