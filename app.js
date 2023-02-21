@@ -8,7 +8,7 @@ const cookieParser  = require('cookie-parser');
 const passport      = require('passport'); 
 const { sequelize } = require('./src/models');
 
-dotenv.config(); 
+dotenv.config();
 
 // ----------------------------------------- connect routes ----------------------------------------
 const pagesRouter = require('./routes/pages.router');
