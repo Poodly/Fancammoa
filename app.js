@@ -6,6 +6,8 @@ const dotenv        = require('dotenv');
 const session       = require('express-session');
 const cookieParser  = require('cookie-parser');
 const passport      = require('passport'); 
+const axios         = require('axios');
+
 const { sequelize } = require('./src/models');
 
 dotenv.config();
