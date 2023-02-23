@@ -43,7 +43,7 @@ class AuthController {
                     console.error(loginError);
                     return next(loginError);
                 }
-                console.log('login succeed')
+                console.log('-------------login succeed')
                 return res.redirect('/');
             });
         })(req, res, next);
@@ -53,7 +53,7 @@ class AuthController {
     logout = (req, res, next) => { 
         try {
             req.logout(() => {
-                console.log('logout succeed')
+                console.log('-------------logout succeed')
                 res.redirect('/');
             })
         } catch (error) {

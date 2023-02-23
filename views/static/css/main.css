@@ -80,7 +80,17 @@ a:hover {
     color: rgb(61, 58, 58);
 }
 
-#login {
+#login_nick {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+#login_nick li {
+    margin-right: 10px;
+}
+
+#login_logout {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

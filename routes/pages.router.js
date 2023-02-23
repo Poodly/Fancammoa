@@ -10,6 +10,7 @@ const { onlyGeneral  , onlyAdmin }     = require('../middlewares/auth');
 // User's Data
 router.use((req, res, next) => {
     res.locals.user = req.user;
+    console.log("req.user------------",req.user)
     next();
 })
 

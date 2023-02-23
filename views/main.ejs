@@ -37,9 +37,19 @@
     <div class="head_container">
         <div class="head_nev_1">
             <h1 id="title">FANCAM MOA💜</h1>
-            <h2 id="login"><a href="/login">Login</a></h2>
+            <!-- 로그인 전 -->
+            <% if (!user) { %>
+                <h2 id="login_logout"><a href="/login">Login</a></h2>
+            <% } else { %>
+                <div id="login_nick">
+                    <li id="login_nick">🥝 Hello <%= user.nick %></li>
+                    <h2 id="login_logout"><a href="/auth/logout">logout</a></h2>
+                </div>
+            <% } %>
+              
         </div>
     
+        <form action="" onsubmit="return false;">
         <div class="head_nev_2">
             <div class="head_search">
                 <!-- <p id="cam_search">직캠 검색</p> -->
@@ -49,11 +59,14 @@
                     <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
                   </svg></button>
             </div>
+        </form>
         
             <div class="head_list">
                 <p>아이돌 순위</p>
                 <p>아이돌 프로필</p>
-                <p>마이페이지</p>
+                <% if (user) { %>
+                    <p id="profile"><a href="/profile">마이페이지</a></p>
+                <% } %>
             </div>
         </div>
     
