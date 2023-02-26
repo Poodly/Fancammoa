@@ -11,7 +11,7 @@ function searchVideo() {
         part: 'snippet',
         q: query,
         type: 'video',
-        key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+        key: 'AIzaSyCJClqf3zSSC-ltsVXPWNKAoUbTAIwp7FM',
         maxResults: 3,
         order: 'viewCount'
     };
@@ -39,7 +39,7 @@ function searchVideo() {
             if (titleKeywords || descriptionKeywords) {
                 const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
                                     <div class="card" style="width: 18rem;">
-                                    <a href="#" onclick="playVideo('${videoId}')" data-toggle="modal" data-target="#myModal">
+                                    <a href="#" onclick="playVideo('${videoId}','${title}')" data-toggle="modal" data-target="#myModal">
                                         <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
                                         <div class="card-body">
                                         <p class="card-title">${title}</p>

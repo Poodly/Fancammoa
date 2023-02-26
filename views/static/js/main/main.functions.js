@@ -1,8 +1,9 @@
 // 모달 창에 유튜브 영상을 띄우는 함수
-function playVideo(videoId) {
+function playVideo(videoId, title) {
     $('#player').attr('src', `https://www.youtube.com/embed/${videoId}`);
-    // https://www.youtube.com/embed/${videoId}?autoplay=1  자동재생?
+    $('#modal-title').text(title);
 }
+// https://www.youtube.com/embed/${videoId}?autoplay=1  자동재생?
 
 // 모달이 닫힐 때 호출되는 함수
 $('#myModal').on('hidden.bs.modal', function () {
