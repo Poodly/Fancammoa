@@ -17,11 +17,11 @@ class LikeVideo extends Sequelize.Model {
             },
             // userId와 관계
             userId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: {
-                  model: 'users',
-                  key: 'userId'
+                type          : Sequelize.INTEGER,
+                allowNull     : false,
+                references : {
+                  model    : 'users',
+                  key      : 'userId'
                 },
             }
         }, { // options

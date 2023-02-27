@@ -1,7 +1,9 @@
 // 모달 창에 유튜브 영상을 띄우는 함수
-function playVideo(videoId, title) {
+function playVideo(videoId, title, viewCount) {
     $('#player').attr('src', `https://www.youtube.com/embed/${videoId}`);
     $('#modal-title').text(title);
+    console.log("playVideo----------viewCount",viewCount)
+    $('#modal-viewCount').text(viewCount);
 }
 // https://www.youtube.com/embed/${videoId}?autoplay=1  자동재생?
 
@@ -23,6 +25,16 @@ function isKeywordsIncluded(text, keywords) {
     for (let i = 0; i < wordsArr.length; i++) {
         if (keywords.includes(wordsArr[i])) {
             console.log(`'${wordsArr[i]}' 키워드가 포함되어있습니다.-------`);
+            return true;
+            }
+    }
+    return false;
+}
+
+function isKeywordsIncludedArr(arr, keywords) {
+    for (let i in arr) {
+        if (keywords.includes(arr[i])) {
+            console.log(`'${arr[i]}' 키워드가 포함되어있습니다.-------`);
             return true;
             }
     }

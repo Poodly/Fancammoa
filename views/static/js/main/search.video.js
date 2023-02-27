@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function searchVideo() {
     const searchButton = document.getElementById('search-button');
-    searchButton.addEventListener('click', () => {
+    searchButton.addEventListener('click', async () => {
     const query  = document.getElementById('search_box').value;
     const url    = 'https://www.googleapis.com/youtube/v3/search';
     const params = {
         part: 'snippet',
         q: query,
         type: 'video',
-        key: 'AIzaSyCJClqf3zSSC-ltsVXPWNKAoUbTAIwp7FM',
-        maxResults: 3,
+        key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+        maxResults: 2,
         order: 'viewCount'
     };
 
@@ -20,39 +20,43 @@ function searchVideo() {
     const searchContainer = document.getElementById('search-container');
     searchContainer.innerHTML = '';
 
-    axios.get(url, { params })
-        .then(response => {
+    try {
+        const response = await axios.get(url, { params });
         const items = response.data.items;
 
-        // console.log("items---",items)
+        for (let i = 0; i < items.length; i++) {
+            const item       = items[i];
+            const videoId    = item.id.videoId;
+            const viewInfo   = await getVideoInfo(videoId);
 
-        items.forEach(item => {
-            const videoId      = item.id.videoId;
-            const thumbnailUrl = item.snippet.thumbnails.high.url;
-            const title        = item.snippet.title;
-            const description  = item.snippet.description;
+            let thumbnailUrl = viewInfo.thumbnailUrl;
+            let title        = viewInfo.title;
+            let description  = viewInfo.description;
+            let tags         = viewInfo.tags;
+            let viewCount    = viewInfo.viewCount;
+            console.log("viewCount ---", viewCount);
 
-            console.log("title---",title)
-            const titleKeywords = isKeywordsIncluded(description , searchKeyword)
             const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
+            const titleKeywords = isKeywordsIncluded(description , searchKeyword)
+            const tagesKeywords = isKeywordsIncludedArr(tags, searchKeyword);
 
-            if (titleKeywords || descriptionKeywords) {
+            if (tagesKeywords || titleKeywords || descriptionKeywords) {
+                console.log("Keywords is true ^^")
                 const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
                                     <div class="card" style="width: 18rem;">
-                                    <a href="#" onclick="playVideo('${videoId}','${title}')" data-toggle="modal" data-target="#myModal">
-                                        <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
-                                        <div class="card-body">
-                                        <p class="card-title">${title}</p>
-                                        </div>
-                                    </a>
+                                        <a href="#" onclick="playVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}')" data-toggle="modal" data-target="#myModal">
+                                            <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
+                                            <div class="card-body">
+                                                <p class="card-title">${title}</p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>`;
                     searchContainer.insertAdjacentHTML('beforeend', tempHtml);
-
-            }
-
-            });
-        })
-        .catch(error => console.log('Error:', error));
+                    }
+                }
+            } catch (error) {
+            console.log('Error:', error);
+        }
     });
 }

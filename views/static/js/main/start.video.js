@@ -1,46 +1,48 @@
-// $(document).ready(function () {
-//     mainStartVideo();
-// });
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function () {
     mainStartVideo();
 });
 
-function mainStartVideo() {
-    const query  = "직캠";
-    const url    = 'https://www.googleapis.com/youtube/v3/search';
+async function mainStartVideo() {
+    const query = "입덕직캠";
+    const url = 'https://www.googleapis.com/youtube/v3/search';
     const params = {
         part: 'snippet',
         q: query,
         type: 'video',
-        key: 'AIzaSyCJClqf3zSSC-ltsVXPWNKAoUbTAIwp7FM',
-        maxResults: 3,
+        key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+        maxResults: 2,
         order: 'viewCount'
     };
-
+    
     // 이전 검색 결과 지우기
     const searchContainer = document.getElementById('search-container');
     searchContainer.innerHTML = '';
 
-    axios.get(url, { params })
-        .then(response => {
+    try {
+        const response = await axios.get(url, { params });
         const items = response.data.items;
 
-        // console.log("items--------",items)
+        for (let i = 0; i < items.length; i++) {
+            const item       = items[i];
+            const videoId    = item.id.videoId;
+            const viewInfo   = await getVideoInfo(videoId);
 
-        items.forEach(item => {
-            let videoId      = item.id.videoId;
-            let thumbnailUrl = item.snippet.thumbnails.high.url;
-            let title        = item.snippet.title;
-            let description  = item.snippet.description;
+            let thumbnailUrl = viewInfo.thumbnailUrl;
+            let title        = viewInfo.title;
+            let description  = viewInfo.description;
+            let tags         = viewInfo.tags;
+            let viewCount    = viewInfo.viewCount;
+            console.log("viewCount ---", viewCount);
 
-            console.log("title---",title)
+            const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
             const titleKeywords = isKeywordsIncluded(description , searchKeyword)
-            // const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
+            const tagesKeywords = isKeywordsIncludedArr(tags, searchKeyword);
 
-            if (titleKeywords) {
+            if (tagesKeywords || titleKeywords || descriptionKeywords) {
+                console.log("Keywords is true ^^")
                 const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
                                     <div class="card" style="width: 18rem;">
-                                    <a href="#" onclick="playVideo('${videoId}','${title}')" data-toggle="modal" data-target="#myModal">
+                                    <a href="#" onclick="playVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}')" data-toggle="modal" data-target="#myModal">
                                         <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
                                         <div class="card-body">
                                         <p class="card-title">${title}</p>
@@ -48,9 +50,10 @@ function mainStartVideo() {
                                     </a>
                                     </div>
                                 </div>`;
-                    searchContainer.insertAdjacentHTML('beforeend', tempHtml);
+                searchContainer.insertAdjacentHTML('beforeend', tempHtml);
                 }
-            });
-        })
-        .catch(error => console.log('Error:', error));
+            }
+        } catch (error) {
+        console.log('Error:', error);
+    }
 }

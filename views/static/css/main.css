@@ -229,6 +229,9 @@ img {
     justify-content: space-between;
 }
 
+#modal-viewCount-icon{
+    display: flex;
+}
 /* #madal-title {
     display: flex;
 

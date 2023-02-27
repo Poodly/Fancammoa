@@ -7,7 +7,7 @@ const searchKeyword = [
                     "Stray Kids", "스트레이 키즈", "(G)I-DLE", "(여자)아이들", "OH MY GIRL", "오마이걸", "ASTRO", "아스트로", 
                     "NU'EST", "뉴이스트", "VIXX", "빅스", "CLC", "씨엘씨", "APRIL", "에이프릴", "EVERGLOW", "에버글로우", "AB6IX", 
                     "에이비식스", "Cravity", "크래비티", "TREASURE", "트레저", "ENHYPEN", "엔하이픈", "NewJeans", "뉴진스", 
-                    "LE SSERAFIM", "르세라핌" , "아이유", "IU"
+                    "LE SSERAFIM", "르세라핌" , "아이유", "IU", "Inkigayo", "인기가요", "장원영", "WONYOUNG", "IVE", "아이브", "Attention"
                     ]
 
-const removeKeyword = ['직캠', '캠', '뮤비', '뮤직비디오', '입덕', 'fancam', 'cam', "MV"]
+const removeKeyword = ['직캠', '캠', '뮤비', '뮤직비디오', '입덕', 'fancam', 'cam', "MV", "인기가요"]
