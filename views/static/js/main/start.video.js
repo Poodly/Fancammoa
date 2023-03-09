@@ -9,7 +9,7 @@ async function mainStartVideo() {
         part: 'snippet',
         q: query,
         type: 'video',
-        key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs',
+        key: '??',
         maxResults: 2,
         order: 'viewCount'
     };
@@ -20,7 +20,7 @@ async function mainStartVideo() {
 
     try {
         const response = await axios.get(url, { params });
-        const items = response.data.items;
+        const items = await response.data.items;
 
         for (let i = 0; i < items.length; i++) {
             const item       = items[i];

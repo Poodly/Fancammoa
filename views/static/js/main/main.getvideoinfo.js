@@ -3,7 +3,7 @@ function getVideoInfo(videoId) {
     const params = {
         part: 'snippet,statistics',
         id: videoId,
-        key: 'AIzaSyB7N1NUj5heGDF_MH2pC8HxrZaT-M21Wvs'
+        key: '??'
     };
     return axios.get(url, { params })
         .then(response => {
