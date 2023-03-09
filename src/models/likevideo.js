@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+// const User = require('./user')
 
 // User lkie video table
 class LikeVideo extends Sequelize.Model {
@@ -14,10 +15,15 @@ class LikeVideo extends Sequelize.Model {
                 allowNull     : false,
                 unique        : true,
             },
+            // userId와 관계
             userId: {
                 type          : Sequelize.INTEGER,
                 allowNull     : false,
-            },
+                references : {
+                  model    : 'users',
+                  key      : 'userId'
+                },
+            }
         }, { // options
             sequelize,
             timestamps  : true,
@@ -28,6 +34,10 @@ class LikeVideo extends Sequelize.Model {
             charset     : "utf8",
             collate     : "utf8_general_ci",
         });
+    }
+    // userId와 관계
+    static associate(db) { 
+        db.LikeVideo.belongsTo(db.User); 
     }
 };
 

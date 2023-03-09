@@ -80,7 +80,17 @@ a:hover {
     color: rgb(61, 58, 58);
 }
 
-#login {
+#login_nick {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+#login_nick li {
+    margin-right: 10px;
+}
+
+#login_logout {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -191,3 +201,52 @@ img {
 
 /* container --------------------- */
 
+/* 모달 */
+#myModal .modal-dialog {
+    max-width: 1200px;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    /* width: 100%; 
+    height: 100%;  */
+    /* padding-bottom: 56.25%; */
+}
+
+.icon-button {
+    border: 0px;
+    background-color: #ffffff00;
+
+    margin: 0px;
+    /* padding-left: 3px;
+    padding-right: 3px; */
+    padding: 0px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#modal-title {
+    margin: 0px;
+    padding: 0px;
+}
+
+#modal-viewCount-icon{
+    display: flex;
+    align-items: center;
+
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px;
+}
+
+#viewCount-icon {
+    padding-right: 4px;
+}
+/* #madal-title {
+    display: flex;
+
+} */
