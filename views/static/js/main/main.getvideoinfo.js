@@ -1,11 +1,11 @@
 async function getVideoInfo(videoId) {
     try {
         const response = await axios.post('/video/getVideoInfo', { videoId });
-        const thumbnailUrl = response.data.thumbnailUrl;
-        const title        = response.data.title;
-        const tags         = response.data.tags;
-        const description  = response.data.description;
-        const viewCount    = response.data.viewCount;
+        let thumbnailUrl = response.data.thumbnailUrl;
+        let title        = response.data.title;
+        let tags         = response.data.tags;
+        let description  = response.data.description;
+        let viewCount    = response.data.viewCount;
 
         return {
             thumbnailUrl,
