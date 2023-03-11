@@ -1,0 +1,253 @@
+/* http://rwdb.kr/interactionbutton/  버튼만들때 참고 */
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Inter';
+    font-style: normal;
+    color: #000000;
+
+
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+
+}
+
+input {
+    padding-left: 15px;
+    padding-bottom: 2px;
+}
+
+p {
+    margin-left: 15px;
+}
+
+a {
+    text-align: center;
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: inherit;        /* 링크의 색상 제거 */ 
+}
+
+a:hover {
+    color: rgb(156, 156, 156);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* class ----------------------------- */
+.head_container {
+    margin-top: 20px;
+    margin-left : 22%;
+    margin-right: 22%;
+}
+
+.head_nev_1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+
+    margin-bottom: 30px;
+}
+
+.head_nev_2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.head_search {
+    display: flex;
+    align-items: center;
+}
+
+.head_list {
+    display: flex;
+    flex-direction: row;
+}
+
+/* class ----------------------------- */
+
+/* 상단 바 -----------------------------*/
+
+#title {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 30px;
+    text-decoration: none;
+    color: rgb(61, 58, 58);
+}
+
+#login_nick {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+#login_nick li {
+    margin-right: 10px;
+}
+
+#login_logout {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+#cam_search {
+    margin-left: 0;
+}
+
+#search_box {
+    width: 230px;
+    height: 35px;
+
+    background: #E5E5E5;
+    border-radius: 25px;
+    border: 0px;
+    /* margin-left: 10px; */
+}
+
+#line {
+    height: 3px;
+
+    background   : #ECECEC;
+    border-radius: 10px;
+    margin-top   : 10px;
+    margin-bottom: 30px;
+}
+/* 상단 바 -----------------------------*/
+
+
+/* containter ------------------------ */
+
+/* 검색결과 css */
+#search-container {
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.card {
+    max-height: 500px;
+    border: 0px;
+}
+
+img {
+    transition: top 0.2s ease-in-out;
+}
+
+.card img {
+    box-shadow: 0px 5px 10px rgba(0, 0, 1, 0.3);
+    border-radius: 20px;
+
+}
+
+.card img:hover {
+    position: relative;
+    top: -5px;
+}
+
+
+/* 버튼 */
+
+#search-button {
+	background-color:#ebebeb00;
+	cursor:pointer;
+    border: 0px;
+}
+
+#search-button:hover {
+	background-color:#c5c5c500;
+    position:relative;
+    top:1px;
+}
+#search-button:active {
+	position:relative;
+	top:1px;
+}
+
+.search_word_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+
+.icons span {
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin-bottom: 10px; */
+}
+
+#search_word {
+    font-size: 25px;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+/* container --------------------- */
+
+/* 모달 */
+#myModal .modal-dialog {
+    max-width: 1200px;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    /* width: 100%; 
+    height: 100%;  */
+    /* padding-bottom: 56.25%; */
+}
+
+.icon-button {
+    border: 0px;
+    background-color: #ffffff00;
+
+    margin: 0px;
+    /* padding-left: 3px;
+    padding-right: 3px; */
+    padding: 0px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#modal-title {
+    margin: 0px;
+    padding: 0px;
+}
+
+#modal-viewCount-icon{
+    display: flex;
+    align-items: center;
+
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px;
+}
+
+#viewCount-icon {
+    padding-right: 4px;
+}
+
+/* #madal-title {
+    display: flex;
+
+} */
