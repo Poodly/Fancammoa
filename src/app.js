@@ -8,17 +8,17 @@ const cookieParser  = require('cookie-parser');
 const passport      = require('passport'); 
 const axios         = require('axios');
 
-const { sequelize } = require('./src/models');
+const { sequelize } = require('./models');
 
 // dotenv.config();
 require("dotenv").config();
 
 // ----------------------------------------- connect routes ----------------------------------------
-const userRouter   = require('./src/routes/user.router');
-const pagesRouter  = require('./src/routes/pages.router');
-const authRouter   = require('./src/routes/auth.router');
-const searchRouter = require('./src/routes/search.video.router');
-const passportConfig = require('./src/architecture/controllers/passport');
+const userRouter   = require('./routes/user.router');
+const pagesRouter  = require('./routes/pages.router');
+const authRouter   = require('./routes/auth.router');
+const searchRouter = require('./routes/search.video.router');
+const passportConfig = require('./architecture/controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
 passportConfig();
@@ -32,8 +32,8 @@ sequelize.sync({ force: false })
 // -------------------------------------------------------------------------------------------------
 app.use(morgan('dev')); 
 app.use(express.static('views'));
-app.set("views", path.join(__dirname, "./views"));
-app.use(express.static(path.join(__dirname, "./views")));
+app.set("views", path.join(__dirname, "../views"));
+app.use(express.static(path.join(__dirname, "../views")));
 
 // ------------------------------------------ parser -----------------------------------------------
 app.use(bodyParser.urlencoded({extended:false}));
