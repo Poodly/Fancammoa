@@ -49,8 +49,7 @@ async function saveLikeVideoButton() {
         await $('#handleLikeButtonColor').empty();
         $('#handleLikeButtonColor').append(tempHtml);
         
-        alert("좋아요 성공!!");
-
+        // alert("좋아요 성공!!");
     } catch(error) {
         console.error(error);
         };
@@ -71,7 +70,7 @@ async function deleteLikeVideoButton() {
         await $('#handleLikeButtonColor').empty();
         $('#handleLikeButtonColor').append(tempHtml);
         
-        alert("좋아요 취소!!");
+        // alert("좋아요 취소!!");
     } catch (error) {
         console.error(error);
     }
