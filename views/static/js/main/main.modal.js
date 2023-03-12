@@ -23,35 +23,6 @@ $('#myModal').on('hidden.bs.modal', function () {
     // });
 });
 
-
-function isKeywordsIncluded(text, keywords) {
-    const words = text.split(' '); // 공객기준 배열화
-    wordsArr = words.map(str => str.replace(/[^\w\s]/gi, '')).filter(str => str.trim() !== ''); // 특수문자, 빈 문자 제외
-    console.log(wordsArr);
-    for (let i = 0; i < wordsArr.length; i++) {
-        if (keywords.includes(wordsArr[i])) {
-            console.log(`'${wordsArr[i]}' 키워드가 포함되어있습니다.-------`);
-            return true;
-            }
-    }
-    return false;
-}
-
-function isKeywordsIncludedArr(arr, keywords) {
-    for (let i in arr) {
-        if (keywords.includes(arr[i])) {
-            console.log(`'${arr[i]}' 키워드가 포함되어있습니다.-------`);
-            return true;
-            }
-    }
-    return false;
-}
-
-function removeKeywords(str, keywords) {
-    const regex = new RegExp(keywords.join('|'), 'gi');
-    return str.replace(regex, '');
-    }
-
 function convertNumberUnit(number) {
     const units = ['', '만', '억', '조', '경'];
     let i = 0;
@@ -60,7 +31,5 @@ function convertNumberUnit(number) {
         i++;
     }
     return number.toFixed(1) + units[i];
-    }
-    // console.log(convertNumberUnit(141547687)); // "1.4억"
-    
-      
+}
+// console.log(convertNumberUnit(141547687)); // "1.4억"
