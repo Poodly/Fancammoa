@@ -14,11 +14,11 @@ const { sequelize } = require('./src/models');
 require("dotenv").config();
 
 // ----------------------------------------- connect routes ----------------------------------------
-const userRouter   = require('./routes/user.router');
-const pagesRouter  = require('./routes/pages.router');
-const authRouter   = require('./routes/auth.router');
-const searchRouter = require('./routes/search.video.router');
-const passportConfig = require('./src/controllers/passport');
+const userRouter   = require('./src/routes/user.router');
+const pagesRouter  = require('./src/routes/pages.router');
+const authRouter   = require('./src/routes/auth.router');
+const searchRouter = require('./src/routes/search.video.router');
+const passportConfig = require('./src/architecture/controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
 passportConfig();

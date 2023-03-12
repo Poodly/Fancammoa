@@ -3,7 +3,7 @@ const router  = express.Router();
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth')
 
-const UserController = require('../src/controllers/user.controller')
+const UserController = require('../architecture/controllers/user.controller');
 const userController = new UserController();
 
 router.post('/likeVideo', isLoggedIn, userController.saveLikeVideo);

@@ -1,4 +1,4 @@
-const { LikeVideo } = require('../models')
+const { LikeVideo } = require('../../models')
 
 class UserController {
     // 로그인한 유저의 userId, 비디오 id 저장
