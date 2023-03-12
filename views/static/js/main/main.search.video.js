@@ -14,11 +14,10 @@ function searchVideo() {
 
     try {
         const response = await axios.post(url, { query });
-        const items = await response.data;
+        const videoIds = await response.data
 
-        for (let i = 0; i < items.length; i++) {
-            const item       = items[i];
-            const videoId    = item.id.videoId;
+        for (let i = 0; i < videoIds.length; i++) {
+            const videoId    = videoIds[i];
             const videoInfo  = await getVideoInfo(videoId);
 
             let thumbnailUrl = videoInfo.thumbnailUrl;

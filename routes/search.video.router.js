@@ -1,12 +1,17 @@
 const express = require('express');
 const router  = express.Router();
 
-const SearchYoutubeVideo = require('../src/controllers/search.video.controller');
-const searchYoutubeVideo = new SearchYoutubeVideo();
+const StartSearchVideoController = require('../src/controllers/search.video.controller/start.search.video.controller');
+const startSearchVideoController = new StartSearchVideoController();
 
-// API 요청을 처리할 라우터
-router.get ('/startSearch' , searchYoutubeVideo.startSearchVideo);     // GET  /video/startSearch
-router.post('/search'      , searchYoutubeVideo.searchVideo);          // POST /video/search   
-router.post('/getVideoInfo', searchYoutubeVideo.getVideoInfo)          // POST /video/getVideoInfo
+const QuerySearchVideoController = require('../src/controllers/search.video.controller/query.search.video.controller');
+const querySearchVideoController = new QuerySearchVideoController();
+
+const GetVideoInfoController = require('../src/controllers/search.video.controller/get.video.info.controller');
+const getVideoInfoController = new GetVideoInfoController();
+
+router.get ('/startSearch' , startSearchVideoController.startSearchVideo);   // GET  /video/startSearch
+router.post('/search'      , querySearchVideoController.querySearchVideo);   // POST /video/search   
+router.post('/getVideoInfo', getVideoInfoController.getVideoInfo);        // POST /video/getVideoInfo
 
 module.exports = router;
