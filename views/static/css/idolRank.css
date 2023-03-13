@@ -1,0 +1,22 @@
+.idol-rank-nev {
+    display: flex;
+    justify-content: space-between;
+}
+
+.idol-rank-nev-items {
+    display: flex;
+    flex-direction: column;
+}
+
+#idol-rank-nev-title {
+    font-weight: 400;
+}
+
+#idol-rank-nev-explanation {
+    margin-left: 0px;
+
+}
+
+#idol-rank-nev-TOP {
+    font-weight: 600;
+}
