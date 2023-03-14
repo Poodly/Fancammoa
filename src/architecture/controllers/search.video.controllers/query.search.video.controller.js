@@ -1,4 +1,4 @@
-const QuerySearchVideoService = require('../../services/search.video.service/query.search.video.service');
+const QuerySearchVideoService = require('../../services/search.video.services/query.search.video.service');
 require("dotenv").config();
 
 class QuerySearchVideoController {

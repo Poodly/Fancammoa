@@ -1,13 +1,13 @@
 const express = require('express');
 const router  = express.Router();
 
-const StartSearchVideoController = require('../architecture/controllers/search.video.controller/start.search.video.controller');
+const StartSearchVideoController = require('../architecture/controllers/search.video.controllers/start.search.video.controller');
 const startSearchVideoController = new StartSearchVideoController();
 
-const QuerySearchVideoController = require('../architecture/controllers/search.video.controller/query.search.video.controller');
+const QuerySearchVideoController = require('../architecture/controllers/search.video.controllers/query.search.video.controller');
 const querySearchVideoController = new QuerySearchVideoController();
 
-const GetVideoInfoController = require('../architecture/controllers/search.video.controller/get.video.info.controller');
+const GetVideoInfoController = require('../architecture/controllers/search.video.controllers/get.video.info.controller');
 const getVideoInfoController = new GetVideoInfoController();
 
 router.get ('/startSearch' , startSearchVideoController.startSearchVideo);   // GET  /video/startSearch

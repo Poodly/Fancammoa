@@ -7,6 +7,11 @@ class QuerySearchVideoService {
     redisRepository = new RedisRepository();
   
     querySearchVideo = async (query, APIKEY, SEARCHURL) => {
+      if (!query) {
+        query = "입덕직캠"
+      }else{
+        query = query
+      }
       const queryCacheKey = query
   
       const exCachedVideoIds = await this.redisRepository.redisGet(queryCacheKey);

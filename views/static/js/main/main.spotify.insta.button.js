@@ -10,11 +10,18 @@ const instaIcon     = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height
 // 검색어, 스포티파이, 인스타 버튼 생성
 searchButton.addEventListener('click', () => {
     let searchText = searchBox.value;
+
+    if(!searchText) {
+        searchWord.innerText    = ''
+        spotifyLink.innerHTML   = ''
+        instagramLink.innerHTML = ''
+        return
+    }
     let spotify    = 'https://open.spotify.com/search/'
     let instagram  = 'https://www.instagram.com/explore/tags/'
 
     if (!isKeywordsIncluded(searchText, removeKeyword)) {
-        searchWord.innerText  = `✨ ${searchText} ✨`;
+        searchWord.innerText    = `✨ ${searchText} ✨`;
         spotifyLink.innerHTML   = `<a href="${spotify + searchText}" target="_blank">${spotifyIcon}</a>`
         instagramLink.innerHTML = `<a href="${instagram + searchText}" target="_blank">${instaIcon}</a>`
     }

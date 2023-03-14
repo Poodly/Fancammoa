@@ -16,14 +16,14 @@ class LikeVideo extends Sequelize.Model {
             //     unique        : true,
             // },
             // userId와 관계
-            userId: {
-                type          : Sequelize.INTEGER,
-                allowNull     : false,
-                references : {
-                    model    : 'users',
-                    key      : 'userId'
-                },
-            },
+            // userId: {
+            //     type          : Sequelize.INTEGER,
+            //     allowNull     : false,
+            //     references : {
+            //         model    : 'users',
+            //         key      : 'userId'
+            //     },
+            // },
             videoId: {
                 type          : Sequelize.STRING,
                 allowNull     : true,
@@ -41,7 +41,7 @@ class LikeVideo extends Sequelize.Model {
     }
     // userId와 관계
     static associate(db) { 
-        db.LikeVideo.belongsTo(db.User); 
+        db.LikeVideo.belongsTo(db.User, { foreignKey: 'userId' }); 
     }
 };
 

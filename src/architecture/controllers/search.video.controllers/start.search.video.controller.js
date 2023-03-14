@@ -1,4 +1,4 @@
-const StartSearchVideoService = require('../../services/search.video.service/start.search.video.service');
+const StartSearchVideoService = require('../../services/search.video.services/start.search.video.service');
 require("dotenv").config();
 
 class StartSearchVideoController {

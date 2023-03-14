@@ -18,6 +18,8 @@ const userRouter   = require('./routes/user.router');
 const pagesRouter  = require('./routes/pages.router');
 const authRouter   = require('./routes/auth.router');
 const searchRouter = require('./routes/search.video.router');
+const rankRouter   = require('./routes/rank.router')
+const dbSaveRouter = require('./routes/db.save.router');
 const passportConfig = require('./architecture/controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
@@ -57,7 +59,9 @@ app.use(passport.session());
 app.use('/'      , pagesRouter); 
 app.use('/auth'  , authRouter); 
 app.use('/user'  , userRouter); 
-app.use('/video' , searchRouter)
+app.use('/video' , searchRouter);
+app.use('/save'  , dbSaveRouter);
+// app.use('/rank'  , rankRouter);
 
 
 

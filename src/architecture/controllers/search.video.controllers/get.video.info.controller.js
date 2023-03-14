@@ -1,4 +1,4 @@
-const GetVideoInfoService = require('../../services/search.video.service/search.video.info.service');
+const GetVideoInfoService = require('../../services/search.video.services/search.video.info.service');
 require("dotenv").config();
 
 class GetVideoInfoController {

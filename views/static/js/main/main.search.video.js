@@ -41,7 +41,7 @@ function searchVideo() {
             if (tagesKeywords || titleKeywords || descriptionKeywords) {
                 const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
                                     <div class="card" style="width: 18rem;">
-                                    <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}')" data-toggle="modal" data-target="#myModal">
+                                    <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}','${query}')" data-toggle="modal" data-target="#myModal">
                                         <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
                                         <div class="card-body">
                                         <p class="card-title">${title}</p>

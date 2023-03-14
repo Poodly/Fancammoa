@@ -47,7 +47,7 @@ class User extends Sequelize.Model {
     }
     // likeVideo와 관계
     static associate(db) { 
-        db.User.hasMany(db.LikeVideo); 
+        db.User.hasMany(db.LikeVideo, { foreignKey: 'userId' }); 
         // db.User.hasMany(db.SomeOtherModel); // 다른 모델과의 관계 설정 추가
     }
 };
