@@ -5,20 +5,11 @@ const Sequelize = require("sequelize");
 class LikeVideo extends Sequelize.Model {
     static initiate(sequelize) {
         LikeVideo.init({
-            // videoId: {
+            //userId와 관계
+            // userId: {
             //     type          : Sequelize.INTEGER,
             //     primaryKey    : true,
             //     autoIncrement : true,
-            // },
-            // videoLink: {
-            //     type          : Sequelize.STRING,
-            //     allowNull     : false,
-            //     unique        : true,
-            // },
-            // userId와 관계
-            // userId: {
-            //     type          : Sequelize.INTEGER,
-            //     allowNull     : false,
             //     references : {
             //         model    : 'users',
             //         key      : 'userId'

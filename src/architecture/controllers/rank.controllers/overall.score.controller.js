@@ -4,11 +4,11 @@ const axios = require('axios');
 const { IdolData } = require('../../../models')
 const { IdolRankScore } = require('../../../models')
 
-class YoutubeScoreController {
+class OverallScoreController {
     
-    saveYoutubeScore = async (req, res, next) => {
+    saveOverallScore = async (req, res, next) => {
+        
+    }
+}
 
-    };
-};
-
-module.exports = YoutubeScoreController;
+module.exports = OverallScoreController;

@@ -25,6 +25,11 @@ class IdolData extends Sequelize.Model {
             collate     : "utf8_general_ci",
         });
     }
+    // IdolRankScore과 관계
+    static associate(db) { 
+        db.IdolData.hasOne(db.IdolRankScore, { foreignKey: 'idolId' }); 
+        // db.User.hasMany(db.SomeOtherModel); // 다른 모델과의 관계 설정 추가
+    }
 };
 
 module.exports = IdolData;

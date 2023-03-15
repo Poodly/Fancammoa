@@ -5,12 +5,14 @@ const searchQuery = "k-pop";
 const DbSaveRepository = require('../../repositories/db.save.repository/db.save.repository');
 
 class DbSaveService {
-    dbSaveRepository = new DbSaveRepository();
+    constructor() {
+        this.dbSaveRepository = new DbSaveRepository();
+    }
 
     searchArtistsDbSave = async () => {
-        const page = [1, 2, 3];
+        const page = [1];
 
-        // const newData = [];
+        let newIdolNameArr = []
         for (let i = 0; i < page.length; i++) {
             const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery}&api_key=${process.env.LASTFMAPIKEY}&format=json&page=${page[i]}`;
             const response = await axios.get(apiUrl);
@@ -18,17 +20,24 @@ class DbSaveService {
             const idolNameArr = artists.map((artist) => ({ name: artist.name, }));
             
             for (let i = 0; i < idolNameArr.length; i++) {
-                const exUser = await this.dbSaveRepository.exIdolName(idolNameArr[i].name); // db에 겹치는 이름이 있는지 체크
-                if (!exUser) {
-                    await this.dbSaveRepository.idolNameSave(idolNameArr[i].name);          // db에 겹치는 이름이 없을때만 저장.
-                    // console.log(idolNameArr[i].name);
+                let name = idolNameArr[i].name;
+                if (/^[a-zA-Z0-9-\s!@#$%^&*()_+=[\]{}|\\;:'",.<>/?`~]*$/.test(name)) { // 이름이 영문자, 숫자, 특수문자, 하이픈, 공백으로만 이루어진 경우에만 추가// 한글은 제외                  
+                    let saveName = name.replace(/[^a-zA-Z]/g, "");                     // 특수문자 없애기
+                    const exUser = await this.dbSaveRepository.exIdolName(saveName);
+                    if (!exUser) {
+                        await this.dbSaveRepository.idolNameSave(saveName);
+                        newIdolNameArr.push(saveName);
+                    } else {
+                        console.log(`${saveName}는 db에 겹치는 이름이 있습니다.`)
+                    }
                 } else {
-                    console.log(`${idolNameArr[i].name}는 db에 겹치는 이름이 있습니다.`)       // db에 겹치는 이름이 있을때는 종료
+                    console.log(`${name}는 한글이므로 추가하지 않습니다.`) // 한글 이름인 경우 로그 출력
                 }
             }
-        }
-        return 
+        };
+        console.log("newIdolNameArr-----------",newIdolNameArr)
+        return newIdolNameArr
     };
-}
+};
   
 module.exports = DbSaveService;
