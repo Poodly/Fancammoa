@@ -8,7 +8,7 @@ class DbSaveService {
     dbSaveRepository = new DbSaveRepository();
 
     searchArtistsDbSave = async () => {
-        const page = [1];
+        const page = [1, 2, 3];
 
         // const newData = [];
         for (let i = 0; i < page.length; i++) {
@@ -18,8 +18,13 @@ class DbSaveService {
             const idolNameArr = artists.map((artist) => ({ name: artist.name, }));
             
             for (let i = 0; i < idolNameArr.length; i++) {
-                await this.dbSaveRepository.idolNameSave(idolNameArr[i].name);
-                // console.log(idolNameArr[i].name);
+                const exUser = await this.dbSaveRepository.exIdolName(idolNameArr[i].name); // db에 겹치는 이름이 있는지 체크
+                if (!exUser) {
+                    await this.dbSaveRepository.idolNameSave(idolNameArr[i].name);          // db에 겹치는 이름이 없을때만 저장.
+                    // console.log(idolNameArr[i].name);
+                } else {
+                    console.log(`${idolNameArr[i].name}는 db에 겹치는 이름이 있습니다.`)       // db에 겹치는 이름이 있을때는 종료
+                }
             }
         }
         return 
@@ -27,6 +32,3 @@ class DbSaveService {
 }
   
 module.exports = DbSaveService;
-
-// 같은 이름의 데이터가 있을시 넘어가거나 덮어쓰게끔 하도록 만들기?
-// 중복방지 로직을 만들어야함.

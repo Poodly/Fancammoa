@@ -1,9 +1,9 @@
-// const express = require('express');
-// const router  = express.Router();
+const express = require('express');
+const router  = express.Router();
 
-// const RankController = require('../architecture/controllers/db.save.controllers/db.save.controller');
-// const rankController = new RankController();
+const SpotifyScoreController = require('../architecture/controllers/rank.controllers/spotify.score.controller');
+const spotifyScoreController = new SpotifyScoreController();
 
-// router.get('/getArtistData', rankController.searchArtistsDbSave);
+router.get('/SpotifyfollowerCountTestURL', spotifyScoreController.GetSpotifyfollowerCount);
 
-// module.exports = router;
+module.exports = router;

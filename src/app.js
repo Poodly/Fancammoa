@@ -61,7 +61,7 @@ app.use('/auth'  , authRouter);
 app.use('/user'  , userRouter); 
 app.use('/video' , searchRouter);
 app.use('/save'  , dbSaveRouter);
-// app.use('/rank'  , rankRouter);
+app.use('/rank'  , rankRouter);
 
 
 
