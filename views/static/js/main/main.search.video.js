@@ -2,11 +2,23 @@ document.addEventListener('DOMContentLoaded', async function() {
     await searchVideo();
 });
 
-function searchVideo() {
-    const searchButton = document.getElementById('search-button');
-    searchButton.addEventListener('click', async () => {
+let query = ''
+
+async function searchVideo() {
         const url = '/video/search'
-        const query  = document.getElementById('search_box').value;
+
+        query = document.getElementById('search_box').value;
+        
+        if (!query) {
+            // URL 파라미터에서 검색어를 추출합니다.
+            const searchParams = new URLSearchParams(window.location.search);
+            query = searchParams.get('term');
+            $('#search_box').val(query)
+        } else {
+            window.location.href = `/?term=${encodeURIComponent(query)}`;
+        }
+
+        makeSpotifyInstaButton()
 
         // 이전 검색 결과 지우기
         const searchContainer = document.getElementById('search-container');
@@ -56,7 +68,6 @@ function searchVideo() {
         } catch (error) {
             console.log('Error:', error);
         }
-    });
 };
 
 

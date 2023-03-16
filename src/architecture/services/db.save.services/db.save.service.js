@@ -38,6 +38,30 @@ class DbSaveService {
         console.log("newIdolNameArr-----------",newIdolNameArr)
         return newIdolNameArr
     };
+
+
+    // searchArtistsDbSave = async () => {
+
+    //     try {
+    //         const page = [1];
+    
+ 
+    //         const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery5}&api_key=${process.env.LASTFMAPIKEY}&format=json&page=${page[0]}`;
+    //         const response = await axios.get(apiUrl);
+    //         console.log("response-----------",response)
+    //         const artists = response.data.topartists.artist;
+    //         const idolNameArr = artists.map((artist) => ({ name: artist.name, }));
+            
+            
+    //         console.log("idolNameArr-----------",idolNameArr)
+    //         return response.data
+    //         // return newIdolNameArr
+
+    //     }catch (error) {
+    //         console.error(error);
+    //         next(error);
+    //     };
+    // };
 };
   
 module.exports = DbSaveService;

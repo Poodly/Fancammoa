@@ -56,7 +56,7 @@
             <div class="head_search">
                 <!-- <p id="cam_search">직캠 검색</p> -->
                 <input id="search_box" type="text" placeholder="검색어를 입력하세요." title="검색">
-                <button id="search-button" onclick="location.href='#'">
+                <button id="search-button" onclick="search()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
                     <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
                     <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
@@ -67,10 +67,12 @@
         
             <div class="head_list">
                 <p><a href="/idolRank">아이돌 순위</a></p>
-                <p><a href="/idolProfile">아이돌 프로필</a></p>
-                <% if (user) { %>
+                <p id="profile"><a href="/userProfile">마이페이지</a></p>
+                <!-- 아이돌 프로필 보류.. -->
+                <!-- <p><a href="/idolProfile">아이돌 프로필</a></p> -->
+                <!-- <% if (user) { %>
                     <p id="profile"><a href="/userProfile">마이페이지</a></p>
-                <% } %>
+                <% } %> -->
             </div>
         </div>
     
@@ -79,12 +81,12 @@
 
         <div class="idol-rank-nev">
             <div class="idol-rank-nev-items">
-                <h3 id="idol-rank-nev-title">아이돌 개인 랭킹 👑</h3>
+                <h3 id="idol-rank-nev-title">👑 K-POP 랭킹 👑</h3>
                 <!-- <p id="idol-rank-nev-explanation">종합 점수 : 유튜브, 음원, 인스타 등 합산 점수입니다.</p> -->
                 <h2 id="idol-rank-nev-TOP">TOP 20</h2>
             </div> 
-
-            <div class="btn-group dropend">
+            <!-- 토글 버튼 보류.. -->
+            <!-- <div class="btn-group dropend">
                 <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                   랭킹 목록
                 </a>
@@ -94,14 +96,15 @@
                     <li><a class="dropdown-item" href="#">여 개인 Top20</a></li>
                     <li><a class="dropdown-item" href="#">남 개인 Top20</a></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
-        
+
+<!-- 카드 붙이는 장소----------------------------------------------------------------------------------------------- -->
     <main>
     <div class="first-container">
-        <div class="row gutter gutter-md">
+        <div class="row gutter gutter-md" id="rank-card-first-container">
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="card">
                     <div style="width: 17rem;">
                         <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
@@ -110,46 +113,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div style="width: 17rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div style="width: 17rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>    
     </div>
 
     <div class="second-container">
-        <div class="row gutter gutter-md">
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="row gutter gutter-md" id="rank-card-second-container">
 
-            <div class="col-md-3 mb-8">
+            <!-- <div class="col-md-3 mb-8">
                 <div class="card">
                     <div style="width: 12rem;">
                         <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
@@ -158,117 +129,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> -->
 
         </div>    
     </div>
@@ -276,5 +137,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="./static/js/idolRank/idol.rank.js"></script>
+    <script src="./static/js/idolRank/idol.rank.search.js"></script>
+   
 </body>
 </html>

@@ -3,14 +3,21 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 async function mainStartVideo() {
-    const url = '/video/startSearch';
+    const url = '/video/search';
+
+    // URL 파라미터에서 검색어를 추출합니다.
+    // const searchParams = new URLSearchParams(window.location.search);
+    // query = searchParams.get('term');
+
+    console.log('query---------',query)
+    makeSpotifyInstaButton()
 
     // 이전 검색 결과 지우기
     const searchContainer = document.getElementById('search-container');
     searchContainer.innerHTML = '';
 
     try {
-        const response = await axios.get(url);
+        const response = await axios.post(url, { query });
         const videoIds = await response.data;
 
         // 비디오 정보를 병렬로 가져오기 => ㄷㄷ 뭐지이건.. 공부해 보기

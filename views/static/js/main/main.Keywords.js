@@ -37,6 +37,7 @@ function isKeywordsIncludedArr(arr, keywords) {
 
 function removeKeywords(str, keywords) {
     const regex = new RegExp(keywords.join('|'), 'gi');
+    console.log('removeKeywords--------',regex)
     return str.replace(regex, '');
     }
  

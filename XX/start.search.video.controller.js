@@ -6,10 +6,9 @@ class StartSearchVideoController {
 
     startSearchVideo = async (req, res, next) => {
         try {
-            const startQuery = "입덕직캠"
-            const APIKEY = process.env.YOUTUBE_APIKEY2;
+            const APIKEY = process.env.YOUTUBE_APIKEY6;
             const SEARCHURL = process.env.SEARCHURL;
-            const videoIds = await this.startSearchVideoService.startSearchVideo(startQuery, APIKEY, SEARCHURL);
+            const videoIds = await this.startSearchVideoService.startSearchVideo(APIKEY, SEARCHURL);
             res.status(200).json(videoIds);
         } 
         catch (error) {

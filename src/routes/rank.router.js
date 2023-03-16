@@ -2,21 +2,29 @@ const express = require('express');
 const router  = express.Router();
 
 const SpotifyScoreController = require('../architecture/controllers/rank.controllers/spotify.score.controller');
-const spotifyScoreController = new SpotifyScoreController();
-
 const YoutubeScoreController = require('../architecture/controllers/rank.controllers/youtube.score.controller');
-const youtubeScoreController = new YoutubeScoreController();
-
-const InstaScoreController = require('../architecture/controllers/rank.controllers/insta.score.controller');
-const instaScoreController = new InstaScoreController();
-
-const GoogleScoreController = require('../architecture/controllers/rank.controllers/google.score.controller');
-const googleScoreController = new GoogleScoreController();
-
+const InstaScoreController   = require('../architecture/controllers/rank.controllers/insta.score.controller');
+const GoogleScoreController  = require('../architecture/controllers/rank.controllers/google.score.controller');
 const OverallScoreController = require('../architecture/controllers/rank.controllers/overall.score.controller');
-const overallScoreController = new OverallScoreController();
+const GetRankInfoController  = require('../architecture/controllers/rank.controllers/get.rank.info.controller');
 
-router.put('/updateIdolScore', spotifyScoreController.saveSpotifyScore);
+const spotifyScoreController = new SpotifyScoreController();
+const youtubeScoreController = new YoutubeScoreController();
+const instaScoreController   = new InstaScoreController();
+const googleScoreController  = new GoogleScoreController();
+const overallScoreController = new OverallScoreController();
+const getRankInfoController  = new GetRankInfoController();
+
+
+router.put('/updateSpotifyScore', spotifyScoreController.saveSpotifyScore);  // /rank/updateSpotifyScore
+
+router.put('/updateyoutubeScore', youtubeScoreController.saveYoutubeScore);  // /rank/updateyoutubeScore
+
+router.put('/updateOverallScore', overallScoreController.saveOverallScore);  // /rank/updateOverallScore
+router.get('/getOverallScore'   , overallScoreController.getOverallScore);   // /rank/getOverallScore
+
+// get img,score,name.....
+router.get('/getRankInfoItems'  , getRankInfoController.getRankInfoItems);   // /rank/getRankInfoItems
 
 
 module.exports = router;

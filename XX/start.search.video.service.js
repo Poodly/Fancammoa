@@ -5,7 +5,7 @@ require("dotenv").config();
 
 class StartSearchVideoService {
     redisRepository = new RedisRepository();
-  
+    
     startSearchVideo = async (startQuery, APIKEY, SEARCHURL) => {
       const startQueryCacheKey = "Start seach word"
   

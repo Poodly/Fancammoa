@@ -15,23 +15,23 @@ class IdolRankScore extends Sequelize.Model {
             //     },
             // },
             youtubeScore: {
-                type          : Sequelize.INTEGER,
+                type          : Sequelize.TEXT,
                 allowNull     : true,
             },
             instaScore: {
-                type          : Sequelize.INTEGER,
+                type          : Sequelize.TEXT,
                 allowNull     : true,
             },
             spotifyScore: {
-                type          : Sequelize.INTEGER,
+                type          : Sequelize.TEXT,
                 allowNull     : true,
             },
             googleScore: {
-                type          : Sequelize.INTEGER,
+                type          : Sequelize.TEXT,
                 allowNull     : true,
             },
             overallScore: {
-                type          : Sequelize.INTEGER,
+                type          : Sequelize.TEXT,
                 allowNull     : true,
             },
         }, { // options

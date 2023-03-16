@@ -1,15 +1,18 @@
 .idol-rank-nev {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* justify-content: space-between; */
 }
 
 .idol-rank-nev-items {
     display: flex;
     flex-direction: column;
+    align-items: center
 }
 
 #idol-rank-nev-title {
     font-weight: 400;
+    margin-bottom: 10px;
 }
 
 #idol-rank-nev-explanation {
@@ -19,4 +22,5 @@
 
 #idol-rank-nev-TOP {
     font-weight: 600;
+    margin-bottom: 30px;
 }

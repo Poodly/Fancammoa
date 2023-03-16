@@ -14,12 +14,13 @@ router.use((req, res, next) => {
     next();
 })
 
-router.get('/'           , render.main)                           // GET /
-router.get('/login'      , isNotLoggedIn , render.login)          // GET /login
-router.get('/signUp'     , isNotLoggedIn , render.sginUp)         // GET /signUp
-router.get('/idolRank'     , isNotLoggedIn , render.idolRank)     // GET /idolRank
-router.get('/idolProfile'  , isNotLoggedIn , render.idolProfile)  // GET /idolProfile
+router.get('/'           , render.main)                          // GET /
+router.get('/login'      , isNotLoggedIn , render.login)         // GET /login
+router.get('/signUp'     , isNotLoggedIn , render.sginUp)        // GET /signUp
 
-router.get('/userProfile'  , isLoggedIn , render.userProfile)     // GET /userProfile
+router.get('/idolRank'    , render.idolRank)                     // GET /idolRank
+router.get('/idolProfile' , render.idolProfile)                  // GET /idolProfile
+
+router.get('/userProfile' , isLoggedIn , render.userProfile)     // GET /userProfile
 
 module.exports = router;

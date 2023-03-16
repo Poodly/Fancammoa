@@ -1,24 +1,101 @@
 require("dotenv").config();
+const SpotifyWebApi = require('spotify-web-api-node');
 const axios = require('axios');
 const searchQuery = "k-pop";
 
+const { IdolData, IdolImage } = require('../../../models')
 const DbSaveService = require('../../services/db.save.services/db.save.service');
+const SpotifyAccessTokenService = require('../../services/spotify.access.token.service');
 
 class DbSaveController {
+    spotifyAccessTokenService = new SpotifyAccessTokenService();
+    spotifyWebApi = new SpotifyWebApi({
+        clientId: process.env.SPOTIFYCLIENTID,
+        clientSecret: process.env.SPOTIFYCLIENTSECRET,
+    });
+
     dbSaveService = new DbSaveService();
     
+    // Last Fm API
     searchArtistsDbSave = async (req, res, next) => {
         try {
 
-            await this.dbSaveService.searchArtistsDbSave();
-            res.status(200).json({ message: "Db save succeeded" });
+            const response = await this.dbSaveService.searchArtistsDbSave();
+            // res.status(200).json({ message: "Db save succeeded" });
+            res.status(200).json({ message: response });
 
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Last Fm API artist Search failed or db save failed", error: error });
         }
     };
-}
+
+    // Spotify API
+    saveSpotifyImg = async (req, res, next) => {
+        try {
+
+            // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
+            const allIdolDatas = await IdolData.findAll({
+                attributes: [ 'idolId', 'idolName' ],
+                // limit: 3
+            });
+            const idolNamesArr = allIdolDatas.map(allIdolData => allIdolData.dataValues);
+            console.log(idolNamesArr)
+            // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
+ 
+            for (let i = 0; i < idolNamesArr.length; i++) {
+                try {
+                    const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
+                        process.env.SPOTIFYCLIENTID, 
+                        process.env.SPOTIFYCLIENTSECRET
+                        );                                                                           // API에 액세스하기 위해 인증 정보 설정
+
+                    this.spotifyWebApi.setAccessToken(access_token);                                 // API에 액세스하기 위한 인증 정보 설정
+                
+                    const idolId   = idolNamesArr[i].idolId
+                    const idolName = idolNamesArr[i].idolName
+
+                    const result = await this.spotifyWebApi.searchArtists(idolName, { limit: 1 });   // 특정 아티스트 데이터 검색
+                    
+                    const followers = result.body.artists.items[0].followers.total;
+                    const name      = result.body.artists.items[0].name;
+                    const img    = result.body.artists.items[0].images[0].url;
+
+                    const data = {
+                        followers,
+                        name,
+                        img
+                    }
+
+                    // const exImg = await IdolImage.findOne({ where: { img } });
+                    // if (!exImg) {
+                    //     await IdolImage.create({ img, idolId });
+                    //     console.log('Saving image')
+                    // } else {
+                    //     console.log('Image is exsit')
+                    // }
+                    
+                    await IdolImage.create({ img, idolId });
+                    console.log("idolNames------------",idolId, idolName, img );
+                }
+                catch (error) {
+                    console.log(`spotify 검색결과가 없습니다.`);
+                    console.error(error);
+                }
+            }
+
+            res.status(200).json({ message: "Success saving spotify img succeeded" });
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: "Last Fm API artist Search failed or db save failed", error: error });
+        };
+    };
+
+
+
+
+};
   
 module.exports = DbSaveController;
 
