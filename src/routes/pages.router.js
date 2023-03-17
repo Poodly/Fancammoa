@@ -4,8 +4,8 @@ const router  = express.Router();
 const Render = require('../architecture/controllers/pages.controller')
 const render = new Render();
 
-const { isLoggedIn   , isNotLoggedIn } = require('../middlewares/auth');
-const { onlyGeneral  , onlyAdmin }     = require('../middlewares/auth');
+const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth');
+const { onlyAdmin } = require('../middlewares/auth');
 
 // User's Data
 router.use((req, res, next) => {
@@ -22,5 +22,7 @@ router.get('/idolRank'    , render.idolRank)                     // GET /idolRan
 router.get('/idolProfile' , render.idolProfile)                  // GET /idolProfile
 
 router.get('/userProfile' , isLoggedIn , render.userProfile)     // GET /userProfile
+
+router.get('/adminPage'   , onlyAdmin  , isLoggedIn , render.adminPage)  // GET /adminPage
 
 module.exports = router;

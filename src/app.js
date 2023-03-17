@@ -2,11 +2,10 @@ const express       = require('express');
 const bodyParser    = require('body-parser');
 const morgan        = require('morgan');
 const path          = require('path');
-const dotenv        = require('dotenv');
 const session       = require('express-session');
 const cookieParser  = require('cookie-parser');
 const passport      = require('passport'); 
-const axios         = require('axios');
+const bcrypt   = require('bcrypt');
 
 const { sequelize } = require('./models');
 
@@ -28,9 +27,28 @@ app.set('port', process.env.PORT);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 // -------------------------------------------------------------------------------------------------
+const User = require('./models/user');
 sequelize.sync({ force: false })
-    .then ((   ) => { console.log('데이터베이스 연결 성공'); })
-    .catch((err) => { console.log(err); });
+    .then(async () => {
+        console.log('최초 어드민 생성 및 데이터베이스 연결 성공');
+        const pwHash = await bcrypt.hash(process.env.FIRSTADMINPW, 12);
+        User.findOne({ where: { userType: process.env.ADMINKEY } }).then((admin) => {
+        if (!admin) {
+            User.create({
+            email: process.env.FIRSTADMIN,
+            nick: process.env.FIRSTADMINNIC,
+            password: pwHash,
+            userType: process.env.ADMINKEY,
+            });
+        }
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+// sequelize.sync({ force: false })
+//     .then ((   ) => { console.log('데이터베이스 연결 성공'); })
+//     .catch((err) => { console.log(err); });
 // -------------------------------------------------------------------------------------------------
 app.use(morgan('dev')); 
 app.use(express.static('views'));
@@ -62,7 +80,6 @@ app.use('/user'  , userRouter);
 app.use('/video' , searchRouter);
 app.use('/save'  , dbSaveRouter);
 app.use('/rank'  , rankRouter);
-
 
 
 // ------------------------------------------ error ------------------------------------------------

@@ -23,21 +23,9 @@ exports.isNotLoggedIn = (req, res, next) => {
 };
 
 // Type check -----------------------------------------------------------------------------------------------
-exports.onlyGeneral  = (req, res, next) => {
-    const userTypeKey = req.user.userTypeKey;
-    if (userTypeKey === env.USERKEY) {
-        console.log("user.userTypeKey---------------", res.locals.user.userTypeKey);
-        next();
-    }
-    else {
-        const message = "관리자는 접근할 수 없습니다."
-        res.redirect(`/?error=${message}`);
-    }
-};
-
 exports.onlyAdmin = (req, res, next) => {
-    const adminKey = req.user.userTypeKey;
-    if (adminKey === env.ADMINKEY) {
+    const userType = req.user.userType;
+    if (userType === env.ADMINKEY) {
         next();
     }
     else {

@@ -65,19 +65,12 @@
             </div>
         </form>
         
-            <div class="head_list">
-                <p><a href="/idolRank">아이돌 순위</a></p>
-                <p id="profile"><a href="/userProfile">마이페이지</a></p>
-                <!-- 아이돌 프로필 보류.. -->
-                <!-- <p><a href="/idolProfile">아이돌 프로필</a></p> -->
-                <!-- <% if (user) { %>
-                    <p id="profile"><a href="/userProfile">마이페이지</a></p>
-                <% } %> -->
-            </div>
-        </div>
-    
+        <!-- 아이돌 순위, 마이페이지, 어드민페이지 버튼 생성 -->
+        <div class="head_list"></div>
+    </div>
+
         <div id="line"></div>
-<!-- ----------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------- -->
 
         <div class="idol-rank-nev">
             <div class="idol-rank-nev-items">
@@ -102,42 +95,20 @@
 <!-- 카드 붙이는 장소----------------------------------------------------------------------------------------------- -->
     <main>
     <div class="first-container">
-        <div class="row gutter gutter-md" id="rank-card-first-container">
-
-            <!-- <div class="col-md-4">
-                <div class="card">
-                    <div style="width: 17rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>    
+        <div class="row gutter gutter-md" id="rank-card-first-container"></div>    
     </div>
 
     <div class="second-container">
-        <div class="row gutter gutter-md" id="rank-card-second-container">
-
-            <!-- <div class="col-md-3 mb-8">
-                <div class="card">
-                    <div style="width: 12rem;">
-                        <img src="https://www.cosmorning.com/data/photos/20230206/art_1675847707141_9b14cd.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text">하니</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-        </div>    
+        <div class="row gutter gutter-md" id="rank-card-second-container"></div>    
     </div>
     </main>
+<!-- 카드 붙이는 장소----------------------------------------------------------------------------------------------- -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="./static/js/idolRank/idol.rank.js"></script>
     <script src="./static/js/idolRank/idol.rank.search.js"></script>
+
+    <script src="./static/js/user.profile/user.handle.profile.button.js"></script>
    
 </body>
 </html>

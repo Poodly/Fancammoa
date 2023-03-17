@@ -33,9 +33,9 @@ class Render {
     };
     
     // Admin's page
-    admin = (req, res, next) => {
+    adminPage = (req, res, next) => {
         try {
-            res.render('admin');
+            res.render('adminPage');
             
         } catch (error) {
             res.status(500).json({ errorMessage: error.message });

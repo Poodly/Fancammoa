@@ -2,6 +2,8 @@ const passport = require('passport')
 const bcrypt   = require('bcrypt');
 const AuthService = require('../services/auth.service')
 
+require("dotenv").config();
+const env = process.env;
 
 class AuthController {
     authService = new AuthService();
@@ -90,7 +92,22 @@ class AuthController {
             next(error);
         };
     };
-}
+
+    // 유저프로필 버튼, 어드민 버튼 생성에 사용
+    checkAdmin = (req, res, next) => {
+        try {
+            const userType = req.user.userType
+            if(userType === env.ADMINKEY) {
+                res.status(200).json({ data: "Admin true" });
+            }else {
+                res.status(200).json({ data: "Admin false" });
+            }
+        } catch (error) {
+            console.error(error);
+            next(error);
+        };
+    }
+};
 // return res.status(400).json({ message: "비밀번호 확인이 틀렸습니다" }) 
 
 module.exports = AuthController;

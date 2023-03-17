@@ -9,4 +9,6 @@ router.post('/signUp',     isNotLoggedIn , authController.signUp)       // POST 
 router.post('/withdrawal', isLoggedIn    , authController.withdrawal);  // POST /auth/withdrawal
 router.get ('/logout',     isLoggedIn    , authController.logout)       // GET  /auth/logout 
 
+router.get('/checkAdmin',   isLoggedIn   , authController.checkAdmin);  // GET  /auth/checkAdmin 
+
 module.exports = router;

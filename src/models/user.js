@@ -29,10 +29,10 @@ class User extends Sequelize.Model {
                 type          : Sequelize.STRING,
                 allowNell     : true,
             },
-            userTypeKey: {
-                type          : Sequelize.STRING,
+            userType: {
+                type          : Sequelize.ENUM(env.USERKEY, env.ADMINKEY),
                 defaultValue  : env.USERKEY,
-                allowNell     : false,
+                allowNull     : false,
             },
         }, { // options
             sequelize,
