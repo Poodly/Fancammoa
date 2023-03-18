@@ -7,7 +7,7 @@ class GetVideoInfoController {
     getVideoInfo = async (req, res, next) => {
         try {
             const { videoId } = req.body
-            const APIKEY = process.env.YOUTUBE_APIKEY6;
+            const APIKEY = process.env.YOUTUBE_APIKEY;
             const VIDEOURL = process.env.VIDEOURL;
             const data = await this.getVideoInfoService.getVideoInfo(videoId, APIKEY, VIDEOURL);
             res.status(200).json(data);

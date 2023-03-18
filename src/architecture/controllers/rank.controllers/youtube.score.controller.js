@@ -10,7 +10,7 @@ class YoutubeScoreController {
         const startDateTime = new Date('2020-01-01T00:00:00Z').toISOString(); // set the start date and time in ISO format
         const currentDateTime = new Date().toISOString(); // set the current date and time in ISO format
 
-        const APIKEY    = process.env.YOUTUBE_APIKEY6;
+        const APIKEY    = process.env.YOUTUBE_APIKEY;
         const SEARCHURL = process.env.SEARCHURL;
         const VIDEOURL  = process.env.VIDEOURL;
 
@@ -44,7 +44,8 @@ class YoutubeScoreController {
             const likeCount    = parseInt(item.statistics.likeCount);
             const commentCount = parseInt(item.statistics.commentCount);
 
-            const data = Math.round((viewCount + likeCount + commentCount)/10000);
+            // const data = Math.round((viewCount + likeCount + commentCount)/10000);
+            const data = viewCount + likeCount + commentCount;
             return data;
         }
 
