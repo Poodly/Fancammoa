@@ -30,114 +30,15 @@
         crossorigin="anonymous"></script>
     
     <!-- Bootstrap JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-<style>
-    body {
-        font-family: 'Inter';
-        font-style: normal;
-        color: #000000;
-        -ms-overflow-style: none;
-    }
-
-    #navbar {
-        justify-content: center;
-    }
-
-    #title {
-        display: flex;
-        justify-content: center;
-        font-size: 30px;
-        font-weight: 600;
-        margin-bottom: 2px;
-    }
-
-    #line {
-        height: 2px;
-
-        background   : #dfdfdf;
-        margin: 0px;
-    }
-
-    .info-table {
-        margin-top: 10px;
-    }
-
-    /* 검색상자, 버튼 */
-
-    #search_box {
-        width: 230px;
-        height: 35px;
-
-        background: #E5E5E5;
-        border-radius: 25px;
-        border: 0px;
-        /* margin-left: 10px; */
-    }
-
-    #search-button {
-        background-color:#ebebeb00;
-        cursor:pointer;
-        border: 0px;
-    }
-
-    #search-button:hover {
-        background-color:#c5c5c500;
-        position:relative;
-        top:1px;
-    }
-    #search-button:active {
-        position:relative;
-        top:1px;
-    }
-
-    .search_word_container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-bottom: 30px;
-    }
-
-    .icons {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .icons span {
-        margin-top: 20px;
-        margin-left: 5px;
-        margin-right: 5px;
-        /* margin-bottom: 10px; */
-    }
-
-    #search_word {
-        font-size: 25px;
-        font-weight: 600;
-        color: #2c2c2c;
-    }
-
-    input {
-        padding-left: 15px;
-        padding-bottom: 2px;
-    }
-    
-    .info-table-title {
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-
-    }
-
-    .head_search {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-</style>
+    <!-- <link rel="stylesheet" href="static/css/cards/rank.card.css"> -->
+    <link rel="stylesheet" href="static/css/admin.css/adminPage.css">
+    <link rel="stylesheet" href="static/css/admin.css/admin.modal.css">
 
 </head>
   <body>
@@ -162,16 +63,23 @@
                 </h5>
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="left-nav-edit-idol-info">
+                    <a class="nav-link" id="left-nav-edit-idol-info">
                         <span class="align-text-bottom"></span>
                         아이돌 정보 수정
                     </a>
                 </li>
                   
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link" id="left-nav-edit-idol-img">
                         <span class="align-text-bottom"></span>
                         아이돌 이미지 수정
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="left-nav-edit-idol-img">
+                        <span class="align-text-bottom"></span>
+                        키워드 관리
                     </a>
                 </li>
             <!-- ------------------------- sidebar-heading ------------------------------- -->
@@ -185,7 +93,7 @@
                 <li class="nav-item">
                 <a class="nav-link">
                     <span class="align-text-bottom"></span>
-                    관리자 관리
+                    어드민 관리
                 </a>
                 </li>  
             <!-- ------------------------- sidebar-heading ------------------------------- -->
@@ -222,69 +130,82 @@
                   </a>
                 </li>
               </ul>
-            <!-- -------------------------------------------------------------------------- -->
+            <!-- ------------------------------------------------------------------------------ -->
             </div>
           </nav>
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-              
-            <div class="info-table">
+  
+            <div class="admin-main-table"></div> <!-- 테이블 붙이는곳 -->  
 
-
-                <div class="info-title-search-box-button">
-                    <div class="info-table-title">
-                        <h2>Idol information</h2>
-                        <p>삭제, 추가, 이름변경, 점수 업데이트</p>
-                    </div>
-     
-                    <form action="" onsubmit="return false;">
-                        <div class="head_nev_2">
-                            <div class="head_search">
-                                <!-- <p id="cam_search">직캠 검색</p> -->
-                                <input id="search_box" type="text" placeholder="검색어를 입력하세요." title="검색">
-                                <button id="search-button" onclick="searchVideo()">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
-                                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
-                                <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                      
-            <div class="table-responsive">
-            <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Youtube score</th>
-                    <th scope="col">Spotify score</th>
-                    <th scope="col">Insta score</th>
-                    <th scope="col">Google score</th>
-                    <th scope="col">Overall scoer</th>
-                  </tr>
-                </thead>
-                <tbody class="table-body-idol-info">
-                  <tr>
-                    <td id="admin-page-rank"></td>
-                    <td id="admin-page-idol-name"></td>
-                    <td id="admin-page-youtube-score"></td>
-                    <td id="admin-page-spotify-score"></td>
-                    <td id="admin-page-insta-score"></td>
-                    <td id="admin-page-google-score"></td>
-                    <td id="admin-page-overall"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-        </div>
 
           </main>
         </div>
       </div>
       
-      <script src="./static/js/admin/admin.page.controller.js"></script>
+
+      <!-- 아이돌 정보 수정 모달 -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:60%;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit information</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- 데이터 붙이는 곳 -->
+            <div class="modal-body" id="modal-idol-info">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" id="register-btn">등록</button>
+              <button type="button" class="btn btn-danger"  id="register-btn-delete">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 확인버튼 -->
+      <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmModalLabel">📌 등록 확인</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              🛠 정말 등록하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" id="confirm-register-btn">등록</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 삭제 확인버튼 -->
+      <div class="modal fade" id="confirmModal-delete" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmModalLabel">🗑 삭제 확인</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              💥 아이돌 정보를 정말 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-danger" id="confirm-register-btn-delete">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script src="./static/js/admin/admin.page.edit.idol.info.js"></script>
+      <script src="./static/js/admin/admin.page.edit.idol.img.js"></script>
+      <script src="./static/js/admin/admin.modals.js"></script>
   </body>
 </html>
