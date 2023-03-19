@@ -1,4 +1,4 @@
-const { LikeVideo } = require('../../models')
+const { User, LikeVideo } = require('../../models')
 
 class UserController {
     // 로그인한 유저의 userId, 비디오 id 저장
@@ -10,9 +10,9 @@ class UserController {
             const userId = req.user.userId
             console.log("saveLikeVideo-----userId------------",userId)
             await LikeVideo.create({ userId, videoId });
-            res.status(200).send('Like video saved successfully');
+            res.status(200).json({ message: 'Like video saved successfully'});
         } catch (error) {
-            console.log("좋아요 저장 에러")
+            res.status(400).json({ message: error })
             next(error);
         }
     }
@@ -25,7 +25,7 @@ class UserController {
             const existLikevideo = await LikeVideo.findOne({ where: { userId, videoId } });
             res.status(200).json({ data: existLikevideo });
         } catch (error) {
-            console.log("좋아요 체크 실패")
+            res.status(400).json({ message: error })
             next(error);
         }
     }
@@ -36,13 +36,34 @@ class UserController {
             const userId = req.user.userId
             console.log("deleteLikeVideo-----userId------------",userId)
             await LikeVideo.destroy({ where: { userId, videoId } });
-            res.status(200).send('Like video deleted successfully');
+            res.status(200).json({ message: 'Like video deleted successfully'});
         } catch (error) {
-            console.log("좋아요 삭제 에러")
+            res.status(400).json({ message: error })
             next(error);
         }
     };
     
+    getLikeVideos = async (req, res, next) => {
+        try {
+            const userId = req.user.userId;
+            const allLikeVideos = await User.findOne({
+                where: { userId },
+                attributes: ['userId'], // 사용자 ID 만 가져옵니다.
+                include: [{             
+                    model: LikeVideo,
+                    attributes: ['videoId'],
+                    where: { userId } // userId에 따른 LikeVideo 만 가져옵니다.
+                }],                                
+            });
+            const videoIds = allLikeVideos.LikeVideos.map(likeVideo => likeVideo.videoId); // map 공부하기..
+            res.status(200).json({ videoId: videoIds });
+        } catch(error) {
+            res.status(400).json({ message: error });
+            next(error);
+        }
+    }
+    
+
 
 }
 

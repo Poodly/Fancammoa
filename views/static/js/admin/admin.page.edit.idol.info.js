@@ -7,8 +7,6 @@ async function updateIdolScore() {
     const googleScore = document.getElementById('modal-edit-google-score').value;
     const overallScore = document.getElementById('modal-edit-overall').value;
 
-    console.log("idolId-----------", idolId)
-    
     try {
         const response = await axios.put('/admin/updateIdolScore', {
             idolId,

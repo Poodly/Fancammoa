@@ -6,6 +6,7 @@ const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth')
 const UserController = require('../architecture/controllers/user.controller');
 const userController = new UserController();
 
+router.get('/getLikeVideos', isLoggedIn, userController.getLikeVideos);
 router.post('/likeVideo', isLoggedIn, userController.saveLikeVideo);
 router.post('/checkLikevideo', isLoggedIn, userController.existLikevideo);
 router.delete('/deleteLikeVideo', isLoggedIn, userController.deleteLikeVideo);

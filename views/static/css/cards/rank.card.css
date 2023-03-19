@@ -1,7 +1,8 @@
 .card {
     max-height: 500px;
     border: 0px;
-    align-items: center
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 img {
