@@ -21,12 +21,13 @@ class SpotifyScoreController {
             // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
             const allIdolDatas = await IdolData.findAll({
                 attributes: [ 'idolId', 'idolName' ],
-                limit: 2
+                // limit: 2
             });
             const idolNamesArr = allIdolDatas.map(allIdolData => allIdolData.dataValues);
             console.log(idolNamesArr)
             // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
 
+            let spotifyArr = []
             for (let i = 0; i < idolNamesArr.length; i++) {
                 try {
                     const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
@@ -44,8 +45,9 @@ class SpotifyScoreController {
                     const followers = result.body.artists.items[0].followers.total;
                     const name      = result.body.artists.items[0].name;
 
-                    console.log("idolNames------------",idolId, idolName );
-                    console.log("spotifyScore------------",name, followers );
+                    // console.log("idolNames------------",idolId, idolName );
+                    // console.log("spotifyScore------------",name, followers );
+                    spotifyArr.push({ idolName, followers })    
 
                     const saveSpotifyScore = followers
 
@@ -62,7 +64,7 @@ class SpotifyScoreController {
             //     followers
             // }
    
-            res.status(200).json({ message: "Success saving spotify score !!" })
+            res.status(200).json({ data: spotifyArr })
 
         } catch (error) {
             console.error('SpotifyApi Something went wrong!', error);

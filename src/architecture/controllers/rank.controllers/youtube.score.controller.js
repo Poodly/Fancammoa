@@ -85,7 +85,7 @@ class YoutubeScoreController {
                     youtubeVideoScore
                     }
                 
-                console.log(Score)
+                // console.log(Score)
                 result.push(Score);
 
                 console.log(`${query}'s Success saving youtube score !!`);

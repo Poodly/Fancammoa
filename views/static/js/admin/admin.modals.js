@@ -15,23 +15,30 @@ $(document).ready(function() {
     // 버튼을 누르면 삭제확인 모달을 띄움
     $("#confirmModal-delete").modal("show");
     });
-  
-    $("#confirm-register-btn").click(function() {
+    
+    $("#confirm-register-btn").click(async function() {
         // 확인 모달의 "등록" 버튼을 누르면 등록 처리를 진행
-        // ...
-        // 등록 처리가 완료되면 기존 모달을 닫음
-        $("#exampleModal").modal("hide");
         $("#confirmModal").modal("hide"); 
+        
+        await updateIdolScore();
+        
+        window.location.reload();
+    });
+
+    $("#confirm-craete-btn").click(async function() {
+        // 확인 모달의 "등록" 버튼을 누르면 등록 처리를 진행
+        $("#confirmModal").modal("hide"); 
+        
+        await craeteIdol();
         
         window.location.reload();
     });
   
-    $("#confirm-register-btn-delete").click(function() {
-        // 확인 모달의 "등록" 버튼을 누르면 등록 처리를 진행
-        // ...
-        // 등록 처리가 완료되면 기존 모달을 닫음
-        $("#exampleModal").modal("hide");
+    $("#confirm-btn-delete").click(async function() {
+        // 확인 모달의 "등록" 버튼을 누르면 삭제 처리를 진행
         $("#confirmModal-delete").modal("hide"); 
+
+        await deleteIdol()
         
         window.location.reload();
     });
@@ -41,64 +48,82 @@ $(document).ready(function() {
 
 
 
-function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId, idolImage) {
-
-  // $('#idol-name').html();
-  // $('#modal-idol-info').empty()
-
-  $('#modal-idol-info').html(`<div class="info-table">          
-                                <div class="table-responsive">
-                                <table class="table table-sm">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Youtube score ${refreshIcon}</th>
-                                        <th scope="col">Spotify score ${refreshIcon}</th>
-                                        <th scope="col">Insta score ${refreshIcon}</th>
-                                        <th scope="col">Google score ${refreshIcon}</th>
-                                        <th scope="col">Overall scoer ${refreshIcon}</th>
-                                        <th scope="col">Idol id</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="table-body-idol-info">
+function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) {
+    const handleModalSize = document.getElementById('modal-container')
+    handleModalSize.style.maxWidth = '60%';
+    $('#modal-idol-info').html(`<div class="info-table">          
+                                    <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
                                         <tr>
-                                            <td id="admin-page-rank">${rankCount}</td>
-                                            <td id="admin-page-idol-name">${idolName}</td>
-                                            <td id="admin-page-youtube-score">${youtubeScore}</td>
-                                            <td id="admin-page-spotify-score">${spotifyScore}</td>
-                                            <td id="admin-page-insta-score">${instaScore}</td>
-                                            <td id="admin-page-google-score">${googleScore}</td>
-                                            <td id="admin-page-overall">${overallScore}</td>
-                                            <td id="admin-page-overall">${idolId}</td>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Youtube score ${refreshIcon}</th>
+                                            <th scope="col">Spotify score ${refreshIcon}</th>
+                                            <th scope="col">Insta score ${refreshIcon}</th>
+                                            <th scope="col">Google score ${refreshIcon}</th>
+                                            <th scope="col">Overall scoer ${refreshIcon}</th>
+                                            <th scope="col">Idol id</th>
                                         </tr>
+                                        </thead>
+                                        <tbody class="table-body-idol-info">
+                                            <tr>
+                                                <td id="admin-page-rank">${rankCount}</td>
+                                                <td id="admin-page-idol-name">${idolName}</td>
+                                                <td id="admin-page-youtube-score">${youtubeScore}</td>
+                                                <td id="admin-page-spotify-score">${spotifyScore}</td>
+                                                <td id="admin-page-insta-score">${instaScore}</td>
+                                                <td id="admin-page-google-score">${googleScore}</td>
+                                                <td id="admin-page-overall">${overallScore}</td>
+                                                <td id="modal-idolId">${idolId}</td>
+                                            </tr>
 
+                                            <tr>
+                                                <td id="admin-page-rank"></td>
+                                                <td id="admin-page-idol-name"><input class="modal-input" id="modal-edit-idol-name" value="${idolName}"></td>
+                                                <td id="admin-page-youtube-score"><input class="modal-input" id="modal-edit-youtube-score" value="${youtubeScore}"></td>
+                                                <td id="admin-page-spotify-score"><input class="modal-input" id="modal-edit-spotify-score" value="${spotifyScore}"></td>
+                                                <td id="admin-page-insta-score"><input class="modal-input" id="modal-edit-insta-score" value="${instaScore}"></td>
+                                                <td id="admin-page-google-score"><input class="modal-input" id="modal-edit-google-score" value="${googleScore}"></td>
+                                                <td id="admin-page-overall"><input class="modal-input" id="modal-edit-overall" value="${overallScore}"></td>
+                                                <td id="admin-page-rank"></td>
+                                            </tr>
+
+                                            
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>`);
+
+    $('#register-btn-delete').show()
+    $('#confirm-craete-btn').hide()
+}
+
+function createIdol() {
+    const handleModalSize = document.getElementById('modal-container')
+    handleModalSize.style.maxWidth = '15%';
+    $('#modal-idol-info').html(`<div class="info-table">          
+                                    <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
                                         <tr>
-                                            <td id="admin-page-rank"></td>
-                                            <td id="admin-page-idol-name"><input class="modal-input" value="${idolName}"></td>
-                                            <td id="admin-page-youtube-score"><input class="modal-input" value="${youtubeScore}"></td>
-                                            <td id="admin-page-spotify-score"><input class="modal-input" value="${spotifyScore}"></td>
-                                            <td id="admin-page-insta-score"><input class="modal-input" value="${instaScore}"></td>
-                                            <td id="admin-page-google-score"><input class="modal-input" value="${googleScore}"></td>
-                                            <td id="admin-page-overall"><input class="modal-input" value="${overallScore}"></td>
-                                            <td id="admin-page-rank"></td>
+                                            <th scope="col">Create idol name</th>
                                         </tr>
+                                        </thead>
+                                        <tbody class="table-body-idol-info">
 
-                                        
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>`
-                          );
+                                            <tr>
+                                                <td id="admin-page-idol-name"><input class="modal-input" id="modal-create-idolName" value=""></td>
+                                            </tr>
 
-  // $('#youtube-score').html();
-  // $('#spotify-score').html();
-  // $('#insta-score').html();
-  // $('#google-score').html();
-  // $('#overall-score').html();
-
-  // $('#idol-img').html();
-  }
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>`);
+    
+    $('#register-btn-delete').hide()
+    $('#confirm-register-btn').hide()
+}
 
 
 

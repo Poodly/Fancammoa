@@ -8,7 +8,7 @@ async function makeRankImgTable() {
     tableBodyIdolImg.innerHTML = '';    
 
     try {
-        const response = await axios.get('/rank/getRankInfoItems');
+        const response = await axios.get('/admin/getRankInfoItems');
         const rankCardItems = await response.data.RankInfoItems;
 
         console.log("rankCardItems----------------",rankCardItems)
@@ -18,12 +18,12 @@ async function makeRankImgTable() {
         let rankCount = 0;
         for (let i = 0; i < rankCardItems.length; i++) {
             const rankCardItem = rankCardItems[i];
-            
-            // let idolImage = rankCardItem.idolImage.img
 
             let idolId   = rankCardItem.idolId
             let idolName = rankCardItem.idolName
             let idolImage = rankCardItem.idolImage.img
+
+            console.log("makeRankImgTable---------------", idolId, idolName, idolImage)
             
             rankCount += 1;
         

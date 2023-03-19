@@ -15,17 +15,21 @@ const googleScoreController  = new GoogleScoreController();
 const overallScoreController = new OverallScoreController();
 const rankInfoController  = new RankInfoController();
 
+const { isLoggedIn } = require('../middlewares/auth');
+const { onlyAdmin  } = require('../middlewares/auth');
 
-// router.put('/updateSpotifyScore', spotifyScoreController.saveSpotifyScore);  // /rank/updateSpotifyScore
+router.put('/updateSpotifyScore', onlyAdmin, isLoggedIn, spotifyScoreController.saveSpotifyScore);  // /admin/updateSpotifyScore
 
-// router.put('/updateyoutubeScore', youtubeScoreController.saveYoutubeScore);  // /rank/updateyoutubeScore
+router.put('/updateyoutubeScore', onlyAdmin, isLoggedIn, youtubeScoreController.saveYoutubeScore);  // /admin/updateyoutubeScore
 
-// router.put('/updateOverallScore', overallScoreController.saveOverallScore);  // /rank/updateOverallScore
-router.get('/getOverallScore'   , overallScoreController.getOverallScore);   // /rank/getOverallScore
+router.put('/updateOverallScore', onlyAdmin, isLoggedIn, overallScoreController.saveOverallScore);  // /admin/updateOverallScore
+router.get('/getOverallScore'   , onlyAdmin, isLoggedIn, overallScoreController.getOverallScore);   // /admin/getOverallScore
 
 // get img,score,name.....
-router.get('/getRankInfoItems'  , rankInfoController.getRankInfoItems);    // /rank/getRankInfoItems
-// router.put('/updateIdolScore'   , rankInfoController.updateIdolScore);     // /rank/updateIdolScore
+router.get('/getRankInfoItems'  , onlyAdmin, isLoggedIn, rankInfoController.getRankInfoItems);      // /admin/getRankInfoItems
+router.post('/craeteIdol'       , onlyAdmin, isLoggedIn, rankInfoController.craeteIdol);            // /admin/updateIdolScore
+router.put('/updateIdolScore'   , onlyAdmin, isLoggedIn, rankInfoController.updateIdolScore);       // /admin/updateIdolScore
+router.delete('/deleteIdol'     , onlyAdmin, isLoggedIn, rankInfoController.deleteIdol);            // /admin/updateIdolScore
 
 
 module.exports = router;

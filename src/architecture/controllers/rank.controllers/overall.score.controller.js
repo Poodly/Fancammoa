@@ -26,9 +26,9 @@ class OverallScoreController {
 
                 overallScore = youtubeScore + spotifyScore;
 
-                console.log("IdolRankScoreArr----------", items.idolId);
-                console.log("IdolRankScoreArr----------", items.IdolRankScore.dataValues);
-                console.log("overallScore----------", overallScore);
+                // console.log("IdolRankScoreArr----------", items.idolId);
+                // console.log("IdolRankScoreArr----------", items.IdolRankScore.dataValues);
+                // console.log("overallScore----------", overallScore);
 
                 await IdolRankScore.update({ overallScore }, { where: { idolId } }); // 합산 점수를 db에 저장
             }
@@ -68,7 +68,7 @@ class OverallScoreController {
             ScoreDataArr.push(IdolRankScoreData)
         }
         
-        console.log("ScoreDataArr----------", ScoreDataArr);
+        // console.log("ScoreDataArr----------", ScoreDataArr);
         res.status(200).json({ data: ScoreDataArr })
     }
 };

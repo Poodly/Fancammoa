@@ -23,8 +23,8 @@ class DbSaveService {
                 let name = idolNameArr[i].name;
                 if (/^[a-zA-Z0-9-\s!@#$%^&*()_+=[\]{}|\\;:'",.<>/?`~]*$/.test(name)) { // 이름이 영문자, 숫자, 특수문자, 하이픈, 공백으로만 이루어진 경우에만 추가// 한글은 제외                  
                     let saveName = name.replace(/[^a-zA-Z]/g, "");                     // 특수문자 없애기
-                    const exUser = await this.dbSaveRepository.exIdolName(saveName);
-                    if (!exUser) {
+                    const exIdolName = await this.dbSaveRepository.exIdolName(saveName);
+                    if (!exIdolName) {
                         await this.dbSaveRepository.idolNameSave(saveName);
                         newIdolNameArr.push(saveName);
                     } else {

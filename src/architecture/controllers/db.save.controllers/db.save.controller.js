@@ -76,7 +76,7 @@ class DbSaveController {
                     // }
                     
                     await IdolImage.create({ img, idolId });
-                    console.log("idolNames------------",idolId, idolName, img );
+                    // console.log("idolNames------------",idolId, idolName, img );
                 }
                 catch (error) {
                     console.log(`spotify 검색결과가 없습니다.`);

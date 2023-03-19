@@ -145,8 +145,9 @@
       
 
       <!-- 아이돌 정보 수정 모달 -->
+      <!-- 아이돌 생성 모달 -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="max-width:60%;">
+        <div class="modal-dialog modal-dialog-centered" id="modal-container" style="max-width:60%;">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Edit information</h1>
@@ -157,9 +158,9 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-              <button type="button" class="btn btn-primary" id="register-btn">등록</button>
-              <button type="button" class="btn btn-danger"  id="register-btn-delete">삭제</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="register-btn">등록</button>
+                <button type="button" class="btn btn-danger"  id="register-btn-delete">삭제</button>
             </div>
           </div>
         </div>
@@ -179,6 +180,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
               <button type="button" class="btn btn-primary" id="confirm-register-btn">등록</button>
+              <button type="button" class="btn btn-primary" id="confirm-craete-btn">생성</button>
             </div>
           </div>
         </div>
@@ -197,15 +199,15 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-              <button type="button" class="btn btn-danger" id="confirm-register-btn-delete">삭제</button>
+              <button type="button" class="btn btn-danger" id="confirm-btn-delete">삭제</button>
             </div>
           </div>
         </div>
       </div>
 
-
       <script src="./static/js/admin/admin.page.edit.idol.info.js"></script>
-      <script src="./static/js/admin/admin.page.edit.idol.img.js"></script>
+      <script src="./static/js/admin/admin.page.get.idol.img.js"></script>
+      <script src="./static/js/admin/admin.page.get.idol.info.js"></script>
       <script src="./static/js/admin/admin.modals.js"></script>
   </body>
 </html>

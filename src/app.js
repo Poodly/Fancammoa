@@ -15,6 +15,7 @@ require("dotenv").config();
 // ----------------------------------------- connect routes ----------------------------------------
 const userRouter   = require('./routes/user.router');
 const pagesRouter  = require('./routes/pages.router');
+const adminRouter  = require('./routes/admin.router');
 const authRouter   = require('./routes/auth.router');
 const searchRouter = require('./routes/search.video.router');
 const rankRouter   = require('./routes/rank.router')
@@ -80,6 +81,7 @@ app.use('/user'  , userRouter);
 app.use('/video' , searchRouter);
 app.use('/save'  , dbSaveRouter);
 app.use('/rank'  , rankRouter);
+app.use('/admin' , adminRouter);
 
 
 // ------------------------------------------ error ------------------------------------------------
