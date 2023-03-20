@@ -30,8 +30,8 @@ class User extends Sequelize.Model {
                 allowNell     : true,
             },
             userType: {
-                type          : Sequelize.ENUM(env.USERKEY, env.ADMINKEY),
-                defaultValue  : env.USERKEY,
+                type          : Sequelize.ENUM(env.USER_KEY, env.ADMIN_KEY),
+                defaultValue  : env.USER_KEY,
                 allowNull     : false,
             },
         }, { // options

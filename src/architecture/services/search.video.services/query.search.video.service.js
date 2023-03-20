@@ -30,7 +30,7 @@ class QuerySearchVideoService {
                 q: query,
                 type: 'video',
                 key: APIKEY,
-                maxResults: process.env.MAXRESULTS,
+                MAX_RESULTS: process.env.MAX_RESULTS,
                 order: 'viewCount',
                 publishedAfter: startDateTime,   // 시작 기간
                 publishedBefore: currentDateTime // 현재
@@ -39,7 +39,7 @@ class QuerySearchVideoService {
             const items = response.data.items;
             const videoIds = items.map(item => item.id.videoId);
                         
-            await this.redisRepository.redisSetEx(queryCacheKey, process.env.CACHEEXPIRATIONTIME, JSON.stringify(videoIds))
+            await this.redisRepository.redisSetEx(queryCacheKey, process.env.CACHE_EXPIRATION_TIME, JSON.stringify(videoIds))
             console.log("Cached search results in Redis");
             console.log("Query search video success!!")
             return videoIds;

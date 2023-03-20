@@ -10,8 +10,8 @@ const SpotifyAccessTokenService = require('../../services/spotify.access.token.s
 class DbSaveController {
     spotifyAccessTokenService = new SpotifyAccessTokenService();
     spotifyWebApi = new SpotifyWebApi({
-        clientId: process.env.SPOTIFYCLIENTID,
-        clientSecret: process.env.SPOTIFYCLIENTSECRET,
+        clientId: process.env.SPOTIFY_CLIENT_ID,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     });
 
     dbSaveService = new DbSaveService();
@@ -46,8 +46,8 @@ class DbSaveController {
             for (let i = 0; i < idolNamesArr.length; i++) {
                 try {
                     const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
-                        process.env.SPOTIFYCLIENTID, 
-                        process.env.SPOTIFYCLIENTSECRET
+                        process.env.SPOTIFY_CLIENT_ID, 
+                        process.env.SPOTIFY_CLIENT_SECRET
                         );                                                                           // API에 액세스하기 위해 인증 정보 설정
 
                     this.spotifyWebApi.setAccessToken(access_token);                                 // API에 액세스하기 위한 인증 정보 설정
@@ -84,15 +84,25 @@ class DbSaveController {
                 }
             }
 
-            res.status(200).json({ message: "Success saving spotify img succeeded" });
+            res.status(200).json({ message: "Success saving spotify img" });
 
         } catch (error) {
             console.log(error);
-            res.status(500).json({ message: "Last Fm API artist Search failed or db save failed", error: error });
+            res.status(500).json({ message: "spotify img save failed", error: error });
         };
     };
 
+    replaceIdolImg = async (req, res, next) => {
+        try {
+            const { imgId, idolImage } = req.body
+            await IdolImage.update({ img: idolImage }, { where: { id: imgId } }) // 이미지 교체
+            res.status(200).json({ message: "Success replace img" });
 
+        }catch (error) {
+            console.log(error);
+            res.status(500).json({ message: error });
+        };
+    }
 
 
 };
@@ -142,8 +152,8 @@ module.exports = DbSaveController;
 // class RankController {
     
 //     spotifyWebApi = new SpotifyWebApi({
-//         clientId: process.env.SPOTIFYCLIENTID,
-//         clientSecret: process.env.SPOTIFYCLIENTSECRET,
+//         clientId: process.env.SPOTIFY_CLIENT_ID,
+//         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 //     });
 
 //     async getToken() {
@@ -151,7 +161,7 @@ module.exports = DbSaveController;
 //             method: 'post',
 //             url: 'https://accounts.spotify.com/api/token',
 //             headers: {
-//                 'Authorization': 'Basic ' + Buffer.from(process.env.SPOTIFYCLIENTID + ':' + process.env.SPOTIFYCLIENTSECRET).toString('base64'),
+//                 'Authorization': 'Basic ' + Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'),
 //                 'Content-Type': 'application/x-www-form-urlencoded'
 //             },
 //             params: {
@@ -194,8 +204,8 @@ module.exports = DbSaveController;
 // class RankController {
     
 //     spotifyWebApi = new SpotifyWebApi({
-//         clientId: process.env.SPOTIFYCLIENTID,
-//         clientSecret: process.env.SPOTIFYCLIENTSECRET,
+//         clientId: process.env.SPOTIFY_CLIENT_ID,
+//         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 //     });
     
 //     searchArtists = async (req, res, next) => {

@@ -21,14 +21,14 @@ class StartSearchVideoService {
           q: startQuery,
           type: 'video',
           key: APIKEY,
-          maxResults: process.env.MAXRESULTS,
+          MAX_RESULTS: process.env.MAX_RESULTS,
           order: 'viewCount'
         };
         const response = await axios.get(SEARCHURL, { params });
         const items = response.data.items;
         const videoIds = items.map(item => item.id.videoId);
                       
-        await this.redisRepository.redisSetEx(startQueryCacheKey, process.env.CACHEEXPIRATIONTIME, JSON.stringify(videoIds))
+        await this.redisRepository.redisSetEx(startQueryCacheKey, process.env.CACHE_EXPIRATION_TIME, JSON.stringify(videoIds))
         console.log("Cached search results in Redis");
         console.log("Start search video success!!")
         return videoIds;

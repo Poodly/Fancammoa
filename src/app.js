@@ -19,6 +19,7 @@ const adminRouter  = require('./routes/admin.router');
 const authRouter   = require('./routes/auth.router');
 const searchRouter = require('./routes/search.video.router');
 const rankRouter   = require('./routes/rank.router')
+// const newsRouter   = require('./routes/rank.router')
 const dbSaveRouter = require('./routes/db.save.router');
 const passportConfig = require('./architecture/controllers/passport');
 // -------------------------------------------------------------------------------------------------
@@ -33,13 +34,13 @@ sequelize.sync({ force: false })
     .then(async () => {
         console.log('최초 어드민 생성 및 데이터베이스 연결 성공');
         const pwHash = await bcrypt.hash(process.env.FIRSTADMINPW, 12);
-        User.findOne({ where: { userType: process.env.ADMINKEY } }).then((admin) => {
+        User.findOne({ where: { userType: process.env.ADMIN_KEY } }).then((admin) => {
         if (!admin) {
             User.create({
-            email: process.env.FIRSTADMIN,
-            nick: process.env.FIRSTADMINNIC,
+            email: process.env.FIRST_ADMIN,
+            nick: process.env.FIRST_ADMIN_NICk,
             password: pwHash,
-            userType: process.env.ADMINKEY,
+            userType: process.env.ADMIN_KEY,
             });
         }
         });
@@ -82,6 +83,7 @@ app.use('/video' , searchRouter);
 app.use('/save'  , dbSaveRouter);
 app.use('/rank'  , rankRouter);
 app.use('/admin' , adminRouter);
+// app.use('/news'  , newsRouter);
 
 
 // ------------------------------------------ error ------------------------------------------------

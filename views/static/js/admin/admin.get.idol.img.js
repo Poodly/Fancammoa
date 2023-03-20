@@ -1,4 +1,4 @@
-$("#left-nav-edit-idol-img").click(async function() {
+$(document).ready(async function() {
     await makeEditImgTitleSearchBoxButton()
     makeRankImgTable()
 });
@@ -22,14 +22,14 @@ async function makeRankImgTable() {
             let idolId   = rankCardItem.idolId
             let idolName = rankCardItem.idolName
             let idolImage = rankCardItem.idolImage.img
+            let imgId     = rankCardItem.idolImage.id
 
-            console.log("makeRankImgTable---------------", idolId, idolName, idolImage)
+            // console.log("makeRankImgTable---------------", idolId, idolName, idolImage)
             
             rankCount += 1;
-        
             const tempHtml = `<div class="col-md-3 mb-8">
                                 <div class="card">
-                                    <a href = "#">
+                                    <a href = "#" onclick="editIdolImgModal('${idolId}','${idolName}','${idolImage}','${rankCount}','${imgId}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
                                         <div style="width: 12rem;">
                                         <img src="${idolImage}" id="first-card-img" class="card-img-top" alt="...">
                                         <div class="card-body">

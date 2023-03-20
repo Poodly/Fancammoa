@@ -36,31 +36,21 @@
 
     <title>ILOVEFANCAM</title>
 </head>
+
+<style>
+    #kpop-news-title {
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+    }
+</style>
 <body>
     <%-include('./topNav')%>
 <!-- --------------------------------------------------------------------------------------------------------------- -->
     </div>
     
     <main class="mt-3">
-        <div class="container">
-            <!-- 스포티파이 인스타 링크 붙이는곳 -->
-            <div class="search_word_container">
-                <div id="search_word"></div>
-                <div class="icons">
-                    <span id="spotify_link"></span>
-                    <span id="instagram_link"></span>
-                </div>
-            </div>
-
-            <div class="row mb-2">
-                <div class="col-12">
-                </div>
-            </div>
-
-            <!-- 검색 결과 붙이는 곳 -->
-            <div class="row" id="search-container">
-            </div>
-        </div>
+        <h2 id="kpop-news-title">K-POP 뉴스</h2>
     </main>
 <!-- --------------------------------------------------------------------------------------------------------------- -->
     <%-include('./mainModal')%>

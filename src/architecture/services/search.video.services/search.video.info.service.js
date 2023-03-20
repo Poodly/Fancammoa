@@ -38,7 +38,7 @@ class GetVideoInfoService {
                 viewCount 
             }
             
-            await this.redisRepository.redisSetEx(videoIdCacheKey, process.env.CACHEEXPIRATIONTIME, JSON.stringify(data))
+            await this.redisRepository.redisSetEx(videoIdCacheKey, process.env.CACHE_EXPIRATION_TIME, JSON.stringify(data))
             console.log("Cached search results in Redis");
             console.log("Get video info success!!")
             return data;

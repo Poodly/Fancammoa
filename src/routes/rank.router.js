@@ -18,7 +18,7 @@ const rankInfoController  = new RankInfoController();
 
 // router.put('/updateSpotifyScore', spotifyScoreController.saveSpotifyScore);  // /rank/updateSpotifyScore
 
-// router.put('/updateyoutubeScore', youtubeScoreController.saveYoutubeScore);  // /rank/updateyoutubeScore
+// router.put('/updateYoutubeScore', youtubeScoreController.saveYoutubeScore);  // /rank/updateYoutubeScore
 
 // router.put('/updateOverallScore', overallScoreController.saveOverallScore);  // /rank/updateOverallScore
 router.get('/getOverallScore'   , overallScoreController.getOverallScore);   // /rank/getOverallScore

@@ -11,8 +11,8 @@ class SpotifyScoreController {
     spotifyAccessTokenService = new SpotifyAccessTokenService();
     
     spotifyWebApi = new SpotifyWebApi({
-        clientId: process.env.SPOTIFYCLIENTID,
-        clientSecret: process.env.SPOTIFYCLIENTSECRET,
+        clientId: process.env.SPOTIFY_CLIENT_ID,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     });
 
     saveSpotifyScore = async (req, res, next) => {
@@ -31,8 +31,8 @@ class SpotifyScoreController {
             for (let i = 0; i < idolNamesArr.length; i++) {
                 try {
                     const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
-                        process.env.SPOTIFYCLIENTID, 
-                        process.env.SPOTIFYCLIENTSECRET
+                        process.env.SPOTIFY_CLIENT_ID, 
+                        process.env.SPOTIFY_CLIENT_SECRET
                         );                                                                                // API에 액세스하기 위해 인증 정보 설정
 
                     this.spotifyWebApi.setAccessToken(access_token);                                      // API에 액세스하기 위한 인증 정보 설정
@@ -71,6 +71,48 @@ class SpotifyScoreController {
             next();
         }
     }
+
+    IndividualUpdateSpotify = async (req, res, next) => {
+        try {
+            const { idolId } = req.body; 
+
+            // --------------------------------------------------------아이돌 이름 받는 서비스 코드 --------------------------------------------------------
+            const IdolDatas = await IdolData.findOne({ where: { idolId } });
+            let idolName = IdolDatas.dataValues.idolName;
+            console.log("idolName--------------",idolName);
+            // --------------------------------------------------------아이돌 이름 받는 서비스 코드 --------------------------------------------------------
+
+            try {
+                const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
+                    process.env.SPOTIFY_CLIENT_ID, 
+                    process.env.SPOTIFY_CLIENT_SECRET
+                    );                                                                                // API에 액세스하기 위해 인증 정보 설정
+
+                this.spotifyWebApi.setAccessToken(access_token);                                      // API에 액세스하기 위한 인증 정보 설정
+
+                const result = await this.spotifyWebApi.searchArtists(idolName, { limit: 1 });        // 특정 아티스트 데이터 검색
+                
+                const followers = result.body.artists.items[0].followers.total;
+                const name      = result.body.artists.items[0].name;
+
+                // console.log("idolNames------------",idolId, idolName );
+                // console.log("spotifyScore------------",name, followers );
+
+                await IdolRankScore.update({ spotifyScore: followers }, { where: { idolId } });
+                res.status(200).json({ data: followers })
+
+            } catch (error) {
+                console.log(`spotify 검색결과가 없습니다.`);
+                console.error(error);
+            }
+            
+        }catch (error) {
+            console.error('SpotifyApi Something went wrong!', error);
+            next();
+        }
+    }
+
+
 }
 
 module.exports = SpotifyScoreController;
@@ -88,7 +130,7 @@ module.exports = SpotifyScoreController;
 //         method: 'post',
 //         url: 'https://accounts.spotify.com/api/token',
 //         headers: {
-//             'Authorization': 'Basic ' + Buffer.from(process.env.SPOTIFYCLIENTID + ':' + process.env.SPOTIFYCLIENTSECRET).toString('base64'),
+//             'Authorization': 'Basic ' + Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'),
 //             'Content-Type': 'application/x-www-form-urlencoded'
 //         },
 //         params: {

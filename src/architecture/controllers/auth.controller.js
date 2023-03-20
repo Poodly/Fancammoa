@@ -97,7 +97,7 @@ class AuthController {
     checkAdmin = (req, res, next) => {
         try {
             const userType = req.user.userType
-            if(userType === env.ADMINKEY) {
+            if(userType === env.ADMIN_KEY) {
                 res.status(200).json({ data: "Admin true" });
             }else {
                 res.status(200).json({ data: "Admin false" });

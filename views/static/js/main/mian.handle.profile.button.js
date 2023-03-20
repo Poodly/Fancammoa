@@ -11,6 +11,7 @@ async function handleAdminPageButton() {
     
         if (checkAdmin.data === "Admin true") {
             const tempHtml = `<p><a href="/idolRank">아이돌 순위</a></p>
+                                <p id="profile"><a href="/kpopNews">K-POP뉴스</a></p>
                                 <p id="profile"><a href="/userProfile">마이페이지</a></p>
                                 <p id="profile"><a href="/adminPage">어드민페이지</a></p>`
             $('.head_list').html(tempHtml);                    
@@ -18,11 +19,13 @@ async function handleAdminPageButton() {
 
         else if (checkAdmin.data === "Admin false") {
             const tempHtml = `<p><a href="/idolRank">아이돌 순위</a></p>
+                                <p id="profile"><a href="/kpopNews">K-POP뉴스</a></p>
                                 <p id="profile"><a href="/userProfile">마이페이지</a></p>`
             $('.head_list').html(tempHtml);
         } 
         else {
             const tempHtml = `<p><a href="/idolRank">아이돌 순위</a></p>
+                                <p id="profile"><a href="/kpopNews">K-POP뉴스</a></p>
                                 <p id="profile"><a href="/userProfile">마이페이지</a></p>`
             $('.head_list').html(tempHtml);
             checkAdmin = ''

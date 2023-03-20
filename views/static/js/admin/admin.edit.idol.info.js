@@ -82,7 +82,7 @@ async function youtubeRefresh() {
         $("#youtube-refresh").html(`<div class="spinner-border spinner-border-sm text-success" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                     </div>`)
-        await axios.put('/admin/updateyoutubeScore');
+        await axios.put('/admin/updateYoutubeScore');
         window.location.reload();
     }catch (error) {
         console.log('Error:', error);

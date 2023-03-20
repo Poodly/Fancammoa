@@ -57,7 +57,7 @@ module.exports = QuerySearchVideoController;
 //                         q: query,
 //                         type: 'video',
 //                         key: APIKEY,
-//                         maxResults: 3,
+//                         MAX_RESULTS: 3,
 //                         order: 'viewCount'
 //                     };
 //                     const response = await axios.get(searchUrl, { params });  // YouTube 검색 API 요청 보내기

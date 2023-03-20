@@ -25,7 +25,7 @@ exports.isNotLoggedIn = (req, res, next) => {
 // Type check -----------------------------------------------------------------------------------------------
 exports.onlyAdmin = (req, res, next) => {
     const userType = req.user.userType;
-    if (userType === env.ADMINKEY) {
+    if (userType === env.ADMIN_KEY) {
         next();
     }
     else {

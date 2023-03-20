@@ -32,10 +32,20 @@ class Render {
         };
     };
     
-    // Admin's page
+    // Admin's pages
     adminPage = (req, res, next) => {
         try {
             res.render('adminPage');
+            
+        } catch (error) {
+            res.status(500).json({ errorMessage: error.message });
+            return next(error);
+        };
+    };
+
+    adminPageImg = (req, res, next) => {
+        try {
+            res.render('adminPageImg');
             
         } catch (error) {
             res.status(500).json({ errorMessage: error.message });
@@ -54,10 +64,21 @@ class Render {
         }
     };
     
-    // Idol's profile
-    idolProfile = (req, res, next) => {
+    // // Idol's profile
+    // idolProfile = (req, res, next) => {
+    //     try {
+    //         res.render('idolProfile');
+            
+    //     } catch (error) {
+    //         res.status(500).json({ errorMessage: error.message });
+    //         return next(error);
+    //     }
+    // };
+
+    // user's profile
+    userProfile = (req, res, next) => {
         try {
-            res.render('idolProfile');
+            res.render('userProfile');
             
         } catch (error) {
             res.status(500).json({ errorMessage: error.message });
@@ -65,10 +86,10 @@ class Render {
         }
     };
 
-    // user's profile
-    userProfile = (req, res, next) => {
+    // K-POP News
+    kpopNews = (req, res, next) => {
         try {
-            res.render('userProfile');
+            res.render('kpopNews');
             
         } catch (error) {
             res.status(500).json({ errorMessage: error.message });

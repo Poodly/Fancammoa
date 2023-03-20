@@ -25,9 +25,9 @@ class RedisRepository {
       });
     };
   
-    redisSetEx = async (key, CACHEEXPIRATIONTIME, value) => {
+    redisSetEx = async (key, CACHE_EXPIRATION_TIME, value) => {
       return new Promise((resolve, reject) => {
-        redisClient.setEx(key, CACHEEXPIRATIONTIME, value, (error, result) => {
+        redisClient.setEx(key, CACHE_EXPIRATION_TIME, value, (error, result) => {
           if (error) {
             reject(error);
           } else {

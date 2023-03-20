@@ -1,6 +1,9 @@
 require("dotenv").config();
 const axios = require('axios');
 
+require("dotenv").config();
+const env = process.env;
+
 const { IdolData } = require('../../../models')
 const { IdolRankScore } = require('../../../models')
 
@@ -12,7 +15,7 @@ class YoutubeScoreController {
             q: query,
             type: 'video',
             key: APIKEY,
-            maxResults: 1,
+            MAX_RESULTS: 1,
             order: 'viewCount',
             publishedAfter: startDateTime,   // 시작 기간
             publishedBefore: currentDateTime // 현재
@@ -43,7 +46,7 @@ class YoutubeScoreController {
 
     // -----------------------------------------------------------------------------------------------------------------------
     saveYoutubeScore = async (req, res, next) => {
-        const startDateTime = new Date('2021-01-01T00:00:00Z').toISOString(); // set the start date and time in ISO format
+        const startDateTime = new Date(env.YOUTUBE_START_DATETIME).toISOString(); // set the start date and time in ISO format
         const currentDateTime = new Date().toISOString(); // set the current date and time in ISO format
 
         const APIKEY    = process.env.YOUTUBE_APIKEY;
@@ -103,8 +106,8 @@ class YoutubeScoreController {
     };
 
 
-    querySaveYoutubeScore = async (req, res, next) => {
-        const startDateTime = new Date('2021-01-01T00:00:00Z').toISOString(); // set the start date and time in ISO format
+    IndividualSaveYoutubeScore = async (req, res, next) => {
+        const startDateTime = new Date(env.YOUTUBE_START_DATETIME).toISOString(); // set the start date and time in ISO format
         const currentDateTime = new Date().toISOString(); // set the current date and time in ISO format
 
         const APIKEY    = process.env.YOUTUBE_APIKEY;
@@ -114,12 +117,12 @@ class YoutubeScoreController {
         const { idolId } = req.body; 
 
         try {
-            // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
+            // --------------------------------------------------------아이돌 이름 받는 서비스 코드 --------------------------------------------------------
             const IdolDatas = await IdolData.findOne({ where: { idolId } });
             let idolName = IdolDatas.dataValues.idolName;
             console.log("idolName--------------",idolName);
     
-            // --------------------------------------------------------아이돌 이름을 배열로 받는 서비스 코드 --------------------------------------------------------
+            // --------------------------------------------------------아이돌 이름 받는 서비스 코드 --------------------------------------------------------
             const videoIdArr = await this.getVideoId(idolName, APIKEY, startDateTime, currentDateTime, SEARCHURL);
             console.log("videoIdArr--------------",videoIdArr);
 

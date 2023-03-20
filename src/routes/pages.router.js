@@ -19,10 +19,12 @@ router.get('/login'      , isNotLoggedIn , render.login)         // GET /login
 router.get('/signUp'     , isNotLoggedIn , render.sginUp)        // GET /signUp
 
 router.get('/idolRank'    , render.idolRank)                     // GET /idolRank
-router.get('/idolProfile' , render.idolProfile)                  // GET /idolProfile
+router.get('/kpopNews'    , render.kpopNews)                     // GET /kpopNews
 
+// router.get('/idolProfile' , render.idolProfile)               // GET /idolProfile
 router.get('/userProfile' , isLoggedIn , render.userProfile)     // GET /userProfile
 
-router.get('/adminPage'   , onlyAdmin  , isLoggedIn , render.adminPage)  // GET /adminPage
+router.get('/adminPage'   , onlyAdmin  , isLoggedIn , render.adminPage)     // GET /adminPage
+router.get('/adminPageImg', onlyAdmin  , isLoggedIn , render.adminPageImg)  // GET /adminPage
 
 module.exports = router;

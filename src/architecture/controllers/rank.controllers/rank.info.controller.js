@@ -11,7 +11,7 @@ class RankInfoController {
                     attributes: ['youtubeScore', 'spotifyScore', 'instaScore', 'googleScore', 'overallScore'],
                 },{             
                     model: IdolImage,
-                    attributes: ['img'],
+                    attributes: [ 'id', 'img' ],
                 }],                                
                 // limit: 5
             });
@@ -25,8 +25,8 @@ class RankInfoController {
                 let idolImage    = items.IdolImages[0];
                 let youtubeScore = parseInt(items.IdolRankScore.dataValues.youtubeScore);
                 let spotifyScore = parseInt(items.IdolRankScore.dataValues.spotifyScore);
-                let instaScore = parseInt(items.IdolRankScore.dataValues.instaScore);
-                let googleScore = parseInt(items.IdolRankScore.dataValues.googleScore);
+                let instaScore   = parseInt(items.IdolRankScore.dataValues.instaScore);
+                let googleScore  = parseInt(items.IdolRankScore.dataValues.googleScore);
                 let overallScore = parseInt(items.IdolRankScore.dataValues.overallScore);
 
                 let IdolRankInfoItems = {
@@ -37,7 +37,7 @@ class RankInfoController {
                     spotifyScore,
                     instaScore,
                     googleScore,
-                    overallScore
+                    overallScore,
                 }
                 RankInfoItems.push(IdolRankInfoItems)
                 // console.log("RankInfoItems items-----------",items)

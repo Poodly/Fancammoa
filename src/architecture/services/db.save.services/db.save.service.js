@@ -14,7 +14,7 @@ class DbSaveService {
 
         let newIdolNameArr = []
         for (let i = 0; i < page.length; i++) {
-            const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery}&api_key=${process.env.LASTFMAPIKEY}&format=json&page=${page[i]}`;
+            const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery}&api_key=${process.env.LAST_FM_APIKEY}&format=json&page=${page[i]}`;
             const response = await axios.get(apiUrl);
             const artists = response.data.topartists.artist;
             const idolNameArr = artists.map((artist) => ({ name: artist.name, }));
@@ -46,7 +46,7 @@ class DbSaveService {
     //         const page = [1];
     
  
-    //         const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery5}&api_key=${process.env.LASTFMAPIKEY}&format=json&page=${page[0]}`;
+    //         const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery5}&api_key=${process.env.LAST_FM_APIKEY}&format=json&page=${page[0]}`;
     //         const response = await axios.get(apiUrl);
     //         console.log("response-----------",response)
     //         const artists = response.data.topartists.artist;
