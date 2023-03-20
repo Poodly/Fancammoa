@@ -5,6 +5,14 @@ body {
     -ms-overflow-style: none;
 }
 
+a:hover {
+    cursor: pointer;
+  }
+
+.table-body-idol-info:hover {
+    cursor: pointer;
+}
+
 #navbar {
     justify-content: center;
 }
@@ -102,7 +110,6 @@ input {
 
 
 /* 아이콘 */
-/* #spinner-icon {
-    width: 1rem;
-    height: 1rem;
-} */
+#cloud-plus-icon {
+    margin-left: 1px;
+}
