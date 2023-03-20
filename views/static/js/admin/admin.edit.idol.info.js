@@ -1,13 +1,22 @@
 async function updateIdolScore() {
-    const idolId = document.getElementById('modal-idolId').textContent;
-    const idolName = document.getElementById('modal-edit-idol-name').value;
-    const youtubeScore = document.getElementById('modal-edit-youtube-score').value;
-    const spotifyScore = document.getElementById('modal-edit-spotify-score').value;
-    const instaScore = document.getElementById('modal-edit-insta-score').value;
-    const googleScore = document.getElementById('modal-edit-google-score').value;
-    const overallScore = document.getElementById('modal-edit-overall').value;
+    let idolId = document.getElementById('modal-idolId').textContent;
+    let idolName = document.getElementById('modal-edit-idol-name').value;
+    let youtubeScore = document.getElementById('modal-edit-youtube-score').value;
+    let spotifyScore = document.getElementById('modal-edit-spotify-score').value;
+    let instaScore = document.getElementById('modal-edit-insta-score').value;
+    let googleScore = document.getElementById('modal-edit-google-score').value;
+    let overallScore = document.getElementById('modal-edit-overall').value;
 
     try {
+
+        idolId       = parseInt(idolId.replace(/,/g, ''))
+        idolName     = parseInt(idolName.replace(/,/g, ''))
+        youtubeScore = parseInt(youtubeScore.replace(/,/g, ''))
+        spotifyScore = parseInt(spotifyScore.replace(/,/g, ''))
+        instaScore   = parseInt(instaScore.replace(/,/g, ''))  
+        googleScore  = parseInt(googleScore.replace(/,/g, ''))
+        overallScore = parseInt(overallScore.replace(/,/g, ''))
+
         const response = await axios.put('/admin/updateIdolScore', {
             idolId,
             idolName,
@@ -61,6 +70,19 @@ async function overallRefresh() {
         $("#overall-refresh").html(`<div class="spinner-border spinner-border-sm text-success" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                     </div>`)
+        window.location.reload();
+    }catch (error) {
+        console.log('Error:', error);
+    }
+}
+
+async function youtubeRefresh() {
+    try {
+        $("#youtube-refresh").html('')
+        $("#youtube-refresh").html(`<div class="spinner-border spinner-border-sm text-success" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                    </div>`)
+        await axios.put('/admin/updateyoutubeScore');
         window.location.reload();
     }catch (error) {
         console.log('Error:', error);

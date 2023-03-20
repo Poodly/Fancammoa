@@ -58,7 +58,7 @@ function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, inst
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Youtube score ${refreshIcon}</th>
+                                            <th scope="col">Youtube score <a id="modal-youtube-refresh" onclick="modalYoutubeRefresh()">${refreshIcon}</a></th>
                                             <th scope="col">Spotify score ${refreshIcon}</th>
                                             <th scope="col">Insta score ${refreshIcon}</th>
                                             <th scope="col">Google score ${refreshIcon}</th>
@@ -68,13 +68,13 @@ function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, inst
                                         </thead>
                                         <tbody class="table-body-idol-info">
                                             <tr>
-                                                <td id="admin-page-rank">${rankCount}</td>
-                                                <td id="admin-page-idol-name">${idolName}</td>
-                                                <td id="admin-page-youtube-score">${youtubeScore}</td>
-                                                <td id="admin-page-spotify-score">${spotifyScore}</td>
-                                                <td id="admin-page-insta-score">${instaScore}</td>
-                                                <td id="admin-page-google-score">${googleScore}</td>
-                                                <td id="admin-page-overall">${overallScore}</td>
+                                                <td id="modal-rank">${rankCount}</td>
+                                                <td id="modal-idol-name">${idolName}</td>
+                                                <td id="modal-youtube-score">${youtubeScore}</td>
+                                                <td id="modal-spotify-score">${spotifyScore}</td>
+                                                <td id="modal-insta-score">${instaScore}</td>
+                                                <td id="modal-google-score">${googleScore}</td>
+                                                <td id="modal-overall">${overallScore}</td>
                                                 <td id="modal-idolId">${idolId}</td>
                                             </tr>
 

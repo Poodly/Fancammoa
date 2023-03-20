@@ -21,6 +21,7 @@ const { onlyAdmin  } = require('../middlewares/auth');
 router.put('/updateSpotifyScore', onlyAdmin, isLoggedIn, spotifyScoreController.saveSpotifyScore);  // /admin/updateSpotifyScore
 
 router.put('/updateyoutubeScore', onlyAdmin, isLoggedIn, youtubeScoreController.saveYoutubeScore);  // /admin/updateyoutubeScore
+router.put('/queryYpdateyoutube', onlyAdmin, isLoggedIn, youtubeScoreController.querySaveYoutubeScore);  // /admin/queryYpdateyoutube
 
 router.put('/updateOverallScore', onlyAdmin, isLoggedIn, overallScoreController.saveOverallScore);  // /admin/updateOverallScore
 router.get('/getOverallScore'   , onlyAdmin, isLoggedIn, overallScoreController.getOverallScore);   // /admin/getOverallScore
