@@ -1,6 +1,10 @@
 const { IdolData, IdolRankScore, IdolImage } = require('../../../models');
 
+const DbSaveController = require('../db.save.controllers/db.save.controller');
+
 class RankInfoController {
+
+    dbSaveController = new DbSaveController();
 
     getRankInfoItems = async (req, res, next) => {
         try {
@@ -55,7 +59,6 @@ class RankInfoController {
 
     };
 
-
     updateIdolScore = async (req, res, next) => {
         try {
             const { idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore } = req.body;
@@ -86,14 +89,19 @@ class RankInfoController {
 
                 if (!exIdolName) {
                     const idolNameSvae = await IdolData.create({ idolName });
-                    await IdolRankScore.create( { idolId: idolNameSvae.idolId } );    
-                    await IdolImage.create( { idolId: idolNameSvae.idolId } );    
+                    const idolId = idolNameSvae.idolId
+                    await IdolRankScore.create( { idolId: idolId } );    
+                    // await IdolImage.create( { idolId: idolId } );
+
+                    console.log("craeteIdol--idolId-----------", idolId)
+                    await this.dbSaveController.querySaveSpotifyImg(idolId, idolName);    
                 } else {
-                    console.log(`${saveName}는 db에 겹치는 이름이 있습니다.`)
+                    res.status(400).json({ message: `${saveName}는 db에 겹치는 이름이 있습니다.` })
                 }
             } else {
-                console.log(`${idolName}는 한글이므로 추가하지 않습니다.`) // 한글 이름인 경우 로그 출력
+                res.status(400).json({ message: `${idolName}는 한글이므로 추가하지 않습니다.` })
             }
+
 
             res.status(200).json({ message: `idolName:${idolName} 생성 성공` });
 
@@ -117,7 +125,6 @@ class RankInfoController {
             next(error);
         };
     }
-
 
 };
 

@@ -21,6 +21,7 @@ class DbSaveController {
         try {
 
             const response = await this.dbSaveService.searchArtistsDbSave();
+            await this.saveSpotifyImg();
             // res.status(200).json({ message: "Db save succeeded" });
             res.status(200).json({ message: response });
 
@@ -104,7 +105,28 @@ class DbSaveController {
         };
     }
 
+    querySaveSpotifyImg = async (idolId, idolName) => {
+        try {
+            const access_token = await this.spotifyAccessTokenService.SpotifyAccessToken(
+                process.env.SPOTIFY_CLIENT_ID, 
+                process.env.SPOTIFY_CLIENT_SECRET
+                );                                                                           // API에 액세스하기 위해 인증 정보 설정
 
+            this.spotifyWebApi.setAccessToken(access_token);                                 // API에 액세스하기 위한 인증 정보 설정
+
+            const result = await this.spotifyWebApi.searchArtists(idolName, { limit: 1 });   // 특정 아티스트 데이터 검색
+
+            const idolImage = result.body.artists.items[0].images[0].url;
+            console.log("querySaveSpotifyImg-------idolImage------------",idolImage);
+            await IdolImage.create({ img: idolImage, idolId }) // 스포티파이 단일 이미지 저장
+
+            return idolImage
+
+        } catch (error) {
+            console.log(error);
+            next();
+        };
+    }
 };
   
 module.exports = DbSaveController;

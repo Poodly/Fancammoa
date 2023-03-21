@@ -30,7 +30,7 @@ class QuerySearchVideoService {
                 q: query,
                 type: 'video',
                 key: APIKEY,
-                MAX_RESULTS: process.env.MAX_RESULTS,
+                maxResults: process.env.MAX_RESULTS,
                 order: 'viewCount',
                 publishedAfter: startDateTime,   // 시작 기간
                 publishedBefore: currentDateTime // 현재

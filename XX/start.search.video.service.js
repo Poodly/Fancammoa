@@ -21,7 +21,7 @@ class StartSearchVideoService {
           q: startQuery,
           type: 'video',
           key: APIKEY,
-          MAX_RESULTS: process.env.MAX_RESULTS,
+          maxresults: process.env.MAX_RESULTS,
           order: 'viewCount'
         };
         const response = await axios.get(SEARCHURL, { params });

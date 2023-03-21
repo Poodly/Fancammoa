@@ -53,7 +53,7 @@ class UserController {
                     model: LikeVideo,
                     attributes: ['videoId'],
                     where: { userId }, // userId에 따른 LikeVideo 만 가져옵니다.
-                    limit: 3
+                    // limit: 3
                 }],                                
             });
             const videoIds = allLikeVideos.LikeVideos.map(likeVideo => likeVideo.videoId); // map 공부하기..

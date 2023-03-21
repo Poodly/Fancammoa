@@ -52,6 +52,16 @@ class Render {
             return next(error);
         };
     };
+
+    adminPageKeywords = (req, res, next) => {
+        try {
+            res.render('adminPageKeywords');
+            
+        } catch (error) {
+            res.status(500).json({ errorMessage: error.message });
+            return next(error);
+        };
+    };
     
     // Rank page
     idolRank = (req, res, next) => {

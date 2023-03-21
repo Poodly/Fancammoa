@@ -18,7 +18,7 @@ async function searchVideo() {
             window.location.href = `/?term=${encodeURIComponent(query)}`;
         }
 
-        makeSpotifyInstaButton()
+        makeSpotifyInstaButton(query)
 
         // 이전 검색 결과 지우기
         const searchContainer = document.getElementById('search-container');
@@ -35,7 +35,7 @@ async function searchVideo() {
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
         for (let i = 0; i < videoIds.length; i++) {
-            const videoId = videoIds[i];
+            const videoId   = videoIds[i];
             const videoInfo = videoInfos[i];
 
             const {
@@ -45,6 +45,10 @@ async function searchVideo() {
                 tags,
                 viewCount
             } = videoInfo;
+
+            const searchKeyword = await getKeywords()
+
+            // console.log("searchKeyword----------", searchKeyword)
 
             const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
             const titleKeywords = isKeywordsIncluded(description , searchKeyword)

@@ -33,10 +33,10 @@ function makeModalHeaderTitle(query) {
     if (!isKeywordsIncluded(searchText, removeKeyword)) {
         $('.modal-header-title').text(`💖 ${searchText} 💖`);
     }
-    else {
-        searchText = removeKeywords(searchText, removeKeyword)
-        $('.modal-header-title').text(`💖 ${searchText} 💖`);
-    }
+    // else {
+    //     searchText = removeKeywords(searchText, removeKeyword)
+    //     $('.modal-header-title').text(`💖 ${searchText} 💖`);
+    // }
 }
 
 function convertNumberUnit(number) {

@@ -15,7 +15,7 @@ class YoutubeScoreController {
             q: query,
             type: 'video',
             key: APIKEY,
-            MAX_RESULTS: 1,
+            maxResults: 1,
             order: 'viewCount',
             publishedAfter: startDateTime,   // 시작 기간
             publishedBefore: currentDateTime // 현재
