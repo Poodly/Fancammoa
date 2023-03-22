@@ -13,8 +13,6 @@ async function searchLikeVideos() {
         const response = await axios.get(url);
         const videoIds = await response.data.videoId
 
-        console.log("videoIds-----------",videoIds)
-
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
         for (let i = 0; i < videoIds.length; i++) {
@@ -23,34 +21,23 @@ async function searchLikeVideos() {
             let videoId      = videoIds[i]
             let thumbnailUrl = videoInfo.thumbnailUrl
             let title        = videoInfo.title
-            let description  = videoInfo.description
+            // let description  = videoInfo.description
             let tags         = videoInfo.tags
             let viewCount    = videoInfo.viewCount
             let query        = ''
 
-            console.log("videoInfo-------",videoInfo)
-            console.log("thumbnailUrl-------",thumbnailUrl)
-            console.log("videtitleoInfo-------",title)
-            console.log("tags-------",tags)
-            console.log("viewCount-------",viewCount)
-
-            const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
-            const titleKeywords = isKeywordsIncluded(description , searchKeyword)
-            const tagesKeywords = isKeywordsIncludedArr(tags, searchKeyword);
-
-            if (tagesKeywords || titleKeywords || descriptionKeywords) {
-                const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
-                                    <div class="card" style="width: 18rem;">
-                                    <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}','${query}')" data-toggle="modal" data-target="#myModal">
-                                        <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
-                                        <div class="card-body">
-                                        <p class="card-title">${title}</p>
-                                        </div>
-                                    </a>
+            const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="card" style="width: 18rem;">
+                                <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}','${query}')" data-toggle="modal" data-target="#myModal">
+                                    <img src="${thumbnailUrl}" class="card-img-top" alt="${title}">
+                                    <div class="card-body">
+                                    <p class="card-title">${title}</p>
                                     </div>
-                                </div>`;
-                tempHtmlArray.push(tempHtml);
-                }
+                                </a>
+                                </div>
+                            </div>`;
+            tempHtmlArray.push(tempHtml);
+                
             }
             likeVideosContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
         } catch (error) {

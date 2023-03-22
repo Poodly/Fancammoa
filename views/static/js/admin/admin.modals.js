@@ -10,13 +10,18 @@ $(document).ready(function() {
     });
 
     $("#register-btn-replace-keyword").click(function() {
-        // 버튼을 누르면 삭제확인 모달을 띄움
+        // 버튼을 누르면 수정확인 모달을 띄움
         $("#confirmModal").modal("show");
     });
     // 이 코드는 동적으로 생성된 요소에 대해서는 작동하지 않습니다. 
     // 이유는 $(selector).click() 메서드는 초기 로드 시 페이지에 존재하는 모든 요소에 대해서만 바인딩되기 때문입니다.
 
     $("#register-btn-delete").click(function() {
+        // 버튼을 누르면 삭제확인 모달을 띄움
+        $("#confirmModal-delete").modal("show");
+    });
+
+    $("#register-btn-delete-keyword").click(function() {
         // 버튼을 누르면 삭제확인 모달을 띄움
         $("#confirmModal-delete").modal("show");
     });
@@ -80,6 +85,15 @@ $(document).ready(function() {
         
         window.location.reload();
     });
+
+    $("#confirm-btn-delete-keyword").click(async function() {
+        // 확인 모달의 "삭제" 버튼을 누르면 삭제 처리를 진행
+        $("#confirmModal-delete").modal("hide"); 
+
+        await deleteKeyword()
+        
+        window.location.reload();
+    });
 });
 
 
@@ -134,6 +148,7 @@ function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, inst
                                 </div>`);
 
     $('#confirm-btn-keyword').hide()
+    $('#confirm-btn-delete-keyword').hide()
     $('#confirm-btn-replace-keyword').hide()
     $('#confirm-craete-btn').hide()
     $('#confirm-replace-btn').hide()
@@ -141,6 +156,7 @@ function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, inst
 
     $('#register-btn-replace-keyword').hide()
     $('#register-btn-replace').hide()
+    $('#register-btn-delete-keyword').hide()
     $('#register-btn-delete').show()
     $('#register-btn').show()
 }
@@ -170,12 +186,14 @@ function createIdol() {
 
     $('#register-btn-delete').hide()
     $('#register-btn-replace').hide()
+    $('#confirm-btn-delete-keyword').hide()
     $('#register-btn-replace-keyword').hide()
     $('#register-btn').show()
     
     $('#confirm-btn-replace-keyword').hide()
     $('#confirm-btn-keyword').hide()
     $('#confirm-replace-btn').hide()
+    $('#register-btn-delete-keyword').hide()
     $('#confirm-register-btn').hide()
     $('#confirm-craete-btn').show()
 }
@@ -221,9 +239,11 @@ function editIdolImgModal(idolId, idolName, idolImage, rankCount, imgId) {
     $('#confirm-craete-btn').hide()
     $('#confirm-register-btn').hide()
     $('#confirm-btn-keyword').hide()
+    $('#confirm-btn-delete-keyword').hide()
     $('#confirm-btn-replace-keyword').hide()
 
     $('#register-btn-delete').hide()
+    $('#register-btn-delete-keyword').hide()
     $('#register-btn-replace-keyword').hide()
     $('#register-btn').hide()
     $('#register-btn-replace').show()
@@ -239,6 +259,8 @@ function modalCraeteKeyword() {
     
     $('#register-btn-delete').hide()
     $('#register-btn-replace').hide()
+    $('#register-btn-delete-keyword').hide()
+    $('#confirm-btn-delete-keyword').hide()
     $('#register-btn-replace-keyword').hide()
     $('#register-btn').show()
 
@@ -263,12 +285,12 @@ function modalEditKeyword(keywordId, keyword) {
                                         </thead>
                                         <tbody class="table-body-idol-info">
                                             <tr>
-                                                <td id="admin-page-edit-KeywordId">${keywordId}</td>
-                                                <td id="admin-page-edit-Keyword">${keyword}</td>
+                                                <td id="admin-page-edit-keywordId">${keywordId}</td>
+                                                <td id="admin-page-edit-keyword">${keyword}</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
-                                                <td id="admin-page-idol-name"><input class="modal-input" id="modal-edit-Keyword" value="${keyword}"></td>     
+                                                <td id="admin-page-idol-name"><input class="modal-input" id="modal-edit-keyword" value="${keyword}"></td>     
                                             </tr>
                                         </tbody>
                                     </table>
@@ -277,6 +299,7 @@ function modalEditKeyword(keywordId, keyword) {
     
     $('#register-btn-delete').hide()
     $('#register-btn-replace').hide()
+    $('#confirm-btn-delete-keyword').show()
     $('#register-btn-replace-keyword').show()
     $('#register-btn').hide()
 
@@ -284,8 +307,11 @@ function modalEditKeyword(keywordId, keyword) {
     $('#confirm-craete-btn').hide()
     $('#confirm-register-btn').hide()
     $('#confirm-btn-keyword').hide()
+    $('#register-btn-delete-keyword').show()
     $('#confirm-btn-replace-keyword').show()
 }
+
+
 
 
 

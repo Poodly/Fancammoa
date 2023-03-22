@@ -26,7 +26,6 @@ async function adminGetKeywords() {
             const tempHtml = `<tr onclick="modalEditKeyword('${keywordId}','${keyword}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
                                 <td id="admin-page-keywordId">${keywordId}</td>
                                 <td id="admin-page-keyword">${keyword}</td>
-                                <td id="admin-page-keyword-trashIcon">${trashIcon}</td>
                             </tr>`
             tempHtmlArray.push(tempHtml);
                 
@@ -45,7 +44,7 @@ function makeEditKeywordTitleSearchBoxButton() {
     const tempHtml = `<div class="info-title-search-box-button">
                         <div class="info-table-title">
                             <h2>Idol information</h2>
-                            <p>삭제, 추가, 이름변경, 점수 업데이트</p>
+                            <p>키워드 삭제, 추가, 이름변경</p>
                         </div>
 
                         <form action="" onsubmit="return false;">
@@ -75,7 +74,8 @@ function makeEditKeywordTitleSearchBoxButton() {
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Keyword</th>
-                                <th scope="col">Delete</th>
+                                <th scope="col">createAt</th>
+                                <th scope="col">updatedAt</th>
                             </tr>
                             </thead>
                             <tbody class="table-body-idol-info">

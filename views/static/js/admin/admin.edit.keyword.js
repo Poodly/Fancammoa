@@ -14,23 +14,23 @@ async function craeteKeyword() {
 }
 
 
-// async function deleteKeyword() {
-//     try {
-//         const idolId = document.getElementById('modal-idolId').textContent;
-//         const response = await axios.delete('/admin/deleteIdol', { data: { idolId } });
-//         console.log(response, ' DELETE요청 성공');
+async function deleteKeyword() {
+    try {
+        const keyword = document.getElementById('admin-page-edit-keyword').textContent;
+        const response = await axios.delete('/admin/deleteKeyword', { data: { keyword } });
+        console.log(response, `키워드 Id:${keyword} DELETE요청 성공`);
 
-//         $("#exampleModal").modal("hide");
+        $("#exampleModal").modal("hide");
 
-//     }catch (error) {
-//         console.log('Error:', error);
-//     }
-// };
+    }catch (error) {
+        console.log('Error:', error);
+    }
+};
 
 async function editKeyword() {
     try {
-        const keywordId = document.getElementById('admin-page-edit-KeywordId').textContent;
-        const keyword = document.getElementById('modal-edit-Keyword').value;
+        const keywordId = document.getElementById('admin-page-edit-keywordId').textContent;
+        const keyword = document.getElementById('modal-edit-keyword').value;
 
         console.log("editKeyword-------keywordId",keywordId)
         console.log("editKeyword-------keyword",keyword)
