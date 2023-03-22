@@ -48,7 +48,7 @@ async function searchVideo() {
 
             const searchKeyword = await getKeywords()
 
-            // console.log("searchKeyword----------", searchKeyword)
+            console.log("searchKeyword----------", searchKeyword)
 
             const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
             const titleKeywords = isKeywordsIncluded(description , searchKeyword)

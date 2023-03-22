@@ -1,15 +1,14 @@
 const express       = require('express');
-const bodyParser    = require('body-parser');
-const morgan        = require('morgan');
-const path          = require('path');
 const session       = require('express-session');
+const morgan        = require('morgan');
 const cookieParser  = require('cookie-parser');
+const bodyParser    = require('body-parser');
+const path          = require('path');
 const passport      = require('passport'); 
-const bcrypt   = require('bcrypt');
+const bcrypt        = require('bcrypt');
 
 const { sequelize } = require('./models');
 
-// dotenv.config();
 require("dotenv").config();
 
 // ----------------------------------------- connect routes ----------------------------------------
@@ -18,10 +17,9 @@ const pagesRouter  = require('./routes/pages.router');
 const adminRouter  = require('./routes/admin.router');
 const authRouter   = require('./routes/auth.router');
 const searchRouter = require('./routes/search.video.router');
-const rankRouter   = require('./routes/rank.router')
+const rankRouter   = require('./routes/rank.info.router')
 // const newsRouter   = require('./routes/rank.router')
-const dbSaveRouter = require('./routes/db.save.router');
-const passportConfig = require('./architecture/controllers/passport');
+const passportConfig = require('./architecture/controllers/auth.controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
 passportConfig();
@@ -80,11 +78,9 @@ app.use('/'      , pagesRouter);
 app.use('/auth'  , authRouter); 
 app.use('/user'  , userRouter); 
 app.use('/video' , searchRouter);
-app.use('/save'  , dbSaveRouter);
 app.use('/rank'  , rankRouter);
 app.use('/admin' , adminRouter);
 // app.use('/news'  , newsRouter);
-
 
 // ------------------------------------------ error ------------------------------------------------
 app.use((req, res, next) => {

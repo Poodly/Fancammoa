@@ -2,15 +2,21 @@ require("dotenv").config();
 const axios = require('axios');
 const searchQuery = "k-pop";
 
-const DbSaveRepository = require('../../repositories/db.save.repository/db.save.repository');
+const LastFmSearchArtistRepository = require('../../repositories/admin.repositories/lastFmSearchArtist.repository');
 
-class DbSaveService {
+class LastFmSearchArtistService {
     constructor() {
-        this.dbSaveRepository = new DbSaveRepository();
+        this.lastFmSearchArtistRepository = new LastFmSearchArtistRepository();
     }
 
-    searchArtistsDbSave = async () => {
-        const page = [1];
+    lastFmSearchArtist = async () => {
+        const index = parseInt(process.env.LAST_FM_PAGE_INDEX);
+        const page = []
+        let count = 0
+        for (let i = 0; i < index; i++) {
+            count += 1;
+            page.push(count);
+        }
 
         let newIdolNameArr = []
         for (let i = 0; i < page.length; i++) {
@@ -23,9 +29,9 @@ class DbSaveService {
                 let name = idolNameArr[i].name;
                 if (/^[a-zA-Z0-9-\s!@#$%^&*()_+=[\]{}|\\;:'",.<>/?`~]*$/.test(name)) { // 이름이 영문자, 숫자, 특수문자, 하이픈, 공백으로만 이루어진 경우에만 추가// 한글은 제외                  
                     let saveName = name.replace(/[^a-zA-Z]/g, "");                     // 특수문자 없애기
-                    const exIdolName = await this.dbSaveRepository.exIdolName(saveName);
+                    const exIdolName = await this.lastFmSearchArtistRepository.exIdolName(saveName);
                     if (!exIdolName) {
-                        await this.dbSaveRepository.idolNameSave(saveName);
+                        await this.lastFmSearchArtistRepository.idolNameSave(saveName);
                         newIdolNameArr.push(saveName);
                     } else {
                         console.log(`${saveName}는 db에 겹치는 이름이 있습니다.`)
@@ -38,30 +44,6 @@ class DbSaveService {
         console.log("newIdolNameArr-----------",newIdolNameArr)
         return newIdolNameArr
     };
-
-
-    // searchArtistsDbSave = async () => {
-
-    //     try {
-    //         const page = [1];
-    
- 
-    //         const apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${searchQuery5}&api_key=${process.env.LAST_FM_APIKEY}&format=json&page=${page[0]}`;
-    //         const response = await axios.get(apiUrl);
-    //         console.log("response-----------",response)
-    //         const artists = response.data.topartists.artist;
-    //         const idolNameArr = artists.map((artist) => ({ name: artist.name, }));
-            
-            
-    //         console.log("idolNameArr-----------",idolNameArr)
-    //         return response.data
-    //         // return newIdolNameArr
-
-    //     }catch (error) {
-    //         console.error(error);
-    //         next(error);
-    //     };
-    // };
 };
   
-module.exports = DbSaveService;
+module.exports = LastFmSearchArtistService;

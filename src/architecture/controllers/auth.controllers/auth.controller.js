@@ -1,6 +1,6 @@
 const passport = require('passport')
 const bcrypt   = require('bcrypt');
-const AuthService = require('../services/auth.service')
+const AuthService = require('../../services/auth.service')
 
 require("dotenv").config();
 const env = process.env;

@@ -2,7 +2,7 @@ const passport = require('passport');
 const bcrypt   = require('bcrypt');
 const { Strategy: LocalStrategy } = require('passport-local');
 
-const AuthService = require('../../services/auth.service')
+const AuthService = require('../../../services/auth.service')
 const authService = new AuthService();
 
 module.exports = () => {

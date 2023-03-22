@@ -1,7 +1,7 @@
 const { IdolData } = require('../../../models');
 const { IdolRankScore } = require('../../../models');
 
-class DbSaveRepository {
+class LastFmSearchArtistRepository {
 
     idolNameSave = async (idolName) => {
         try {
@@ -22,6 +22,6 @@ class DbSaveRepository {
     }
 }
   
-module.exports = DbSaveRepository;
+module.exports = LastFmSearchArtistRepository;
 
  
