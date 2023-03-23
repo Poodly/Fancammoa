@@ -15,7 +15,7 @@ class YoutubeScoreController {
             q: query,
             type: 'video',
             key: APIKEY,
-            maxResults: 1,
+            maxResults: 2,
             order: 'viewCount',
             publishedAfter: startDateTime,   // 시작 기간
             publishedBefore: currentDateTime // 현재
@@ -104,7 +104,6 @@ class YoutubeScoreController {
             next(error);
         }
     };
-
 
     IndividualSaveYoutubeScore = async (req, res, next) => {
         const startDateTime = new Date(env.YOUTUBE_START_DATETIME).toISOString(); // set the start date and time in ISO format

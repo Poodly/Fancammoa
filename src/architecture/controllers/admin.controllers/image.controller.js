@@ -20,7 +20,7 @@ class ImageConrtoller {
             res.status(200).json({ message: "Success saving spotify img" });
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
             res.status(500).json({ message: "spotify img save failed", error: error });
         };
     };
@@ -32,7 +32,7 @@ class ImageConrtoller {
             res.status(200).json({ message: "Success replace img" });
 
         }catch (error) {
-            console.log(error);
+            console.error(error);
             res.status(500).json({ message: error });
         };
     }
