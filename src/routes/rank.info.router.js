@@ -8,7 +8,7 @@ const overallScoreController = new OverallScoreController();
 const rankInfoController     = new RankInfoController();
 
 // get img,score,name.....
-router.get('/getRankInfoItems', rankInfoController.getRankInfoItems);      // /rank/getRankInfoItems
-router.get('/getOverallScore' , overallScoreController.getOverallScore);   // /rank/getOverallScore
+router.get('/getRankInfoItems', rankInfoController.getRankInfoAllItems);      // /rank/getRankInfoItems
+router.get('/getOverallScore' , overallScoreController.getOverallScore);      // /rank/getOverallScore
 
 module.exports = router;

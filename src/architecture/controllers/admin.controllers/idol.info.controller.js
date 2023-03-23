@@ -16,13 +16,9 @@ class IdolInfoController {
 
         }catch (error) {
             console.error(error);
-            next(error);
+            res.status(400).json({ message: error });
         };
     }
-    
-
-
-
     
     updateIdolScore = async (req, res, next) => {
         try {
@@ -40,10 +36,9 @@ class IdolInfoController {
 
         }catch (error) {
             console.error(error);
-            next(error);
+            res.status(400).json({ message: error });
         };
     }
-
 
     deleteIdol = async (req, res, next) => {
         try {
@@ -56,7 +51,7 @@ class IdolInfoController {
 
         }catch (error) {
             console.error(error);
-            next(error);
+            res.status(400).json({ message: error });
         };
     }
 

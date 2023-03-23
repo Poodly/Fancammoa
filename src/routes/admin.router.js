@@ -39,7 +39,7 @@ router.put('/IndividualUpdateSpotify', onlyAdmin, isLoggedIn, spotifyScoreContro
 router.get('/getOverallScore'   , onlyAdmin, isLoggedIn, overallScoreController.getOverallScore);   // /admin/getOverallScore
 
 // get img,score,name.....
-router.get('/getRankInfoItems'  , onlyAdmin, isLoggedIn, rankInfoController.getRankInfoItems);    // /admin/getRankInfoItems
+router.get('/getRankInfoItems'  , onlyAdmin, isLoggedIn, rankInfoController.getRankInfoAllItems);    // /admin/getRankInfoItems
 
 // 아이돌 생성, 수정, 삭제
 router.post('/craeteIdol'       , onlyAdmin, isLoggedIn, idolInfoController.craeteIdol);          // /admin/craeteIdol
