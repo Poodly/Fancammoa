@@ -18,7 +18,7 @@ const adminRouter  = require('./routes/admin.router');
 const authRouter   = require('./routes/auth.router');
 const searchRouter = require('./routes/search.video.router');
 const rankRouter   = require('./routes/rank.info.router')
-// const newsRouter   = require('./routes/rank.router')
+const newsRouter   = require('./routes/news.router')
 const passportConfig = require('./architecture/controllers/auth.controllers/passport');
 // -------------------------------------------------------------------------------------------------
 const app = express();
@@ -80,7 +80,7 @@ app.use('/user'  , userRouter);
 app.use('/video' , searchRouter);
 app.use('/rank'  , rankRouter);
 app.use('/admin' , adminRouter);
-// app.use('/news'  , newsRouter);
+app.use('/news'  , newsRouter);
 
 // ------------------------------------------ error ------------------------------------------------
 app.use((req, res, next) => {
