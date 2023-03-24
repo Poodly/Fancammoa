@@ -273,3 +273,133 @@ time.sleep(2)
 # // Close the browser
 # driver.quit();
 
+
+
+
+
+
+
+
+
+
+
+
+
+# 뉴스 가져오기
+
+recommend_ul = driver.find_element(By.ID, 'recommendNewsList')
+recommend_lis = recommend_ul.find_elements(By.CSS_SELECTOR, 'li.d-flex')
+print(len(recommend_lis))
+
+for li in recommend_lis:
+    _image2 = li.find_element(By.CSS_SELECTOR, 'div.thumb > a > img').get_attribute('src')
+    title2 = li.find_element(By.CSS_SELECTOR, 'div.info > a > span').text
+    link_url2 = li.find_element(By.CSS_SELECTOR, 'div.info > a').get_attribute('href')
+    _link_url2 = link_url2.replace('http://', 'https://').replace('&lcp', '&cp')
+    link_list2 = _link_url2.split('&')
+
+    final_url_link2 = ''
+    idx = 0
+
+    for link in link_list2:
+        if idx == 3:
+            continue
+        final_url_link2 += link + '&'
+
+    final_url_link2 = final_url_link2[:-1]
+    print(f'{_image2}\n{title2}\n{link_list2}\n{final_url_link2}\n')
+
+
+# const recommendUl = document.querySelector('#recommendNewsList');
+# const recommendLis = recommendUl.querySelectorAll('li.d-flex');
+# console.log(recommendLis.length);
+
+# for (let li of recommendLis) {
+#   const _image2 = li.querySelector('div.thumb > a > img').getAttribute('src');
+#   const title2 = li.querySelector('div.info > a > span').textContent;
+#   let link_url2 = li.querySelector('div.info > a').getAttribute('href');
+#   link_url2 = link_url2.replace('http://', 'https://').replace('&lcp', '&cp');
+#   const link_list2 = link_url2.split('&');
+
+#   let final_url_link2 = '';
+#   let idx = 0;
+
+#   for (let link of link_list2) {
+#     if (idx === 3) {
+#       continue;
+#     }
+#     final_url_link2 += link + '&';
+#     idx++;
+#   }
+
+#   final_url_link2 = final_url_link2.slice(0, -1);
+#   console.log(`${_image2}\n${title2}\n${link_list2}\n${final_url_link2}\n`);
+# }
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.commom.by import By
+import time
+import pyperclip
+import pyautogui
+import openpyxl
+from datetime import datetime
+
+def chromeWebdriver():
+    chrome_service = ChromeService(executable_path=ChromeDriverManager().install())
+    options = Options()
+    options.add_experimental_option('detach', True)
+    options.add_experimental_option('excludeSwitches', ['enable-loggin'])
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36'
+    options.add_argument(f'user-agent={user_agent}')
+    
+    driver = webdriver.Chrome(service=chrome_service, options=options)
+
+    return driver
+
+driver = chromeWebdriver()
+driver.get('https://partners.newspic.kr/login')
+driver.implicitly_wait(2)
+time.sleep(2)
+
+id = driver.find_element(By.NAME, 'id')
+id.click()
+pyperclip.copy('아이디_메일')
+pyautogui.hotkey('ctrl', 'v')
+time.sleep(1)
+
+pw = driver.find_element(By.NAME, 'password')
+pw.click()
+pyperclip.copy('패스워드')
+pyautogui.hotkey('ctrl', 'v')
+time.sleep(1)
+
+login_btn = driver.find_element(By.XPATH, '/html/body/div[1]/section/div[2]/div[1]/from/button')
+login_btn.click()
+time.sleep(2)
+
+# 뉴스 가져오기
+
+recommend_ul = driver.find_element(By.ID, 'recommendNewsList')
+recommend_lis = recommend_ul.find_elements(By.CSS_SELECTOR, 'li.d-flex')
+print(len(recommend_lis))
+
+for li in recommend_lis:
+    _image2 = li.find_element(By.CSS_SELECTOR, 'div.thumb > a > img').get_attribute('src')
+    title2 = li.find_element(By.CSS_SELECTOR, 'div.info > a > span').text
+    link_url2 = li.find_element(By.CSS_SELECTOR, 'div.info > a').get_attribute('href')
+    _link_url2 = link_url2.replace('http://', 'https://').replace('&lcp', '&cp')
+    link_list2 = _link_url2.split('&')
+
+    final_url_link2 = ''
+    idx = 0
+
+    for link in link_list2:
+        if idx == 3:
+            continue
+        final_url_link2 += link + '&'
+
+    final_url_link2 = final_url_link2[:-1]
+    print(f'{_image2}\n{title2}\n{link_list2}\n{final_url_link2}\n')

@@ -1,23 +1,96 @@
 $(document).ready(async function() {
-    kpopNews()
+    await getKpopNewsPick()
 });
 
+async function getKpopNewsPick() {
 
-async function kpopNews() {
-    // const apiKey1 = '76c4950e3de84354bc6050cf49beb6a5';
-    // https://newsapi.org/v2/everything?q=bitcoin&apiKey=76c4950e3de84354bc6050cf49beb6a5
-    var url = 'https://newsapi.org/v2/top-headlines?' +
-            'q=k-pop&'+
-            // 'country=kr&' +
-            'apiKey=76c4950e3de84354bc6050cf49beb6a5';
+    // 이전 검색 결과 지우기
+    const newsContainer = document.getElementById('news-card-append');
+    // newsContainer.innerHTML = '';
 
-    // var req = new Request(url);
-    // fetch(req)
-    //     .then(function(response) {
-    //         console.log(response.json());
-    //     })
-        
-    const response = await axios.get(url);
-    console.log("kpopNews----response----", response)
+    try {
+        const response = await axios.get('/news/getKpopNews');
+        const news     = response.data;
+
+        // allKpopNews 속성을 가진 배열로 변환
+        const kpopNewsArray = Object.values(news.allKpopNews); // ???????
+
+        // console.log("news--------------", news.allKpopNews[0])
+
+        // 검색 결과에 따라 HTML 코드 생성
+        const tempHtmlArray = [];
+        for (let i = 0; i < kpopNewsArray.length; i++) {
+            let newsId    = kpopNewsArray[i].newsId;
+            let newsLink  = kpopNewsArray[i].newsLink;
+            let newsImg   = kpopNewsArray[i].newsImg;
+            let newsTitle = kpopNewsArray[i].newsTitle;
+            let press     = kpopNewsArray[i].press;
+            let newsDate  = kpopNewsArray[i].newsDate;
+
+            const tempHtml = `<div class="col">
+                                <div class="card" style="width: 16rem;">
+                                    <img src="${newsImg}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    <p class="card-text">${newsTitle}</p>
+                                    <p class="card-date-text">${press} ${newsDate}</p>
+                                    </div>
+                                </div>
+                            </div>`;
+            tempHtmlArray.push(tempHtml);
+                
+        }
+        console.log(tempHtmlArray)
+        newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
+
+    } catch (error) {
+        console.error(error);
+    }
 }
-// news-card-append
+
+
+
+// async function getKpopNewsPick() {
+//     try {
+//         const newsContainer = document.getElementById('news-card-append');
+//         const response = await axios.get('/news/getKpopNews');
+//         const news     = response.data;
+
+//         // 검색 결과에 따라 HTML 코드 생성
+//         const tempHtmlArray = [];
+//         for (let i = 0; i < news.length; i++) {
+//             let newsId    = news.allKpopNews[i].newsId;
+//             let newsLink  = news.allKpopNews[i].newsLink;
+//             let newsImg   = news.allKpopNews[i].newsImg;
+//             let newsTitle = news.allKpopNews[i].newsTitle;
+//             let press     = news.allKpopNews[i].press;
+//             let newsDate  = news.allKpopNews[i].newsDate;
+
+//             const tempHtml = `<div class="col">
+//                                 <div class="card" style="width: 16rem;">
+//                                     <img src="${newsImg}" class="card-img-top" alt="...">
+//                                     <div class="card-body">
+//                                     <p class="card-text">${newsTitle}</p>
+//                                     <p class="card-date-text">${press} ${newsDate}</p>
+//                                     </div>
+//                                 </div>
+//                             </div>`;
+//             tempHtmlArray.push(tempHtml);
+                
+//         }
+//         console.log(tempHtmlArray)
+//         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
+
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+
+// async function saveKpopNewsPick() {
+//     try {
+//         await axios.post('/news/saveKpopNews');
+        
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
