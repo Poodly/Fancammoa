@@ -38,7 +38,7 @@ async function searchVideo() {
             const videoId   = videoIds[i];
             const videoInfo = videoInfos[i];
 
-            const {
+            let {
                 thumbnailUrl,
                 title,
                 description,
@@ -46,10 +46,11 @@ async function searchVideo() {
                 viewCount
             } = videoInfo;
 
+            if (title.length >= 60) {
+                title = title.slice(0, 40) + " ...";
+            }
+
             const searchKeyword = await getKeywords()
-
-            console.log("searchKeyword----------", searchKeyword)
-
             const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
             const titleKeywords = isKeywordsIncluded(description , searchKeyword)
             const tagesKeywords = isKeywordsIncludedArr(tags, searchKeyword);

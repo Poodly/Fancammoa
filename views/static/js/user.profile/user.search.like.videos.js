@@ -6,7 +6,9 @@ async function searchLikeVideos() {
         const url = '/user/getLikeVideos'
 
         // 이전 검색 결과 지우기
-        const likeVideosContainer = document.getElementById('search-container');
+        const likeVideosContainer = document.getElementById('search-items');
+        // const likeVideosContainer = document.getElementById('search-container');
+        likeVideosContainer.innerHTML = '';
         // searchContainer.innerHTML = '';
 
     try {
@@ -22,10 +24,24 @@ async function searchLikeVideos() {
             let thumbnailUrl = videoInfo.thumbnailUrl
             let title        = videoInfo.title
             // let description  = videoInfo.description
-            let tags         = videoInfo.tags
+            // let tags         = videoInfo.tags
             let viewCount    = videoInfo.viewCount
             let query        = ''
 
+            if (title.length >= 60) {
+                title = title.slice(0, 40) + " ...";
+            }
+
+            // const tempHtml = `<div class="col">
+            //                     <div class="card" style="width: 18rem;">
+            //                     <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}','${query}')" data-toggle="modal" data-target="#myModal">
+            //                         <img src="${thumbnailUrl}" class="card-img-top" alt="...">
+            //                         <div class="card-body">
+            //                         <p class="card-title">${title}</p>
+            //                         </div>
+            //                     </a>
+            //                     </div>
+            //                 </div>`;
             const tempHtml = `<div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="card" style="width: 18rem;">
                                 <a href="#" onclick="modalPlayVideo('${videoId}','${title.replace(/'/g, '').replace(/"/g, '')}','${viewCount}','${query}')" data-toggle="modal" data-target="#myModal">

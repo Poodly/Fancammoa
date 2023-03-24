@@ -36,6 +36,54 @@
 
 
     <title>ILOVEFANCAM</title>
+
+    <style>
+        .mt-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0px;
+    }
+    
+    #kpop-news-title {
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+        margin: 0px;
+    }
+
+    #news-container {
+        margin-top: 40px;
+        width: 60%;
+        justify-content: center;
+    }
+
+    .card {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .col {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .card-text {
+        margin: 0px;
+        font-size: small;
+        font-weight: 600;
+    }
+    .card-date-text {
+        margin: 0px;
+        margin-top: 5px;
+        font-size: smaller;
+        color: rgb(110, 110, 110);
+    }
+    </style>
 </head>
 <body>
     <%-include('./topNav')%>
@@ -55,6 +103,15 @@
 
             <!-- 검색 결과 붙이는 곳 -->
             <div class="row" id="search-container">
+
+                <div class="container text-center">
+                    <div class="row" id="search-items">
+                        
+                        
+                    
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>
