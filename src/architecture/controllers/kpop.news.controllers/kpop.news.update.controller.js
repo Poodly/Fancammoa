@@ -8,9 +8,9 @@ const { KpopNews } = require('../../../models')
 require("dotenv").config();
 const env = process.env;
 
-class KpopNewsController {
+class KpopNewsUpdateController {
 
-    saveKpopNews = async (req, res, next) => {
+    UpdateKpopNews = async (req, res, next) => {
         // headless로 크롬 드라이버 실행
         let driver = await new Builder()
             .forBrowser('chrome')
@@ -68,16 +68,12 @@ class KpopNewsController {
                 let newsTitle = await titleContents.getText();
                 let press     = await pressATags.getText();
                 let newsDate  = await dates.getText();
-                let newsType  = 'Top3'
-
-                // console.log("newsLink---------------", newsLink)
         
                 if (newsTitle == '') {
                     console.log("pass")
                 }else {
-                    await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate, newsType })
+                    await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate })
                 }
-                
             }
         
             // Get Top2~4 news ---------------------
@@ -96,21 +92,9 @@ class KpopNewsController {
                     let newsTitle = await titleContents[i].getText();
                     let press     = await pressATags[i].getText();
                     let newsDate  = await dates[i].getText();
-                    let newsType  = 'Top3'
-
-                    // console.log("newsLink---------------", newsLink)
-                    // console.log("newsImg----------------", newsImg)
-                    // console.log("newsTitle--------------", newsTitle)
-                    // console.log("press------------------", press)
-                    // console.log("newsDate---------------", newsDate)
         
-                    const exTop3 = await KpopNews.findAll({ where: { newsType } })
-                    console.log("exTop3---------------", exTop3)
-
                     if (newsTitle == '') {
                         console.log("pass")
-                    }else if (exTop3.length < 3) {
-                        await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate, newsType })
                     }else {
                         await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate })
                     }
@@ -137,13 +121,12 @@ class KpopNewsController {
  
                     if (newsTitle == '') {
                         console.log("pass")
-                    }else if (allKpopNews.length <= 43) {
+                    }else if (allKpopNews.length <= 100) {
                         await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate })
                     }
-                    // await linkClick[i].click();
-                    // let link  = await clipboardy.read();
                 }
             }
+    
     
             await getTop1News()
             await getTop4News()
@@ -161,22 +144,4 @@ class KpopNewsController {
     }
 }
 
-module.exports = KpopNewsController;
-
-
-// JavaScript Selenium에서 가장 많이 사용되는 WebElement 인터페이스에서 사용 가능한 주요 메소드는 다음과 같습니다:
-
-// clear(): 현재 입력란에 입력된 값을 지웁니다.
-// click(): 해당 요소를 클릭합니다.
-// findElement(by): 지정된 방법(by)에 따라 해당하는 첫 번째 하위 요소를 찾습니다.
-// findElements(by): 지정된 방법(by)에 따라 해당하는 모든 하위 요소를 찾습니다.
-// getAttribute(attributeName): 해당 속성의 값을 반환합니다.
-// getCssValue(propertyName): 해당 속성의 CSS 값을 반환합니다.
-// getTagName(): 태그 이름을 반환합니다.
-// getText(): 해당 요소의 텍스트 값을 반환합니다.
-// isDisplayed(): 요소가 현재 화면에 표시되는지 여부를 반환합니다.
-// isEnabled(): 요소가 활성화되어 있는지 여부를 반환합니다.
-// isSelected(): 해당 요소가 선택되어 있는지 여부를 반환합니다.
-// sendKeys(...var_args): 현재 입력란에 문자열을 입력합니다.
-// submit(): 해당 폼을 제출합니다.
-// 위의 메소드 중 getAttribute()은 WebElement의 속성을 가져오는 데 사용되는 메소드입니다
+module.exports = KpopNewsUpdateController;

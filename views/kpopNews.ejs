@@ -94,6 +94,19 @@
         color: rgb(110, 110, 110);
     }
 
+    .card-text-blank {
+        font-size: small;
+        font-weight: 600;
+        margin: 0px;
+        padding: 0px;
+        padding-bottom: 18px;
+    }
+    /* .card-body {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+    } */
+
     #right-icon {
         margin-left: 35px;
     }
@@ -101,6 +114,10 @@
     #left-icon {
         margin-right: 35px;
     }
+
+    .card img {
+        border-radius: 5px;
+    } 
 </style>
 <body>
     <%-include('./topNav')%>
@@ -116,86 +133,13 @@
             <a href="" id="left-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                  </svg>
+                </svg>
             </a>
 
             <div class="row" id="news-container">
                 <div class="container text-center">
-                    <div class="row" id="news-card-append">
-                        <!-- <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 16rem;">
-                                <img src="https://images-cdn.newspic.kr/detail_image/167/2023/3/23/293ace36-acaa-4826-b34b-4e0c3796bb1c.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <p class="card-text">뉴진스, 방탄소년단·블랙핑크 제치고 3월 아이돌그룹 브랜드평판 1위</p>
-                                <p class="card-date-text">스포츠한국 2023-03-23 09:39:48</p>
-                                </div>
-                            </div>
-                        </div> -->
-                        
-                    </div>
+                    <div class="row" id="news-card-top3-append"></div>
+                    <div class="row" id="news-card-append"></div>
                 </div>
             </div>   
             <a href="" id="right-icon">
@@ -224,6 +168,7 @@
     <!-- <script src="./static/js/idolRank/idol.rank.search.js"></script> -->
 
     <script src="./static/js/kpopNews/kpop.news.js"></script>
+    <script src="./static/js/kpopNews/kpop.news.top3.js"></script>
     
     <script src="./static/js/main/mian.handle.profile.button.js"></script>
 </body>

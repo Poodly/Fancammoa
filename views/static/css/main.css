@@ -39,18 +39,18 @@ a:hover {
 
 /* class ----------------------------- */
 .head_container {
-    margin-top: 20px;
-    margin-left : 22%;
-    margin-right: 22%;
+    margin-top: 40px;
+    margin-left : 25%;
+    margin-right: 25%;
 }
 
 .head_nev_1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
-
-    margin-bottom: 30px;
+    height: 70px;
+    
+    margin-bottom: 10px;
 }
 
 .head_nev_2 {
