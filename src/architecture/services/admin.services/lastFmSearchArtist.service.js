@@ -11,7 +11,7 @@ class LastFmSearchArtistService {
 
     lastFmSearchArtist = async () => {
         const index = parseInt(process.env.LAST_FM_PAGE_INDEX);
-        const page = []
+        const page = [1]
         let count = 0
         for (let i = 0; i < index; i++) {
             count += 1;

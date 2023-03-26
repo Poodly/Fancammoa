@@ -63,6 +63,7 @@ const { KpopNews } = require('../../../models')
 const { Op } = require("sequelize");
 
 class KpopNewsGetController {
+
     getKpopNews = async (req, res, next) => {
         try {
             const cursor = parseInt(req.params.cursor);
@@ -72,7 +73,7 @@ class KpopNewsGetController {
             console.log('limit--------------', limit);
     
             let kpopNews;
-            if (!cursor) {
+            if (cursor === 0) {
                 kpopNews = await KpopNews.findAll({
                     where: { newsType: 'Ohter' },
                     limit,
@@ -82,13 +83,51 @@ class KpopNewsGetController {
                 kpopNews = await KpopNews.findAll({
                     where: { 
                         newsId: { [Op.gt]: cursor },
-                        newsType: 'other'
+                        newsType: 'Ohter'
                     },
                     limit,
                     order: [['newsId', 'ASC']],
                 });
+                // console.log('kpopNews--------------', kpopNews);
+                console.log('오른쪽--------------');
             }
             res.status(200).json({ kpopNews });
+
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ message: error });
+        }
+    };
+
+    getBeforeKpopNews = async (req, res, next) => {
+        try {
+            const cursor = parseInt(req.params.cursor);
+            const limit = parseInt(req.params.limit);
+    
+            console.log('cursor-------------', cursor);
+            console.log('limit--------------', limit);
+    
+            let kpopNews;
+            if (cursor === 0) {
+                kpopNews = await KpopNews.findAll({
+                    where: { newsType: 'Ohter' },
+                    limit,
+                    order: [['newsId', 'ASC']],
+                });
+            } else {
+                kpopNews = await KpopNews.findAll({
+                    where: { 
+                        newsId: { [Op.lte]: cursor },
+                        newsType: 'Ohter'
+                    },
+                    limit,
+                    order: [['newsId', 'ASC']],
+                });
+                // console.log('kpopNews--------------', kpopNews);
+                console.log('왼쪽--------------');
+            }
+            res.status(200).json({ kpopNews });
+
         } catch (error) {
             console.error(error);
             res.status(400).json({ message: error });

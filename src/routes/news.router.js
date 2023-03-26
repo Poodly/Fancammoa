@@ -7,9 +7,10 @@ const KpopNewsGetController  = require('../architecture/controllers/kpop.news.co
 const kpopNewsSaveController = new KpopNewsSaveController();
 const kpopNewsGetController  = new KpopNewsGetController();
 
-router.post('/saveKpopNews', kpopNewsSaveController.saveKpopNews)  // GET /news/saveKpopNews
+router.post('/saveKpopNews', kpopNewsSaveController.saveKpopNews);  // GET /news/saveKpopNews
 router.get('/getTop3KpopNews', kpopNewsGetController.getTop3KpopNews);
 router.get('/getKpopNews/:limit/:cursor', kpopNewsGetController.getKpopNews);
+router.get('/getBeforeKpopNews/:limit/:cursor', kpopNewsGetController.getBeforeKpopNews);
 // router.get('/getKpopNews', kpopNewsGetController.getKpopNews)
 
 module.exports = router;
