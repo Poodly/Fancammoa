@@ -24,8 +24,9 @@ router.get('/kpopNews'    , render.kpopNews)                     // GET /kpopNew
 // router.get('/idolProfile' , render.idolProfile)               // GET /idolProfile
 router.get('/userProfile' , isLoggedIn , render.userProfile)     // GET /userProfile
 
-router.get('/adminPage'        , onlyAdmin  , isLoggedIn , render.adminPage)          // GET /adminPage
-router.get('/adminPageImg'     , onlyAdmin  , isLoggedIn , render.adminPageImg)       // GET /adminPage
-router.get('/adminPageKeywords', onlyAdmin  , isLoggedIn , render.adminPageKeywords)  // GET /adminPage
+router.get('/adminPage'        , onlyAdmin  , isLoggedIn , render.adminPage)          // GET /admin/adminPage
+router.get('/adminPageImg'     , onlyAdmin  , isLoggedIn , render.adminPageImg)       // GET /admin/adminPageImg
+router.get('/adminPageKpopNews', onlyAdmin  , isLoggedIn , render.adminPageKpopNews)  // GET /admin/adminPageKpopNews
+router.get('/adminPageKeywords', onlyAdmin  , isLoggedIn , render.adminPageKeywords)  // GET /admin/adminPageKeywords
 
 module.exports = router;

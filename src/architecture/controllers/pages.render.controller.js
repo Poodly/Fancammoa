@@ -53,6 +53,16 @@ class Render {
         };
     };
 
+    adminPageKpopNews = (req, res, next) => {
+        try {
+            res.render('adminPageKpopNews');
+            
+        } catch (error) {
+            res.status(500).json({ errorMessage: error.message });
+            return next(error);
+        };
+    };
+
     adminPageKeywords = (req, res, next) => {
         try {
             res.render('adminPageKeywords');

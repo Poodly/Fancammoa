@@ -120,11 +120,11 @@ class KpopNewsController {
             async function otherNews() {
                 const sectionBody   = await driver.findElement(By.className('section-body'))
                 const channelList   = await sectionBody.findElement(By.id('channelList'));
-                const imageElements = await channelList.findElements(By.css('li > div.thumb > img'))
+                const imageElements = await channelList.findElements(By.css('li > div.thumb > img'));
                 const titleContents = await channelList.findElements(By.css('li > div.info > a > span'));
-                const pressATags    = await channelList.findElements(By.css('li > div.info > div > a'))
-                const dates         = await channelList.findElements(By.css('li > div.info > div > span'))
-                const link          = await channelList.findElements(By.css('li > div.thumb > div.box-share > a'))
+                const pressATags    = await channelList.findElements(By.css('li > div.info > div > a'));
+                const dates         = await channelList.findElements(By.css('li > div.info > div > span'));
+                const link          = await channelList.findElements(By.css('li > div.thumb > div.box-share > a'));
 
                 for (let i = 0; i < imageElements.length; i++) {
                     let newsLink  = await link[i].getAttribute('href');
@@ -132,22 +132,31 @@ class KpopNewsController {
                     let newsTitle = await titleContents[i].getText();
                     let press     = await pressATags[i].getText();
                     let newsDate  = await dates[i].getText();
-        
-                    const allKpopNews = await KpopNews.findAll({})
+     
+                    const exKpopNews = await KpopNews.findOne({ where: { newsImg, newsTitle, newsDate } })
  
-                    if (newsTitle == '') {
-                        console.log("pass")
-                    }else if (allKpopNews.length <= 43) {
-                        await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate })
+                    if (newsTitle == '' || exKpopNews) {
+                        console.log("제목이 비어있거나, 동일한 기사가 있습니다.");
+
+                    } else {
+                        const KpopNewsLength = await KpopNews.count() - 3;
+                        if (KpopNewsLength <= 200) {
+                            await KpopNews.create({ newsLink, newsImg, newsTitle, press, newsDate });
+                        }
                     }
-                    // await linkClick[i].click();
-                    // let link  = await clipboardy.read();
                 }
             }
     
             await getTop1News()
             await getTop4News()
-            await otherNews()     
+            await otherNews()
+            
+            for (let i = 0; i < 15; i++) {
+                await driver.executeScript("window.scrollBy(0, 400)");
+                await driver.sleep(1000);
+                await otherNews()
+                await driver.sleep(1000);
+              }
             
             res.status(200).json({ message: "News saved success" })
     

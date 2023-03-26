@@ -58,7 +58,7 @@ function isKeywordsIncludedArr(arr, keywords) {
  
 async function getKeywords() {
     try {
-        const response = await axios.get('/admin/getKeywords');
+        const response = await axios.get('/video/getKeywords');
         const keywords = response.data.keywords;
         
         const keywordArray = [];

@@ -11,6 +11,8 @@ const OverallScoreController = require('../architecture/controllers/rank.score.c
 const SaveKeywordController  = require('../architecture/controllers/admin.controllers/keyword.controller');
 const ImageConrtoller        = require('../architecture/controllers/admin.controllers/image.controller');
 const IdolInfoController     = require('../architecture/controllers/admin.controllers/idol.info.controller');
+const KpopNewsGetController  = require('../architecture/controllers/kpop.news.controllers/kpop.news.get.controller');
+const KpopNewsSaveController = require('../architecture/controllers/kpop.news.controllers/kpop.news.save.controller')
 
 const lastFmSearchArtistController = new LastFmSearchArtistController();
 const spotifyScoreController = new SpotifyScoreController();
@@ -22,6 +24,8 @@ const overallScoreController = new OverallScoreController();
 const saveKeywordController  = new SaveKeywordController();
 const imageConrtoller        = new ImageConrtoller();
 const idolInfoController     = new IdolInfoController();
+const kpopNewsGetController  = new KpopNewsGetController();
+const kpopNewsSaveController = new KpopNewsSaveController();
 
 const { isLoggedIn } = require('../middlewares/auth');
 const { onlyAdmin  } = require('../middlewares/auth');
@@ -49,13 +53,18 @@ router.delete('/deleteIdol'     , onlyAdmin, isLoggedIn, idolInfoController.dele
 // 이미지 교체
 router.put('/replaceIdolImg'    , onlyAdmin, isLoggedIn, imageConrtoller.replaceIdolImg);         // /admin/replaceIdolImg
 
-// 키워드 관련
-router.post('/saveKeywords'    , saveKeywordController.saveKeywords);    // /admin/saveKeywords   
-router.get('/getKeywords'      , saveKeywordController.getKeywords);     // /admin/getKeywords   
-router.put('/editKeywords'     , saveKeywordController.editKeywords);    // /admin/editKeywords   
-router.delete('/deleteKeyword' , saveKeywordController.deleteKeyword);   // /admin/deleteKeyword   
+// K-POP 뉴스 관리
+router.get('/getAllnews'        , onlyAdmin, isLoggedIn, kpopNewsGetController.getAllnews);       // /admin/getKpopNews 
+router.post('/saveKpopNews'     , onlyAdmin, isLoggedIn, kpopNewsSaveController.saveKpopNews);  // /news/saveKpopNews
+router.delete('/deleteNews'     , onlyAdmin, isLoggedIn, kpopNewsGetController.deleteNews);       // /admin/getKpopNews 
 
-// 아티스트 일괄생성
-router.get('/artistDbSave' , lastFmSearchArtistController.lastFmSearchArtist);  // /admin/artistDbSave
+// 키워드 관련
+router.post('/saveKeywords'     , onlyAdmin, isLoggedIn, saveKeywordController.saveKeywords);     // /admin/saveKeywords   
+router.get('/getKeywords'       , onlyAdmin, isLoggedIn, saveKeywordController.getKeywords);      // /admin/getKeywords   
+router.put('/editKeywords'      , onlyAdmin, isLoggedIn, saveKeywordController.editKeywords);     // /admin/editKeywords   
+router.delete('/deleteKeyword'  , onlyAdmin, isLoggedIn, saveKeywordController.deleteKeyword);    // /admin/deleteKeyword   
+
+// 아티스트 일괄 자동생성
+router.get('/artistDbSave' , onlyAdmin, isLoggedIn , lastFmSearchArtistController.lastFmSearchArtist);  // /admin/artistDbSave
 
 module.exports = router;

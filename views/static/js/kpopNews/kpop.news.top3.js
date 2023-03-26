@@ -13,7 +13,7 @@ async function getTop3KpopNews() {
         // // allKpopNews 속성을 가진 배열로 변환
         const kpopNewsArray = Object.values(news.top3KpopNews); // ???????
 
-        console.log("kpopNewsArray--------------", kpopNewsArray)
+        // console.log("kpopNewsArray--------------", kpopNewsArray)
 
         // 검색 결과에 따라 HTML 코드 생성
         const top3TempHtmlArray = [];

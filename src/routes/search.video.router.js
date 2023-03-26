@@ -10,8 +10,11 @@ const querySearchVideoController = new QuerySearchVideoController();
 const GetVideoInfoController = require('../architecture/controllers/search.video.controllers/get.video.info.controller');
 const getVideoInfoController = new GetVideoInfoController();
 
-// router.get('/startSearch' , startSearchVideoController.startSearchVideo);   // POST /video/startSearch
+const SaveKeywordController = require('../architecture/controllers/admin.controllers/keyword.controller')
+const saveKeywordController = new SaveKeywordController();
+
 router.post('/search'      , querySearchVideoController.querySearchVideo);   // POST /video/search   
 router.post('/getVideoInfo', getVideoInfoController.getVideoInfo);           // POST /video/getVideoInfo
+router.get('/getKeywords'  , saveKeywordController.getKeywords);             // GET  /video/getKeywords
 
 module.exports = router;

@@ -1,64 +1,3 @@
-// const { KpopNews } = require('../../../models')
-
-// class KpopNewsGetController {
-
-//     getKpopNews = async (req, res, next) => {
-//         try {
-//             const allKpopNews = await KpopNews.findAll({})
-//             res.status(200).json({ allKpopNews })
-    
-//         } catch (error) {
-//             console.error(error);
-//             res.status(400).json({ message: error })
-            
-//         }
-//     }
-// }
-
-// module.exports = KpopNewsGetController;
-
-// const { KpopNews } = require('../../../models');
-
-// class KpopNewsGetController {
-//     getKpopNews = async (req, res, next) => {
-//         try {
-//             // Parse the cursor and limit parameters from the query string
-//             const cursor = req.query.cursor ? parseInt(req.query.cursor) : Date.now();
-//             const limit = parseInt(req.query.limit) || 10;
-
-//             // Retrieve the Kpop news for the current page
-//             const allKpopNews = await KpopNews.findAll({
-//                 where: {
-//                 createdAt: {
-//                     [req.query.cursor ? '$lt' : '$lte']: new Date(cursor),
-//                 },
-//                 },
-//                 limit,
-//                 order: [['createdAt', 'DESC']],
-//             });
-
-//             // Check if there are more pages
-//             const hasMore = allKpopNews.length === limit;
-
-//             // Calculate the next cursor
-//             const nextCursor = hasMore ? allKpopNews[allKpopNews.length - 1].createdAt.getTime() : null;
-
-//             // Send a JSON response with the Kpop news and pagination information
-//             res.status(200).json({
-//                 kpopNews: allKpopNews,
-//                 hasMore,
-//                 nextCursor,
-//             });
-
-//         } catch (error) {
-//             console.error(error);
-//             res.status(400).json({ message: error });
-//         }
-//     };
-// };
-
-// module.exports = KpopNewsGetController;
-
 const { KpopNews } = require('../../../models')
 const { Op } = require("sequelize");
 
@@ -66,14 +5,15 @@ class KpopNewsGetController {
 
     getKpopNews = async (req, res, next) => {
         try {
-            const cursor = parseInt(req.params.cursor);
-            const limit = parseInt(req.params.limit);
-    
+            let limit    = parseInt(req.query.limit)
+            let cursor   = parseInt(req.query.cursor)
+            let maxCount = Math.round((await KpopNews.count() - 3) / limit);
+
             console.log('cursor-------------', cursor);
-            console.log('limit--------------', limit);
-    
+            console.log('maxCount-------------', maxCount);
+
             let kpopNews;
-            if (cursor === 0) {
+            if (!cursor) {
                 kpopNews = await KpopNews.findAll({
                     where: { newsType: 'Ohter' },
                     limit,
@@ -87,47 +27,10 @@ class KpopNewsGetController {
                     },
                     limit,
                     order: [['newsId', 'ASC']],
-                });
-                // console.log('kpopNews--------------', kpopNews);
-                console.log('오른쪽--------------');
+                });             
             }
-            res.status(200).json({ kpopNews });
-
-        } catch (error) {
-            console.error(error);
-            res.status(400).json({ message: error });
-        }
-    };
-
-    getBeforeKpopNews = async (req, res, next) => {
-        try {
-            const cursor = parseInt(req.params.cursor);
-            const limit = parseInt(req.params.limit);
+            res.status(200).json({ kpopNews, maxCount });
     
-            console.log('cursor-------------', cursor);
-            console.log('limit--------------', limit);
-    
-            let kpopNews;
-            if (cursor === 0) {
-                kpopNews = await KpopNews.findAll({
-                    where: { newsType: 'Ohter' },
-                    limit,
-                    order: [['newsId', 'ASC']],
-                });
-            } else {
-                kpopNews = await KpopNews.findAll({
-                    where: { 
-                        newsId: { [Op.lte]: cursor },
-                        newsType: 'Ohter'
-                    },
-                    limit,
-                    order: [['newsId', 'ASC']],
-                });
-                // console.log('kpopNews--------------', kpopNews);
-                console.log('왼쪽--------------');
-            }
-            res.status(200).json({ kpopNews });
-
         } catch (error) {
             console.error(error);
             res.status(400).json({ message: error });
@@ -138,7 +41,6 @@ class KpopNewsGetController {
         try {
             const top3KpopNews = await KpopNews.findAll({ 
                 where: { newsType: 'Top3' },
-                // limit: 3,
                 order: [['newsId', 'ASC']], // ASC:올림차순 DESC:내림차순
             });
             res.status(200).json({ top3KpopNews });
@@ -148,6 +50,30 @@ class KpopNewsGetController {
             res.status(400).json({ message: error })
         }
     }
-}
+
+    getAllnews = async (req, res, next) => {
+        try {
+            const kpopNews = await KpopNews.findAll({});
+            res.status(200).json({ kpopNews });
+
+        }catch (error) {
+            console.error(error);
+            res.status(400).json({ message: error })
+        }
+    }
+
+    deleteNews = async (req, res, next) => {
+        try {
+            const { newsId } = req.body;
+            console.log("newsId----------",newsId);
+            await KpopNews.destroy({ where: { newsId } });
+            res.status(200).json({ message: '뉴스 삭제 성공' });
+
+        }catch (error) {
+            console.error(error);
+            res.status(400).json({ message: error })
+        }
+    }
+};
 
 module.exports = KpopNewsGetController;

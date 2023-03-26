@@ -94,6 +94,15 @@ $(document).ready(function() {
         
         window.location.reload();
     });
+
+    $("#confirm-btn-delete-press").click(async function() {
+        // 확인 모달의 "삭제" 버튼을 누르면 삭제 처리를 진행
+        $("#confirmModal-delete").modal("hide"); 
+
+        await deleteNews()
+        
+        window.location.reload();
+    });
 });
 
 
@@ -311,6 +320,15 @@ function modalEditKeyword(keywordId, keyword) {
     $('#confirm-btn-replace-keyword').show()
 }
 
+
+
+
+function modalEditNews(newsId) {
+    $('.modal-body').html(`<h5 id="newsId">💥 Id:${newsId} 기사를 정말 삭제하시겠습니까?</h5>`)
+                            
+    $('#confirm-btn-delete-keyword').hide()
+    $('#confirm-btn-delete-press').show()
+}
 
 
 

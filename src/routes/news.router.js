@@ -1,16 +1,10 @@
 const express = require('express');
 const router  = express.Router();
 
-const KpopNewsSaveController = require('../architecture/controllers/kpop.news.controllers/kpop.news.save.controller')
 const KpopNewsGetController  = require('../architecture/controllers/kpop.news.controllers/kpop.news.get.controller')
-
-const kpopNewsSaveController = new KpopNewsSaveController();
 const kpopNewsGetController  = new KpopNewsGetController();
 
-router.post('/saveKpopNews', kpopNewsSaveController.saveKpopNews);  // GET /news/saveKpopNews
-router.get('/getTop3KpopNews', kpopNewsGetController.getTop3KpopNews);
-router.get('/getKpopNews/:limit/:cursor', kpopNewsGetController.getKpopNews);
-router.get('/getBeforeKpopNews/:limit/:cursor', kpopNewsGetController.getBeforeKpopNews);
-// router.get('/getKpopNews', kpopNewsGetController.getKpopNews)
+router.get('/getTop3KpopNews', kpopNewsGetController.getTop3KpopNews);   // /news/getTop3KpopNews
+router.get('/getKpopNews'    , kpopNewsGetController.getKpopNews);       // /news/getKpopNews
 
 module.exports = router;

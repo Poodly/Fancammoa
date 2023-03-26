@@ -19,8 +19,8 @@ async function makeRankImgTable() {
         for (let i = 0; i < rankCardItems.length; i++) {
             const rankCardItem = rankCardItems[i];
 
-            let idolId   = rankCardItem.idolId
-            let idolName = rankCardItem.idolName
+            let idolId    = rankCardItem.idolId
+            let idolName  = rankCardItem.idolName
             let idolImage = rankCardItem.idolImage.img
             let imgId     = rankCardItem.idolImage.id
 

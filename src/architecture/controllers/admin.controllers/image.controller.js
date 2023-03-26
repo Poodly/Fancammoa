@@ -17,11 +17,13 @@ class ImageConrtoller {
     saveSpotifyImg = async (req, res, next) => {
         try {
             await this.imageService.saveSpotifyImg();
-            res.status(200).json({ message: "Success saving spotify img" });
+            return
+            // res.status(200).json({ message: "Success saving spotify img" });
 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: "spotify img save failed", error: error });
+            next();
+            // res.status(500).json({ message: "spotify img save failed", error: error });
         };
     };
 
