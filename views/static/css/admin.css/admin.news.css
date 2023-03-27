@@ -1,0 +1,55 @@
+#news-card-container {
+    /* display: flex;
+    justify-content: center; */
+    padding-top: 15px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: 1800px;
+}
+
+/* #news-card-container:hover {
+    cursor: pointer;
+} */
+
+/* #new-card-container.img {
+    width: 500px;
+} */
+
+#table-body-kpop-news-container {
+    display: flex;
+    /* justify-content: center; */
+    width: 1800px;
+}
+
+
+.card-body {
+    padding: 0px;
+}
+
+.card-body2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: small;
+}
+
+.card-title-blank {
+    margin-bottom: 35px;
+}
+
+.head_search {
+    margin-bottom: 0px;
+}
+
+#news-refresh-icon {
+    margin-left: 1px;
+}
+
+#card-newsId {
+    font-size: small;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
