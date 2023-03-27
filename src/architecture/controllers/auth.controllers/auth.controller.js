@@ -7,7 +7,7 @@ require("dotenv").config();
 const env = process.env;
 
 class AuthController {
-
+// joi 유효성검사
     schema = Joi.object({
         email:Joi.string().email().required(),
         nick:Joi.string()
@@ -134,6 +134,5 @@ class AuthController {
         };
     }
 };
-// return res.status(400).json({ message: "비밀번호 확인이 틀렸습니다" }) 
 
 module.exports = AuthController;

@@ -14,7 +14,7 @@ router.use((req, res, next) => {
     next();
 })
 
-router.get('/'           , render.main)                          // GET /
+router.get('/'            , render.main)                         // GET /
 router.get('/idolRank'    , render.idolRank)                     // GET /idolRank
 router.get('/kpopNews'    , render.kpopNews)                     // GET /kpopNews
 

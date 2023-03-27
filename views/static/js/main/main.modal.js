@@ -11,17 +11,16 @@ function modalPlayVideo(videoId, title, viewCount, query) {
         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg>${viewCountConvert}</p>`
         );
 
-    makeModalHeaderTitle(query);
     firstLikeButtonColor();
+    makeModalHeaderTitle(query);
     }
 
 // 모달이 닫힐 때 호출되는 함수
 $('#myModal').on('hidden.bs.modal', function () {
-    // iframe의 src 속성을 빈 문자열로 설정하여 영상을 중지.
-    $('#player').attr('src', '');  // attr과 직접 src할당의 차이가 뭘까..
+    $('#player').attr('src', '');  
 });
 
-
+// 모달창 헤더 제목
 function makeModalHeaderTitle(query) {
     let searchText = query
     console.log('makeModalHeaderTitle----searchText',searchText)
@@ -29,16 +28,14 @@ function makeModalHeaderTitle(query) {
         $('.modal-header-title').text('')
         return
     }
+    keywordArr = getKeywords() 
 
-    if (!isKeywordsIncluded(searchText, removeKeyword)) {
+    if (!isKeywordsIncluded(searchText, keywordArr)) {
         $('.modal-header-title').text(`💖 ${searchText} 💖`);
     }
-    // else {
-    //     searchText = removeKeywords(searchText, removeKeyword)
-    //     $('.modal-header-title').text(`💖 ${searchText} 💖`);
-    // }
 }
 
+// 조회수 변환 함수
 function convertNumberUnit(number) {
     const units = ['', '만', '억', '조', '경'];
     let i = 0;
@@ -48,46 +45,3 @@ function convertNumberUnit(number) {
     }
     return number.toFixed(1) + units[i];
 }
-// console.log(convertNumberUnit(141547687)); // "1.4억"
-
-
-
-
-
-// // 모달 창에 유튜브 영상을 띄우는 함수
-// let saveVideoId = ''
-// function modalPlayVideo(videoId, title, viewCount, query) {
-
-//     saveVideoId = videoId
-//     console.log("saveVideoId------------",saveVideoId)
-
-//     $('#player').attr('src', `https://www.youtube.com/embed/${videoId}?enablejsapi=1`);
-  
-//     var tag = document.createElement('script');
-//     tag.src = "https://www.youtube.com/iframe_api";
-//     var firstScriptTag = document.getElementsByTagName('script')[0];
-//     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-//     function onYouTubeIframeAPIReady() {
-//         player = new YT.Player('player', {
-//         events: {
-//             'onReady': onPlayerReady,
-//             'onStateChange': onPlayerStateChange
-//         }
-//         });
-//     }
-
-//     function onPlayerReady(event) {
-//         event.target.playVideo();
-//     }
-
-//     function onPlayerStateChange(event) {
-//         // Handle player state changes here
-//     }
-    
-    
-//     firstLikeButtonColor();
-// }
-
-
-

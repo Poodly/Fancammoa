@@ -4,7 +4,6 @@ const ImageService = require('../../services/admin.services/image.service');
 const IdolInfoService = require('../../services/admin.services/idol.info.service');
 
 class IdolInfoController {
-
     imageService = new ImageService();
     idolInfoService = new IdolInfoService();
 
@@ -23,15 +22,7 @@ class IdolInfoController {
     updateIdolScore = async (req, res, next) => {
         try {
             const { idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore } = req.body;
-            await IdolRankScore.update({ 
-                youtubeScore, 
-                spotifyScore, 
-                instaScore, 
-                googleScore, 
-                overallScore 
-            }, { where: { idolId } }); // 점수들을 업데이트
-            
-            await IdolData.update({ idolName }, { where: { idolId } }); // 이름 업데이트            
+            await this.idolInfoService.updateIdolScore(idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore)          
             res.status(200).json({ message: `idolId:${idolId}, idolName: ${idolId}의 점수 데이터 수정 성공!!` });
 
         }catch (error) {
@@ -43,10 +34,7 @@ class IdolInfoController {
     deleteIdol = async (req, res, next) => {
         try {
             const { idolId } = req.body;
-            console.log("idolId-----------", idolId);
-            await IdolRankScore.destroy({ where: { idolId } })
-            await IdolImage.destroy({ where: { idolId } })
-            await IdolData.destroy({ where: { idolId } })
+            await this.idolInfoService.deleteIdol(idolId)
             res.status(200).json({ message: `idolId:${idolId} 삭제 성공` });
 
         }catch (error) {
@@ -54,7 +42,6 @@ class IdolInfoController {
             res.status(400).json({ message: error });
         };
     }
-
 };
 
 module.exports = IdolInfoController;

@@ -5,7 +5,6 @@ const ImageService = require('./image.service');
 const IdolInfoRepository = require('../../repositories/admin.repositories/idol.info.repository');
 
 class IdolInfoService {
-
     imageService = new ImageService();
     idolInfoRepository = new IdolInfoRepository();
 
@@ -31,51 +30,31 @@ class IdolInfoService {
 
         }catch (error) {
             console.error(error);
-            next(error);
+            next();
         };
     }
     
-
-
-
-
-    
-    updateIdolScore = async (req, res, next) => {
+    updateIdolScore = async (idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore) => {
         try {
-            const { idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore } = req.body;
-            await IdolRankScore.update({ 
-                youtubeScore, 
-                spotifyScore, 
-                instaScore, 
-                googleScore, 
-                overallScore 
-            }, { where: { idolId } }); // 점수들을 업데이트
-            
-            await IdolData.update({ idolName }, { where: { idolId } }); // 이름 업데이트            
-            res.status(200).json({ message: `idolId:${idolId}, idolName: ${idolId}의 점수 데이터 수정 성공!!` });
+            await this.idolInfoRepository.updateIdolScore(idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore ); // 점수들을 업데이트
+            return
 
         }catch (error) {
             console.error(error);
-            next(error);
+            next();
         };
     }
 
-
-    deleteIdol = async (req, res, next) => {
+    deleteIdol = async (idolId) => {
         try {
-            const { idolId } = req.body;
-            console.log("idolId-----------", idolId);
-            await IdolRankScore.destroy({ where: { idolId } })
-            await IdolImage.destroy({ where: { idolId } })
-            await IdolData.destroy({ where: { idolId } })
-            res.status(200).json({ message: `idolId:${idolId} 삭제 성공` });
+            await this.idolInfoRepository.deleteIdol(idolId)
+            return
 
         }catch (error) {
             console.error(error);
-            next(error);
+            next();
         };
     }
-
 };
 
 module.exports = IdolInfoService;

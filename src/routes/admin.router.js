@@ -12,6 +12,7 @@ const SaveKeywordController  = require('../architecture/controllers/admin.contro
 const ImageConrtoller        = require('../architecture/controllers/admin.controllers/image.controller');
 const IdolInfoController     = require('../architecture/controllers/admin.controllers/idol.info.controller');
 const KpopNewsGetController  = require('../architecture/controllers/kpop.news.controllers/kpop.news.get.controller');
+const KpopNewsEditController  = require('../architecture/controllers/kpop.news.controllers/kpop.news.edit.controller');
 const KpopNewsSaveController = require('../architecture/controllers/kpop.news.controllers/kpop.news.save.controller')
 
 const lastFmSearchArtistController = new LastFmSearchArtistController();
@@ -25,6 +26,7 @@ const saveKeywordController  = new SaveKeywordController();
 const imageConrtoller        = new ImageConrtoller();
 const idolInfoController     = new IdolInfoController();
 const kpopNewsGetController  = new KpopNewsGetController();
+const kpopNewsEditController  = new KpopNewsEditController();
 const kpopNewsSaveController = new KpopNewsSaveController();
 
 const { isLoggedIn } = require('../middlewares/auth');
@@ -43,7 +45,7 @@ router.put('/IndividualUpdateSpotify', onlyAdmin, isLoggedIn, spotifyScoreContro
 router.get('/getOverallScore'   , onlyAdmin, isLoggedIn, overallScoreController.getOverallScore);   // /admin/getOverallScore
 
 // get img,score,name.....
-router.get('/getRankInfoItems'  , onlyAdmin, isLoggedIn, rankInfoController.getRankInfoAllItems);    // /admin/getRankInfoItems
+router.get('/getRankInfoItems'  , onlyAdmin, isLoggedIn, rankInfoController.getRankInfoAllItems);   // /admin/getRankInfoItems
 
 // 아이돌 생성, 수정, 삭제
 router.post('/craeteIdol'       , onlyAdmin, isLoggedIn, idolInfoController.craeteIdol);          // /admin/craeteIdol
@@ -55,8 +57,8 @@ router.put('/replaceIdolImg'    , onlyAdmin, isLoggedIn, imageConrtoller.replace
 
 // K-POP 뉴스 관리
 router.get('/getAllnews'        , onlyAdmin, isLoggedIn, kpopNewsGetController.getAllnews);       // /admin/getKpopNews 
-router.post('/saveKpopNews'     , onlyAdmin, isLoggedIn, kpopNewsSaveController.saveKpopNews);  // /news/saveKpopNews
-router.delete('/deleteNews'     , onlyAdmin, isLoggedIn, kpopNewsGetController.deleteNews);       // /admin/getKpopNews 
+router.post('/saveKpopNews'     , onlyAdmin, isLoggedIn, kpopNewsSaveController.saveKpopNews);    // /news/saveKpopNews
+router.delete('/deleteNews'     , onlyAdmin, isLoggedIn, kpopNewsEditController.deleteNews);      // /admin/getKpopNews 
 
 // 키워드 관련
 router.post('/saveKeywords'     , onlyAdmin, isLoggedIn, saveKeywordController.saveKeywords);     // /admin/saveKeywords   

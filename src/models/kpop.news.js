@@ -35,8 +35,8 @@ class KpopNews extends Sequelize.Model {
                 unique        : false
             },
             newsType: {
-                type          : Sequelize.ENUM('Top3', 'Ohter'),
-                defaultValue  : 'Ohter',
+                type          : Sequelize.ENUM('Top3', 'Other'),
+                defaultValue  : 'Other',
                 unique        : false
             },
             createdAt: {

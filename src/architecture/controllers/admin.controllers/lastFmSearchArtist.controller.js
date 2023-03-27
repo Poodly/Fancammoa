@@ -1,17 +1,15 @@
 const LastFmSearchArtistService = require('../../services/admin.services/lastFmSearchArtist.service');
-const ImageConrtoller = require('../../controllers/admin.controllers/image.controller');
+const ImageService = require('../../services/admin.services/image.service');
 
 class LastFmSearchArtistController {
-
     lastFmSearchArtistService = new LastFmSearchArtistService();
-    imageConrtoller = new ImageConrtoller();
+    imageService = new ImageService();
 
     // Last Fm API
     lastFmSearchArtist = async (req, res, next) => {
         try {
             const response = await this.lastFmSearchArtistService.lastFmSearchArtist();
-            await this.imageConrtoller.saveSpotifyImg();
-            // res.status(200).json({ message: "Db save succeeded" });
+            await this.imageService.saveSpotifyImg();
             res.status(200).json({ message: response });
 
         } catch (error) {
