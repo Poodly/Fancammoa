@@ -152,7 +152,7 @@ class KpopNewsController {
             await otherNews()
             
             for (let i = 0; i < 15; i++) {
-                await driver.executeScript("window.scrollBy(0, 400)");
+                await driver.executeScript("window.scrollBy(0, 800)");
                 await driver.sleep(1000);
                 await otherNews()
                 await driver.sleep(1000);

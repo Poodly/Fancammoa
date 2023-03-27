@@ -30,8 +30,8 @@ async function getTop3KpopNews() {
             
             top3NewsId = newsId
 
-            if (newsTitle.length >= 60) {
-                newsTitle = newsTitle.slice(0, 60) + " ...";
+            if (newsTitle.length >= 35) {
+                newsTitle = newsTitle.slice(0, 35) + " ...";
             }   
 
             if (newsTitle.length <= 36) {

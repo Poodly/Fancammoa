@@ -31,8 +31,8 @@ async function adminGetKpopNews() {
             let press     = kpopNewsItem.press;
             let newsDate  = kpopNewsItem.newsDate;
 
-            if (newsTitle.length >= 40) {
-                newsTitle = newsTitle.slice(0, 40) + " ...";
+            if (newsTitle.length >= 30) {
+                newsTitle = newsTitle.slice(0, 30) + " ...";
             }
 
             newsTitle = newsTitle.replace(/[^0-9a-zA-Z가-힣]/g, ' ');
