@@ -26,11 +26,12 @@ passportConfig();
 app.set('port', process.env.PORT);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-// -------------------------------------------------------------------------------------------------
+// ----------------------------------------- MySQL DB -------------------------------------------------
 const User = require('./models/user');
+const Keyword = require('./models/keyword');
+const keywords = require('./seeders/keywords');
 sequelize.sync({ force: false })
     .then(async () => {
-        console.log('최초 어드민 생성 및 데이터베이스 연결 성공');
         const pwHash = await bcrypt.hash(process.env.FIRSTADMINPW, 12);
         User.findOne({ where: { userType: process.env.ADMIN_KEY } }).then((admin) => {
         if (!admin) {
@@ -42,13 +43,24 @@ sequelize.sync({ force: false })
             });
         }
         });
+        console.log('최초 어드민 생성 및 데이터베이스 연결 성공');
+    })
+    .then(async () => {
+        const keywordArr = keywords
+        for (let i = 0; i < keywordArr.length; i++) {
+            let keywordItem = keywordArr[i].replace(/[^a-zA-Z0-9가-힣]/g, ''); // 특수문자 제외
+            const exKeyword = await Keyword.findOne({ where: { keyword: keywordItem } });
+            if (!exKeyword) {
+                Keyword.create({ keyword: keywordItem });
+            } else {
+                console.log("키워드가 이미 있습니다.")
+            }
+        }
+        console.log('최초 키워드 더미데이터 생성 성공');
     })
     .catch((err) => {
         console.log(err);
     });
-// sequelize.sync({ force: false })
-//     .then ((   ) => { console.log('데이터베이스 연결 성공'); })
-//     .catch((err) => { console.log(err); });
 // -------------------------------------------------------------------------------------------------
 app.use(morgan('dev')); 
 app.use(express.static('views'));

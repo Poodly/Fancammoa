@@ -4,34 +4,29 @@ const Sequelize = require("sequelize");
 class IdolRankScore extends Sequelize.Model {
     static initiate(sequelize) {
         IdolRankScore.init({
-            // idolId: {
-            //     type          : Sequelize.INTEGER,
-            //     allowNull     : false,
-            //     autoIncrement : false,
-            //     primaryKey    : true,
-            //     references : {
-            //         model    : 'idoldatas',
-            //         key      : 'idolId'
-            //     },
-            // },
             youtubeScore: {
                 type          : Sequelize.TEXT,
+                defaultValue  : 0,
                 allowNull     : true,
             },
             instaScore: {
                 type          : Sequelize.TEXT,
+                defaultValue  : 0,
                 allowNull     : true,
             },
             spotifyScore: {
                 type          : Sequelize.TEXT,
+                defaultValue  : 0,
                 allowNull     : true,
             },
             googleScore: {
                 type          : Sequelize.TEXT,
+                defaultValue  : 0,
                 allowNull     : true,
             },
             overallScore: {
                 type          : Sequelize.TEXT,
+                defaultValue  : 0,
                 allowNull     : true,
             },
         }, { // options

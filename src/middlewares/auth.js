@@ -8,7 +8,7 @@ exports.isLoggedIn = (req, res, next) => {
     else {
         // res.status(403).send('로그인 필요');
         const message = "pleaselogin"
-        res.redirect(`/login/?error=${message}`);
+        res.redirect(`/login?error=${message}`);
     }
 };
 

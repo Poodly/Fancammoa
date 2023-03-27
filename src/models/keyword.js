@@ -16,7 +16,7 @@ class Keyword extends Sequelize.Model {
             },
         }, { // options
             sequelize,
-            timestamps  : false,
+            timestamps  : true,
             underscored : false,
             paranoid    : false,
             modelName   : "Keyword",

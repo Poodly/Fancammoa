@@ -10,7 +10,7 @@ class OverallScoreRepository {
                 attributes: [ 'idolId', 'idolName' ],
                 include: [{             
                     model: IdolRankScore,
-                    attributes: ['youtubeScore', 'spotifyScore'],
+                    attributes: ['youtubeScore', 'spotifyScore', 'instaScore', 'googleScore'],
                 }],                                
                 // limit: 2
             });

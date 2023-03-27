@@ -33,7 +33,9 @@
     "redis": "^4.6.5",
     "selenium-webdriver": "^4.8.1",
     "sequelize": "^6.28.0",
-    "sequelize-cli": "^6.6.0",
     "spotify-web-api-node": "^5.0.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.0"
   }
 }

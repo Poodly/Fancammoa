@@ -1,11 +1,27 @@
 const passport = require('passport')
 const bcrypt   = require('bcrypt');
+const Joi      = require('joi');
 const AuthService = require('../../services/auth.service')
 
 require("dotenv").config();
 const env = process.env;
 
 class AuthController {
+
+    schema = Joi.object({
+        email:Joi.string().email().required(),
+        nick:Joi.string()
+        .regex(/^[\w\uAC00-\uD7AF]+$/) // 영문, 한글 이외에는 입력불가
+        .min(3)
+        .max(20)
+        .required(),
+        password:Joi.string()
+        .min(6)
+        .max(100)
+        .regex(/^(?=.*[!@#$%^&*])/) // 특수문자 하나이상 포함해야함
+        .required()
+    });
+
     authService = new AuthService();
 //---------------------------------------------------------------------------------
     signUp = async (req, res, next) => {
@@ -14,13 +30,23 @@ class AuthController {
             const exUser  = await this.authService.getExUser(email); 
             
             if (exUser) {
-                return res.redirect('/signup?error=exist');
+                return res.redirect('/signUp?error=이미 가입한 이메일입니다.');
             }
-    
-            const pwHash = await bcrypt.hash(password, 12);
-            await this.authService.createUser(email, nick , pwHash);
-    
-            return res.redirect('/login');
+
+            const { error } = this.schema.validate({ email, nick, password });
+            if (error) {
+                const errorMessage = error.details[0].message;
+                const path = error.details[0].path;
+                const type = error.details[0].type;
+                const context = error.details[0].context;
+                return res.redirect(`/signUp?error=${path}&email=${email}&nick=${nick}`)
+
+            } else {
+                const pwHash = await bcrypt.hash(password, 12);
+                await this.authService.createUser(email, nick , pwHash);
+                return res.redirect('/login');
+            }
+
         } catch (error){
             console.error(error);
             next(error); 
@@ -30,15 +56,12 @@ class AuthController {
 //---------------------------------------------------------------------------------
     login = (req, res, next) => {
         passport.authenticate('local', (authError, user, info) => {
-            console.log('authError---------------',authError)
-            console.log('user---------------',user)
-            console.log('info---------------',info)
             if (authError) {
                 console.error(authError);
                 return next(authError);
             }
             if (!user) {    
-                return res.redirect(`/?loginError=${info.message}`);
+                return res.redirect(`/login?error=${info.message}`);
             }
             return req.login(user, (loginError) => { 
                 if (loginError) {  

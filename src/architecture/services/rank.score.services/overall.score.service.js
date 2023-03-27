@@ -14,8 +14,23 @@ class OverallScoreService {
                 let idolId       = items.idolId;
                 let youtubeScore = parseInt(items.IdolRankScore.dataValues.youtubeScore);
                 let spotifyScore = parseInt(items.IdolRankScore.dataValues.spotifyScore);
+                let instaScore   = parseInt(items.IdolRankScore.dataValues.spotifyScore);
+                let googleScore  = parseInt(items.IdolRankScore.dataValues.spotifyScore);
 
-                overallScore = youtubeScore + spotifyScore;
+                if (!youtubeScore) {
+                    youtubeScore = 0
+                }
+                if (!spotifyScore) {
+                    spotifyScore = 0
+                }
+                if (!instaScore) {
+                    instaScore = 0
+                }
+                if (!googleScore) {
+                    googleScore = 0
+                }
+
+                overallScore = youtubeScore + spotifyScore + instaScore + googleScore;
                 await this.overallScoreRepository.updateOverallScore(overallScore, idolId); // 합산 점수를 db에 저장
             }
             return

@@ -15,10 +15,14 @@ module.exports = () => {
     async (email, password, done) => {
         try {
             const exUser = await authService.getExUser(email);
-            const result = await bcrypt.compare(password, exUser.password);
-            
+            let result = ''
+
+            if (exUser) {
+                result = await bcrypt.compare(password, exUser.password);
+            }
+
             if (!exUser) {
-                return done(null, false, { message: '가입되지 않은 회원입니다.' });
+                return done(null, false, { message: '이메일을 확인해 주세요.' });
             }
     
             if (!result) {
