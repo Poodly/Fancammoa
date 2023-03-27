@@ -12,6 +12,15 @@ class AuthRepository {
         }
     }
 
+    getExNick = async(nick) => {
+        try {
+            const exNick = await User.findOne({ where: { nick } });
+            return exNick;
+        }catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
     createUser = async (email, nick , password) => {
         try {
             await User.create({ email, nick, password });

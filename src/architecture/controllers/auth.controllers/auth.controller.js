@@ -28,9 +28,12 @@ class AuthController {
         try {
             const { email, nick , password } = req.body;
             const exUser  = await this.authService.getExUser(email); 
+            const exNick  = await this.authService.getExNick(nick); 
             
             if (exUser) {
-                return res.redirect('/signUp?error=이미 가입한 이메일입니다.');
+                return res.redirect(`/signUp?error=&exEmial=이미 가입한 이메일입니다.&email=${email}&nick=${nick}`);
+            }else if (exNick) {
+                return res.redirect(`/signUp?error=&exNick=이미 가입한 닉네임입니다.&email=${email}&nick=${nick}`);
             }
 
             const { error } = this.schema.validate({ email, nick, password });

@@ -12,6 +12,15 @@ class AuthService {
         }
     }
 
+    getExNick = async (nick) => {
+        try {
+            const exNick = await this.authRepository.getExNick(nick);
+            return exNick;
+        }catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
     createUser = async (email, nick , password) => {
         try {
             await this.authRepository.createUser(email, nick , password);
