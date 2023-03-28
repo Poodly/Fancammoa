@@ -125,7 +125,6 @@ app.use(session({
         httpOnly: true,
         secure: false, 
     },
-    // store: new RedisStore({ client: redisClient }),  
 }));
 // -------------------------------------------------------------------------------------------------
 app.use(passport.initialize()); 
