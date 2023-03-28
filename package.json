@@ -42,6 +42,7 @@
     "selenium-webdriver": "^4.8.1",
     "sequelize": "^6.28.0",
     "spotify-web-api-node": "^5.0.2",
+    "url-parse": "^1.5.10",
     "winston": "^3.8.2"
   },
   "devDependencies": {
