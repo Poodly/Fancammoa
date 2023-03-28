@@ -1,13 +1,11 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" id="modal-container" style="justify-content: space-between;" role="document">
-
         <!-- <div class="modal-arrow">
             <p>left</p>
         </div> -->
         <div class="modal-content">
+<!-- --------------------------------------------------header------------------------------------------------------------- -->
             <div class="modal-header">
-
                 <div class="modal-header-item">
                     <button id="download-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
@@ -26,13 +24,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
             </div>
+<!-- --------------------------------------------------body------------------------------------------------------------- -->
             <div class="modal-body" style="max-height: calc(100vh - 210px);">
                 <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" id="player" type="text/html" width="100%" height="700px" src="" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
+<!-- --------------------------------------------------footer------------------------------------------------------------- -->
             <div class="modal-footer" id="modal-footer">
                 <p id="modal-viewCount"></p>                   
                 <p id="modal-title"></p>
@@ -48,11 +47,10 @@
                         </div>
                     <% } %>
                 </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
             </div>
-
-            <!-- <div class="modal-arrow">
-                <p>rhigt</p>
-            </div> -->
-
-        </div>
+        <!-- <div class="modal-arrow">
+            <p>rhigt</p>
+        </div> -->
     </div>
+</div>

@@ -34,5 +34,3 @@ $(document).ready(async function() {
         $('#auth-validation').html(`<p>* 비밀번호는 6자 이상, 특수문자가 포함되어야 합니다.</p>`);
     }
 });
-
-

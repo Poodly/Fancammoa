@@ -13,8 +13,6 @@ $("#left-nav-edit-idol-info").click(async function() {
     makeRankTable()
 });
 
-
-
 async function makeRankTable() {
     const tableBodyIdolInfo = document.querySelector('.table-body-idol-info');
     tableBodyIdolInfo.innerHTML = '';    
@@ -22,8 +20,6 @@ async function makeRankTable() {
     try {
         const response = await axios.get('/admin/getRankInfoItems');
         const RankInfoItems = await response.data.RankInfoItems;
-
-        // console.log("RankInfoItems----------------",RankInfoItems)
         
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
@@ -38,7 +34,6 @@ async function makeRankTable() {
             let instaScore   = parseInt(rankCardItem.instaScore).toLocaleString();
             let googleScore  = parseInt(rankCardItem.googleScore).toLocaleString();
             let overallScore = parseInt(rankCardItem.overallScore).toLocaleString();
-            // let idolImage    = rankCardItem.idolImage.img
             
             rankCount += 1;
         
@@ -118,7 +113,3 @@ function makeEditInfoTitleSearchBoxButton() {
                     </div>`  
     adminMainTable.insertAdjacentHTML('beforeend', tempHtml);
 }
-  
-
-
-

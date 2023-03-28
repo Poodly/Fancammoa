@@ -47,7 +47,7 @@ class ImageService {
 
     replaceIdolImg = async (imgId, idolImage) => {
         try {
-            await this.imageRepository.replaceIdolImg(img, idolId);   // 이미지 교체
+            await this.imageRepository.replaceIdolImg(imgId, idolImage);   // 이미지 교체
             return
 
         }catch (error) {

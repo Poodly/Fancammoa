@@ -1,29 +1,7 @@
-const ButtonLocation = document.getElementById('right-icon')
-
-$(document).ready(async function() {
-    await getKpopNews()
-    ButtonLocation.scrollIntoView({ behavior: 'smooth' });
-});
-
 let cursorArr = []
 let cursor = 0
 let maxCount = 0
 const limit = 8
-
-
-
-$("#right-icon").click(async function(event) {
-    event.preventDefault();
-    if (cursorArr.length < maxCount-1) {
-        cursorArr.push(cursor);
-    }else {
-        cursorArr = []
-        cursor = 0
-    }
-    await getKpopNews()
-
-    // ButtonLocation.scrollIntoView({ behavior: 'smooth' });
-});
 
 async function getKpopNews() {
     // 이전 검색 결과 지우기
@@ -86,22 +64,12 @@ async function getKpopNews() {
             }
         }
         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
+        window.scrollTo(0, 175);
         
     } catch (error) {
         console.error(error);
     }
 }
-
-$("#left-icon").click(async function(event) {
-    event.preventDefault();
-
-    console.log(cursorArr.pop())
-    cursor = cursorArr[cursorArr.length - 1];
-    
-    await getLeftKpopNews()
-
-    // ButtonLocation.scrollIntoView({ behavior: 'smooth' });
-});
 
 async function getLeftKpopNews() {
     // 이전 검색 결과 지우기
@@ -161,67 +129,9 @@ async function getLeftKpopNews() {
             }
         }
         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
+        window.scrollTo(0, 175);
 
     } catch (error) {
         console.error(error);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// async function getKpopNews() {
-//     try {
-//         const newsContainer = document.getElementById('news-card-append');
-//         const response = await axios.get('/news/getKpopNews');
-//         const news     = response.data;
-
-//         // 검색 결과에 따라 HTML 코드 생성
-//         const tempHtmlArray = [];
-//         for (let i = 0; i < news.length; i++) {
-//             let newsId    = news.allKpopNews[i].newsId;
-//             let newsLink  = news.allKpopNews[i].newsLink;
-//             let newsImg   = news.allKpopNews[i].newsImg;
-//             let newsTitle = news.allKpopNews[i].newsTitle;
-//             let press     = news.allKpopNews[i].press;
-//             let newsDate  = news.allKpopNews[i].newsDate;
-
-//             const tempHtml = `<div class="col">
-//                                 <div class="card" style="width: 16rem;">
-//                                     <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-//                                     <div class="card-body">
-//                                     <p class="card-text">${newsTitle}</p>
-//                                     <p class="card-date-text">${press} ${newsDate}</p>
-//                                     </div>
-//                                 </div>
-//                             </div>`;
-//             tempHtmlArray.push(tempHtml);
-                
-//         }
-//         console.log(tempHtmlArray)
-//         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-
-// async function saveKpopNews() {
-//     try {
-//         await axios.post('/news/saveKpopNews');
-        
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }

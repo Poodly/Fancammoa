@@ -10,8 +10,6 @@ async function makeRankImgTable() {
     try {
         const response = await axios.get('/admin/getRankInfoItems');
         const rankCardItems = await response.data.RankInfoItems;
-
-        console.log("rankCardItems----------------",rankCardItems)
         
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
@@ -23,8 +21,6 @@ async function makeRankImgTable() {
             let idolName  = rankCardItem.idolName
             let idolImage = rankCardItem.idolImage.img
             let imgId     = rankCardItem.idolImage.id
-
-            // console.log("makeRankImgTable---------------", idolId, idolName, idolImage)
             
             rankCount += 1;
             const tempHtml = `<div class="col-md-3 mb-8">
@@ -77,8 +73,5 @@ function makeEditImgTitleSearchBoxButton() {
 
                         <div class="row gutter gutter-md" id="table-body-idol-img-container">
                         </div>`   
-       
-
-
     adminMainTable.insertAdjacentHTML('beforeend', tempHtml);
 }

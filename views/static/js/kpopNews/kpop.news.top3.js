@@ -1,7 +1,3 @@
-$(document).ready(async function() {
-    await getTop3KpopNews()   
-});
-
 async function getTop3KpopNews() {
     // 이전 검색 결과 지우기
     const top3NewsContainer = document.getElementById('news-card-top3-append');
@@ -9,11 +5,9 @@ async function getTop3KpopNews() {
     try {
         const response = await axios.get('/news/getTop3KpopNews');
         const news     = response.data;
-        // console.log('news----------',news)
+
         // // allKpopNews 속성을 가진 배열로 변환
         const kpopNewsArray = Object.values(news.top3KpopNews); // ???????
-
-        // console.log("kpopNewsArray--------------", kpopNewsArray)
 
         // 검색 결과에 따라 HTML 코드 생성
         const top3TempHtmlArray = [];

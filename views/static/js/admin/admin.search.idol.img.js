@@ -6,8 +6,6 @@ async function makeQueryRankImgTable() {
     try {
         const response = await axios.get('/admin/getRankInfoItems');
         const rankCardItems = await response.data.RankInfoItems;
-
-        console.log("rankCardItems----------------",rankCardItems)
         
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];

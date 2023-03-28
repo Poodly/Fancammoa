@@ -7,5 +7,3 @@ $(document).ready(async function() {
         $('#auth-validation').html(`<p>* ${errorItem}</p>`);
     }
 });
-
-

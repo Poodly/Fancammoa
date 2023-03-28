@@ -1,7 +1,3 @@
-document.addEventListener('DOMContentLoaded', async function() {
-    await makeRankCard();
-});
-
 async function makeRankCard() {
     const url = '/rank/getRankInfoItems';
 
@@ -24,13 +20,10 @@ async function makeRankCard() {
         let rankCount = 0;
         for (let i = 0; i < rankCardItems.length; i++) {
             const rankCardItem = rankCardItems[i];
-            
             let idolImage = rankCardItem.idolImage.img
             let idolName = rankCardItem.idolName
-            // let overallScore = Math.round(rankCardItem.overallScore/100000)
             
             rankCount += 1;
-              
             if (rankCount <= 3) {
                 const tempHtml = `<div class="col-md-4">
                                     <div class="card">
@@ -46,7 +39,6 @@ async function makeRankCard() {
                                     </div>
                                   </div>`
                 Top3tempHtmlArray.push(tempHtml);
-
             } else {
                 const tempHtml = `<div class="col-md-3 mb-8">
                                     <div class="card">
@@ -66,6 +58,7 @@ async function makeRankCard() {
         }    
         rankCardFirstContainer.insertAdjacentHTML('beforeend', Top3tempHtmlArray.join(''));
         rankCardSecondContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
+        window.scrollTo(0, 175);
 
     } catch (error) {
         console.log('Error:', error);

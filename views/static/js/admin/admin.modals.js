@@ -105,10 +105,6 @@ $(document).ready(function() {
     });
 });
 
-
-
-
-
 function editIdolInfoModal(rankCount, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) {
     const handleModalSize = document.getElementById('modal-container')
     handleModalSize.style.maxWidth = '60%';
@@ -320,19 +316,9 @@ function modalEditKeyword(keywordId, keyword) {
     $('#confirm-btn-replace-keyword').show()
 }
 
-
-
-
 function modalEditNews(newsId) {
     $('.modal-body').html(`<h5 id="newsId">💥 Id:${newsId} 기사를 정말 삭제하시겠습니까?</h5>`)
                             
     $('#confirm-btn-delete-keyword').hide()
     $('#confirm-btn-delete-press').show()
 }
-
-
-
-
-
-
-

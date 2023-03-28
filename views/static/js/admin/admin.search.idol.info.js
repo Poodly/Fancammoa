@@ -7,9 +7,6 @@ async function searchRankTable() {
     try {
         const response = await axios.get('/admin/getRankInfoItems');
         const RankInfoItems = await response.data.RankInfoItems;
-
-        console.log("RankInfoItems----------------",RankInfoItems)
-        console.log("query----------------",query)
         
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
