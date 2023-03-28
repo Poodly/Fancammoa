@@ -1,11 +1,12 @@
-const express       = require('express');
-const session       = require('express-session');
-const morgan        = require('morgan');
-const cookieParser  = require('cookie-parser');
-const bodyParser    = require('body-parser');
-const path          = require('path');
-const passport      = require('passport'); 
-const bcrypt        = require('bcrypt');
+const express      = require('express');
+const session      = require('express-session');
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const path         = require('path');
+const passport     = require('passport'); 
+const bcrypt       = require('bcrypt');
+const cors         = require('cors')
 
 const { sequelize } = require('./models');
 
@@ -62,6 +63,8 @@ sequelize.sync({ force: false })
         console.log(err);
     });
 // -------------------------------------------------------------------------------------------------
+
+app.use(cors()) // CORS 에러 해결
 app.use(morgan('dev')); 
 app.use(express.static('views'));
 app.set("views", path.join(__dirname, "../views"));
