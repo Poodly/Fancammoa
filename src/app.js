@@ -2,6 +2,7 @@ const express      = require('express');
 const session      = require('express-session');
 const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
+const URL          = require('url-parse');
 const bodyParser   = require('body-parser');
 const path         = require('path');
 const passport     = require('passport'); 
@@ -10,18 +11,17 @@ const helmet       = require('helmet');           // 서버 요청관련 보안 
 const hpp          = require('hpp');              // 서버 요청관련 보안 (배포)
 const sanitizeHtml = require('sanitize-html');    // XSS(Cross Site Scripting) 공격 방어(배포)
 const csrf         = require('csurf');            // CSRF(Cross Site Request Forgery) 공격 방어
-// const csrfProduction = csrf({ cookie: true });
 
-const redis      = require('redis');
-const RedisStore = require('connect-redis')(session);
-// process.env.COOKIE_SECRET 없음
+// const redis        = require('redis');
+// const RedisStore = require("connect-redis").default
+// const redisUrl = new URL(`redis://${process.env.REDIS_HOST}`)
 require("dotenv").config();
-// process.env.COOKIE_SECRET 없음
-const redisClient = redis.createClient({
-    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-    legacyMode: true,
-});
-redisClient.connect().catch(console.error); // redis 연결
+// const redisClient = redis.createClient({
+//     url: redisUrl,
+//     password: process.env.REDIS_PW,
+//     legacyMode: true
+// });
+// redisClient.connect().catch(console.error); // redis 연결
 
 const { sequelize } = require('./models');
 // ----------------------------------------- connect routes ----------------------------------------
@@ -107,16 +107,26 @@ const sessionOption = {
     cookie: {
         maxAge: 1 * 60 * 60 * 1000,
         httpOnly: true,
-        secure: false, // https 설정했다면 true해야함
+        secure: false, 
     },
-    store: new RedisStore({ client: redisClient }),   // redis에 세션정보 저장
+    // store: new RedisStore({ client: redisClient }),  
 }
 // 배포
 if (process.env.NODE_ENV === 'production') {
     sessionOption.proxy = true;  // proxy ????
     // sessionOption.cookie.secure = true; // https 설정했다면 이 주석풀면됨
 }
-app.use(session(sessionOption));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        maxAge: 1 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: false, 
+    },
+    // store: new RedisStore({ client: redisClient }),  
+}));
 // -------------------------------------------------------------------------------------------------
 app.use(passport.initialize()); 
 app.use(passport.session()); 
