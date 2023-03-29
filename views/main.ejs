@@ -34,6 +34,14 @@
     <link rel="stylesheet" href="static/css/cards/main.card.css">
 
     <title>FANCAM MOA</title>
+
+<style>
+    #spinner-box{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
 </head>
 <body>
     <%-include('./topNav')%>
@@ -48,6 +56,13 @@
                 <div class="icons">
                     <span id="spotify_link"></span>
                     <span id="instagram_link"></span>
+                </div>
+            </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+            <!-- 스피너 -->
+            <div id="spinner-box">
+                <div id="spinner" class="spinner-border text-info" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->
