@@ -100,7 +100,7 @@ class KpopNewsService {
 
     saveKpopNews = async (req, res, next) => {
         // headless로 크롬 드라이버 실행
-        let driver = await new Builder().forBrowser('chrome').setChromeOptions().build();
+        let driver = await new Builder().forBrowser('chrome').build();
             // .forBrowser('chrome')
             // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))
     
@@ -145,7 +145,7 @@ class KpopNewsService {
             await this.otherNews(driver)
             
             for (let i = 0; i < 5; i++) {
-                await driver.executeScript("window.scrollBy(0, 1700)");
+                await driver.executeScript("window.scrollBy(0, 1800)");
                 await driver.sleep(1000);
                 await this.otherNews(driver)
                 await driver.sleep(1000);
