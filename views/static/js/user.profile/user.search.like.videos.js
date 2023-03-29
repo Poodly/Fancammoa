@@ -4,6 +4,7 @@ async function searchLikeVideos() {
         // 이전 검색 결과 지우기
         const likeVideosContainer = document.getElementById('search-items');
         likeVideosContainer.innerHTML = '';
+        $("#spinner-box").show()
 
     try {
         const response = await axios.get(url);
@@ -36,6 +37,7 @@ async function searchLikeVideos() {
             tempHtmlArray.push(tempHtml);
                 
             }
+            $("#spinner-box").hide()
             likeVideosContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
         } catch (error) {
             console.log('Error:', error);

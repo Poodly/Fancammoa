@@ -83,6 +83,12 @@
         font-size: smaller;
         color: rgb(110, 110, 110);
     }
+
+    #spinner-box{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
     </style>
 </head>
 <body>
@@ -94,6 +100,13 @@
                 <h2 id="idol-user-profile-nev-title">💚 My Favorite Fancams 💜</h2>
             <div class="row mb-2">
                 <div class="col-12">
+                </div>
+            </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+            <!-- 스피너 -->
+            <div id="spinner-box">
+                <div id="spinner" class="spinner-border text-info" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->
