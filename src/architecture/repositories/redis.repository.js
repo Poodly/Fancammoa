@@ -3,14 +3,13 @@ const redis = require('redis');
 
 // const redisClient = redis.createClient({
 //     legacyMode: true,
-//     // host: process.env.REDIS_AWS_HOST, // Redis 서버 호스트
 //     port: 6379,                          // Redis 서버 포트
 // });
 
 const redisClient = redis.createClient({
-    legacyMode: true,
-    host: process.env.REDIS_HOST,           
+    url: `redis://${process.env.REDIS_HOST}`,          
     password: process.env.REDIS_PW,                                  
+    legacyMode: true,
 });
 redisClient.connect();
 
