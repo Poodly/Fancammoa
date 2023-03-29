@@ -3,6 +3,8 @@ $("#search-button").click(async function() {
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
+    $("#spinner-box").show()
     await searchVideo();
+    $("#spinner-box").hide()
     makeSpotifyInstaButton(query)
 });

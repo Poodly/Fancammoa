@@ -14,7 +14,6 @@ async function searchVideo() {
     // 이전 검색 결과 지우기
     const searchContainer = document.getElementById('search-container');
     searchContainer.innerHTML = '';
-    $("#spinner-box").show()
 
     try {
         const response = await axios.post('/video/search', { query });
@@ -61,7 +60,7 @@ async function searchVideo() {
                 tempHtmlArray.push(tempHtml);
                 }
             }
-            $("#spinner-box").hide()
+
             searchContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join(''));
             window.scrollTo(0, 185);
 
