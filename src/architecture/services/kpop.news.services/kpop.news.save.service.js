@@ -1,4 +1,4 @@
-require('chromedriver');
+require('chromedriver');   // npm i chromedriver
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const clipboardy = require('node-clipboardy');
