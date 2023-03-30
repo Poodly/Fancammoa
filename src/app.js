@@ -94,7 +94,15 @@ if(process.env.NODE_ENV === 'production') {
     sessionOption.proxy = true;
     sessionOption.cookie.secure = true;
 }
-app.use(session(sessionOption));
+app.use(session({resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        maxAge: 1 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: false,
+    }
+}));
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 
