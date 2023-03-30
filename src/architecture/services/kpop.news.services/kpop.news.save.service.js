@@ -100,10 +100,12 @@ class KpopNewsService {
 
     // headless로 크롬 드라이버 실행
     // .forBrowser('chrome')
-    // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))
+    // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))     
     saveKpopNews = async (req, res, next) => {
         // let driver = await new Builder().forBrowser('chrome').build();
-        let driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build();
+        let chromeOptions = new chrome.Options().headless().addArguments("--no-sandbox");
+        let driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+        // let driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build();
 
         try {
             // 테이블의 데이터를 싹 비운다.
