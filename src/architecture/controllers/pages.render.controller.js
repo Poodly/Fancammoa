@@ -22,7 +22,7 @@ class Render {
     };
     
     // Sign up page
-    sginUp = (req, res, next) => {
+    signUp = (req, res, next) => {
         try {
             res.render('signUp');
             
