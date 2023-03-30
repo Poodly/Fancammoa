@@ -19,7 +19,6 @@ $("#right-icon").click(async function(event) {
         cursor = 0
     }
     await getKpopNews()
-    await getTop3KpopNews() 
     $('.arrow-icons').show()
     // $("#spinner-box").hide()
     // window.scrollTo(0, 175);
@@ -33,7 +32,6 @@ $("#left-icon").click(async function(event) {
     cursor = cursorArr[cursorArr.length - 1];
     
     await getLeftKpopNews()
-    await getTop3KpopNews() 
     $('.arrow-icons').show()
     // $("#spinner-box").hide()
     // window.scrollTo(0, 175);
