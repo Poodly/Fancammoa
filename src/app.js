@@ -65,11 +65,12 @@ sequelize.sync({ force: false })
 // -------------------------------------------------------------------------------------------------
 
 app.use(cors()) // CORS 에러 해결
-if (process.env.NODE_ENV === 'production') {
-    app.use(morgan('combind'));
-}else {
-    app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(morgan('combind'));
+// }else {
+//     app.use(morgan('dev'));
+// }
+app.use(morgan('dev'));
 app.use(express.static('views'));
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../views")));
