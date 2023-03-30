@@ -60,12 +60,16 @@ sequelize.sync({ force: false })
         console.log('최초 키워드 더미데이터 생성 성공');
     })
     .catch((err) => {
-        console.log(err);
+        console.error(err);
     });
 // -------------------------------------------------------------------------------------------------
 
 app.use(cors()) // CORS 에러 해결
-app.use(morgan('dev')); 
+if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combind'));
+}else {
+    app.use(morgan('dev'));
+}
 app.use(express.static('views'));
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../views")));
@@ -75,7 +79,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended:false} ));
 app.use(cookieParser(process.env.COOKIE_SECRET)); 
-app.use(session({ 
+const sessionOption = {
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
@@ -84,7 +88,12 @@ app.use(session({
         httpOnly: true,
         secure: false,
     }
-}));
+};
+if(process.env.NODE_ENV === 'production') {
+    sessionOption.proxy = true;
+    sessionOption.cookie.secure = true;
+}
+app.use(session(sessionOption));
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 

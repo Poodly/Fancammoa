@@ -18,8 +18,8 @@ router.get('/'            , render.main)                         // GET /
 router.get('/idolRank'    , render.idolRank)                     // GET /idolRank
 router.get('/kpopNews'    , render.kpopNews)                     // GET /kpopNews
 
-router.get('/login'      , isNotLoggedIn , render.login)         // GET /login
-router.get('/signUp'     , isNotLoggedIn , render.sginUp)        // GET /signUp
+router.get('/login'       , isNotLoggedIn , render.login)        // GET /login
+router.get('/signUp'      , isNotLoggedIn , render.sginUp)       // GET /signUp
 
 // router.get('/idolProfile' , render.idolProfile)               // GET /idolProfile
 router.get('/userProfile' , isLoggedIn , render.userProfile)     // GET /userProfile
