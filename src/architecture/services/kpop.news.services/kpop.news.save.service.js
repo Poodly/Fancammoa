@@ -1,6 +1,6 @@
 require("chromedriver");
 const { Builder, By, Key, until } = require('selenium-webdriver');
-// const chrome = require('selenium-webdriver/chrome');
+const chrome = require('selenium-webdriver/chrome');
 const clipboardy = require('node-clipboardy');
 const webdriver = require('selenium-webdriver');
 
@@ -98,12 +98,13 @@ class KpopNewsService {
         }
     }
 
+    // headless로 크롬 드라이버 실행
+    // .forBrowser('chrome')
+    // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))
     saveKpopNews = async (req, res, next) => {
-        // headless로 크롬 드라이버 실행
-        let driver = await new Builder().forBrowser('chrome').build();
-            // .forBrowser('chrome')
-            // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))
-    
+        // let driver = await new Builder().forBrowser('chrome').build();
+        let driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build();
+
         try {
             // 테이블의 데이터를 싹 비운다.
             await this.kpopNewsRepository.deleteAllNews()
@@ -112,31 +113,39 @@ class KpopNewsService {
             await driver.get('https://partners.newspic.kr/login');
             await driver.manage().setTimeouts({ implicit: 2 });
     
+            // await driver.findElement(By.id('아이디 입력 필드 ID')).sendKeys('아이디');
+            // await driver.findElement(By.id('비밀번호 입력 필드 ID')).sendKeys('비밀번호');
+
+
             // Enter username and password
             const id = await driver.findElement(By.name('id'));
-            await id.click();
-            clipboardy.writeSync(env.NEWS_PICK_ID);
-            await id.sendKeys(webdriver.Key.CONTROL, 'v');
+            await id.sendKeys(env.NEWS_PICK_ID)
+            // await id.click();
+            // clipboardy.writeSync(env.NEWS_PICK_ID);
+            // await id.sendKeys(webdriver.Key.CONTROL, 'v');
             await driver.sleep(200);
     
             const pw = await driver.findElement(By.name('password'));
-            await pw.click();
-            clipboardy.writeSync(env.NEWS_PICK_PW);
-            await pw.sendKeys(webdriver.Key.CONTROL, 'v');
+            await pw.sendKeys(env.NEWS_PICK_PW);
+            // await pw.click();
+            // clipboardy.writeSync(env.NEWS_PICK_PW);
+            // await pw.sendKeys(webdriver.Key.CONTROL, 'v');
             await driver.sleep(200);
     
             // Click login button
-            const loginBtn = await driver.findElement(By.xpath('/html/body/div/section/div[2]/div/div[1]/form/button'));
-            await loginBtn.click();
+            // const loginBtn = await driver.findElement(By.css('body > div > section > div.section-body.mt-32 > div > div.login-form > form > button'));
+            const loginForm = await driver.findElement(By.css('body > div > section > div.section-body.mt-32 > div > div.login-form'));
+            await loginForm.submit();
+            // await loginBtn.click();
             await driver.sleep(300);
     
             // Click kMusicBtn button
-            const kMusicBtn = await driver.findElement(By.xpath('//*[@id="tab_57"]'));
+            const kMusicBtn = await driver.findElement(By.css('#tab_57'));
             await kMusicBtn.click();
             await driver.sleep(300);
     
             // Click kpopMusicBtn button
-            const kpopMusicBtn = await driver.findElement(By.xpath('//*[@id="sub-66"]'));
+            const kpopMusicBtn = await driver.findElement(By.css('#sub-66'));
             await kpopMusicBtn.click();
             await driver.sleep(300);
     
@@ -144,7 +153,7 @@ class KpopNewsService {
             await this.getTop4News(driver)
             await this.otherNews(driver)
             
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 1; i++) {
                 await driver.executeScript("window.scrollBy(0, 1800)");
                 await driver.sleep(1000);
                 await this.otherNews(driver)
@@ -157,7 +166,7 @@ class KpopNewsService {
             next();
             
         } finally {
-                driver.quit();
+            driver.quit();
         };
     };
 };
