@@ -3,8 +3,8 @@ $(document).ready(async function() {
     $("#spinner-box").show()
     await getTop3KpopNews()   
     await getKpopNews()
-    $('.arrow-icons').show()
     $("#spinner-box").hide()
+    $('.arrow-icons').show()
     // window.scrollTo(0, 175);
 });
 

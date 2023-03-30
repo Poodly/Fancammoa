@@ -5,7 +5,12 @@ async function getQueryKpopNews() {
     newsContainerTop3.innerHTML = '';
     newsContainer.innerHTML = '';
 
-    let query = '뉴진스'
+    let query = document.getElementById('search_box').value;
+
+    if (!query) {
+        window.location.reload();
+        return 
+    }
     
     try {
         const response = await axios.get('/news/getAllnews');
