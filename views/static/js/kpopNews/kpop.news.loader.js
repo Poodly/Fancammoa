@@ -1,8 +1,8 @@
 $(document).ready(async function() {
     $('.arrow-icons').hide()
     $("#spinner-box").show()
-    await getTop3KpopNews()   
     await getKpopNews()
+    await getTop3KpopNews()   
     $("#spinner-box").hide()
     $('.arrow-icons').show()
     window.scrollTo(0, 175);
