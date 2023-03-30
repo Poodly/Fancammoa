@@ -1,6 +1,6 @@
 $(document).ready(async function() {
-    $('.arrow-icons').show()
-    $("#spinner-box").hide()
+    $('.arrow-icons').hide()
+    $("#spinner-box").show()
     await getTop3KpopNews()   
     await getKpopNews()
     $('.arrow-icons').show()
@@ -10,8 +10,8 @@ $(document).ready(async function() {
 
 $("#right-icon").click(async function(event) {
     event.preventDefault();
-    $('.arrow-icons').show()
     $('.arrow-icons').hide()
+    // $('#spinner-box').show()
     if (cursorArr.length < maxCount-1) {
         cursorArr.push(cursor);
     }else {
@@ -20,19 +20,19 @@ $("#right-icon").click(async function(event) {
     }
     await getKpopNews()
     $('.arrow-icons').show()
-    $("#spinner-box").hide()
+    // $("#spinner-box").hide()
     // window.scrollTo(0, 175);
 });
 
 $("#left-icon").click(async function(event) {
     event.preventDefault();
-    $('.arrow-icons').show()
     $('.arrow-icons').hide()
+    // $('#spinner-box').show()
     console.log(cursorArr.pop())
     cursor = cursorArr[cursorArr.length - 1];
     
     await getLeftKpopNews()
     $('.arrow-icons').show()
-    $("#spinner-box").hide()
+    // $("#spinner-box").hide()
     // window.scrollTo(0, 175);
 });
