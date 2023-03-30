@@ -5,6 +5,7 @@ let starIcon = `<svg id="news-star-icon" xmlns="http://www.w3.org/2000/svg" widt
 async function getTop3KpopNews() {
     // 이전 검색 결과 지우기
     const top3NewsContainer = document.getElementById('news-card-top3-append');
+    top3NewsContainer.innerHTML = '';
 
     try {
         const response = await axios.get('/news/getTop3KpopNews');
