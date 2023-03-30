@@ -16,8 +16,6 @@ async function getKpopNews() {
         // allKpopNews 속성을 가진 배열로 변환
         const kpopNewsArray = Object.values(news.kpopNews); // ???????
 
-        console.log("maxCount--------------", maxCount)
-
         // 검색 결과에 따라 HTML 코드 생성
         const tempHtmlArray = [];
         for (let i = 0; i < kpopNewsArray.length; i++) {
@@ -34,37 +32,21 @@ async function getKpopNews() {
             if (newsTitle.length >= 40) {
                 newsTitle = newsTitle.slice(0, 40) + " ...";
             }
-
-            if (newsTitle.length <= 25) {
-                const tempHtml = `<div class="col">
-                                    <div class="card" style="width: 16.6rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text-blank">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
+            const tempHtml = `<div class="col">
+                                <div class="card" style="width: 16.6rem;">
+                                    <a href="${newsLink}" target='_blank'>
+                                    <img src="${newsImg}" class="card-img-top" alt="${newsId}">
+                                    <div class="card-body">
+                                    <p class="card-text">${newsTitle}</p>
+                                    <p class="card-date-text">${press} ${newsDate}</p>
                                     </div>
-                                </div>`;
-                tempHtmlArray.push(tempHtml);
-            } else {
-                const tempHtml = `<div class="col">
-                                    <div class="card" style="width: 16.6rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>`;
-                tempHtmlArray.push(tempHtml);
-            }
+                                    </a>
+                                </div>
+                            </div>`;
+            tempHtmlArray.push(tempHtml);
         }
         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
-        window.scrollTo(0, 175);
+        // window.scrollTo(0, 175);
         
     } catch (error) {
         console.error(error);
@@ -100,36 +82,21 @@ async function getLeftKpopNews() {
                 newsTitle = newsTitle.slice(0, 40) + " ...";
             }
 
-            if (newsTitle.length <= 25) {
-                const tempHtml = `<div class="col">
-                                    <div class="card" style="width: 16.6rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text-blank">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
+            const tempHtml = `<div class="col">
+                                <div class="card" style="width: 16.6rem;">
+                                    <a href="${newsLink}" target='_blank'>
+                                    <img src="${newsImg}" class="card-img-top" alt="${newsId}">
+                                    <div class="card-body">
+                                    <p class="card-text">${newsTitle}</p>
+                                    <p class="card-date-text">${press} ${newsDate}</p>
                                     </div>
-                                </div>`;
-                tempHtmlArray.push(tempHtml);
-            } else {
-                const tempHtml = `<div class="col">
-                                    <div class="card" style="width: 16.6rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>`;
-                tempHtmlArray.push(tempHtml);
+                                    </a>
+                                </div>
+                            </div>`;
+            tempHtmlArray.push(tempHtml);
             }
-        }
         newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
-        window.scrollTo(0, 175);
+        // window.scrollTo(0, 175);
 
     } catch (error) {
         console.error(error);

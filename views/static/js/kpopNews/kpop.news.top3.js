@@ -11,7 +11,6 @@ async function getTop3KpopNews() {
 
         // 검색 결과에 따라 HTML 코드 생성
         const top3TempHtmlArray = [];
-        let top3NewsId = 0
         let rankCount = 0
         for (let i = 0; i < kpopNewsArray.length; i++) {
             let newsId    = kpopNewsArray[i].newsId;
@@ -21,43 +20,25 @@ async function getTop3KpopNews() {
             let press     = kpopNewsArray[i].press;
             let newsDate  = kpopNewsArray[i].newsDate;
             rankCount += 1
-            
-            top3NewsId = newsId
 
             if (newsTitle.length >= 35) {
                 newsTitle = newsTitle.slice(0, 35) + " ...";
             }   
 
-            if (newsTitle.length <= 36) {
-                const top3tempHtml = `<div class="col">
-                                    <div class="card" style="width: 22.5rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text-blank">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
+            const top3tempHtml = `<div class="col">
+                                <div class="card" style="width: 22.5rem;">
+                                    <a href="${newsLink}" target='_blank'>
+                                    <img src="${newsImg}" class="card-img-top" alt="${newsId}">
+                                    <div class="card-body">
+                                    <p class="card-text">${newsTitle}</p>
+                                    <p class="card-date-text">${press} ${newsDate}</p>
                                     </div>
-                                </div>`   
-            top3TempHtmlArray.push(top3tempHtml); 
-            } else {
-                const top3tempHtml = `<div class="col">
-                                    <div class="card" style="width: 22.5rem;">
-                                        <a href="${newsLink}" target='_blank'>
-                                        <img src="${newsImg}" class="card-img-top" alt="${newsId}">
-                                        <div class="card-body">
-                                        <p class="card-text">${newsTitle}</p>
-                                        <p class="card-date-text">${press} ${newsDate}</p>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>`   
+                                    </a>
+                                </div>
+                            </div>`   
             top3TempHtmlArray.push(top3tempHtml);
             }
-        }
         top3NewsContainer.insertAdjacentHTML('beforeend', top3TempHtmlArray.join(''));
-        return top3NewsId
 
     } catch (error) {
         console.error(error);

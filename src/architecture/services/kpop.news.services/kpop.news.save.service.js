@@ -155,7 +155,7 @@ class KpopNewsService {
             await this.getTop4News(driver)
             await this.otherNews(driver)
             
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < 2; i++) {
                 await driver.executeScript("window.scrollBy(0, 1800)");
                 await driver.sleep(1000);
                 await this.otherNews(driver)
