@@ -5,7 +5,7 @@ $(document).ready(async function() {
     await getKpopNews()
     $("#spinner-box").hide()
     $('.arrow-icons').show()
-    // window.scrollTo(0, 175);
+    window.scrollTo(0, 175);
 });
 
 $("#right-icon").click(async function(event) {
