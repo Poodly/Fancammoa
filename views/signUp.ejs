@@ -46,15 +46,15 @@
         justify-content: center;
     }
 
-    #signup-email {
+    #signUp-email {
         width: 200px;
         height: 45px;
     }
-    #signup-nick {
+    #signUp-nick {
         width: 200px;
         height: 45px;
     }
-    #signup-password {
+    #signUp-password {
         width: 200px;
         height: 45px;
     }
@@ -68,25 +68,25 @@
 <body>      
     <div class="loginOutBox">
         <h1 class="title"><a id="title" href="/">💜 FANCAM MOA 💚</a></h1>
-        <form id="signup-form" action="/auth/signup" method="post">
+        <form id="signUp-form" action="/auth/signUp" method="post">
             <div class="input-group">
-            <input id="signup-email" type="email" name="email" placeholder="email" required autofocus>
+            <input id="signUp-email" type="email" name="email" placeholder="email" required autofocus>
             </div>
             <div class="input-group">
-            <input id="signup-nick" type="text" name="nick" placeholder="nick" required autofocus>
+            <input id="signUp-nick" type="text" name="nick" placeholder="nick" required autofocus>
             </div>
             <div class="input-group">
-            <input id="signup-password" type="password" name="password" placeholder="password" required autofocus>
+            <input id="signUp-password" type="password" name="password" placeholder="password" required autofocus>
             </div>
             <!-- <div class="input-group">
-            <input id="signup-password-confirm" type="password" name="passwordConfirm" placeholder="password confirm" required autofocus>
+            <input id="signUp-password-confirm" type="password" name="passwordConfirm" placeholder="password confirm" required autofocus>
             </div> -->
-            <button type="submit" onclick="" id="signup-button" class="btn">회원가입</button>
+            <button type="submit" onclick="" id="signUp-button" class="btn">회원가입</button>
             <a type="button" class="btn" href="/login">로그인</a> 
             <!-- <button type="button" onclick="location.href='/login'" class="btn">로그인</button> -->
         </form>
         <div id="auth-validation"></div> 
     </div>
 </body>
-    <script src="./static/js/auth/auth.signup.validation.js"></script>
+    <script src="./static/js/auth/auth.signUp.validation.js"></script>
 </html>
