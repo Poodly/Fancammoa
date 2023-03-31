@@ -99,13 +99,10 @@ class KpopNewsService {
     }
 
     // headless로 크롬 드라이버 실행
-    // .forBrowser('chrome')
-    // .setChromeOptions(new chrome.Options().addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"))     
+
     saveKpopNews = async (req, res, next) => {
-        // let driver = await new Builder().forBrowser('chrome').build();
         let chromeOptions = new chrome.Options().headless().addArguments("--no-sandbox");
         let driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
-        // let driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build();
 
         try {
             // 테이블의 데이터를 싹 비운다.
@@ -115,40 +112,22 @@ class KpopNewsService {
             await driver.get('https://partners.newspic.kr/login');
             await driver.manage().setTimeouts({ implicit: 2 });
             
-            // await driver.findElement(By.id('아이디 입력 필드 ID')).sendKeys('아이디');
-            // await driver.findElement(By.id('비밀번호 입력 필드 ID')).sendKeys('비밀번호');
-
-
             // Enter username and password
             const id = await driver.findElement(By.name('id'));
             await id.sendKeys(env.NEWS_PICK_ID)
-            // await id.click();
-            // clipboardy.writeSync(env.NEWS_PICK_ID);
-            // await id.sendKeys(webdriver.Key.CONTROL, 'v');
             await driver.sleep(200);
     
             const pw = await driver.findElement(By.name('password'));
             await pw.sendKeys(env.NEWS_PICK_PW);
-            // await pw.click();
-            // clipboardy.writeSync(env.NEWS_PICK_PW);
-            // await pw.sendKeys(webdriver.Key.CONTROL, 'v');
             await driver.sleep(200);
     
             // Click login button
             const loginBtn = await driver.findElement(By.css('body > div > section > div.section-body.mt-32 > div > div.login-form > form > button'));
             await loginBtn.submit();
-            // await loginBtn.click();
             await driver.sleep(300);
-    
-            // Click kMusicBtn button
-            // const kMusicBtn = await driver.findElement(By.css('#tab_57'));
-            // await kMusicBtn.click();
-            // await driver.sleep(300);
-    
+        
             // Click kpopMusicBtn button
             await driver.get('https://partners.newspic.kr/main/index#66');
-            // const kpopMusicBtn = await driver.findElement(By.css('#sub-66'));
-            // await kpopMusicBtn.click();
             await driver.sleep(300);
     
             await this.getTop1News(driver)
