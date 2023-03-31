@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/modal.css">
+    <link rel="stylesheet" href="static/css/cards/main.card.css">
+
+
+    <title>FANCAM MOA KPOP NEWS</title>
+</head>
+
+<style>
+    .mt-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0px;
+    }
+    
+    #kpop-news-title {
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+        margin: 0px;
+    }
+
+    #news-container-box {
+        display: flex;
+        align-items: center
+    }
+
+    #news-container {
+        margin-top: 40px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .col {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px;
+        border: 0px;
+    }
+
+    .card-text {
+        margin: 0px;
+        font-size: small;
+        font-weight: 600;
+    }
+
+    .top3-card-text {
+        display: flex;
+        margin: 0px;
+        font-size: small;
+        font-weight: 600;
+    }
+
+    #news-star-icon {
+        margin-right: 4px;
+    }
+
+    .card-date-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        margin-top: 5px;
+        font-size: smaller;
+        color: rgb(110, 110, 110);
+    }
+
+    .card-text-blank {
+        font-size: small;
+        font-weight: 600;
+        margin: 0px;
+        padding: 0px;
+        /* padding-bottom: 18px; */
+    }
+
+    .arrow-icons {
+        margin-top: 220px;
+    }
+
+    #right-icon {
+        margin-left: 35px;
+    }
+
+    #left-icon {
+        margin-right: 35px;
+    }
+
+    .card img {
+        border-radius: 5px;
+    } 
+
+    .card-body {
+        display: flex;
+        height: 105px;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #spinner-box{
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+        margin-bottom: 10px;
+    }
+    
+</style>
+
+<body>
+    
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+<div class="head_container">
+    <div class="head_nev_1">
+        <h1 id="title"><a href="/">FANCAM MOA💜</a></h1>
+        <!-- 로그인 전 -->
+        <% if (!user) { %>
+            <h2 id="login_logout"><a href="/login">Login</a></h2>
+        <% } else { %>
+            <div id="login_nick">
+                <li id="login_nick">🥝 Hello <%= user.nick %></li>
+                <h2 id="login_logout"><a href="/auth/logout">logout</a></h2>
+            </div>
+        <% } %>
+          
+    </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+    <form action="" onsubmit="return false;">
+    <div class="head_nev_2">
+        <div class="head_search">
+            <!-- <p id="cam_search">직캠 검색</p> -->
+            <input id="search_box" type="text" placeholder="검색어를 입력하세요." title="검색">
+            <button id="search-button" onclick="getQueryKpopNews()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
+                <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
+                </svg>
+            </button>
+        </div>
+    </form>
+<!-- --------------------------------------------------------------------------------------------------------------- -->    
+        <!-- 아이돌 순위, 마이페이지, 어드민페이지 버튼 생성 -->
+    <div class="head_list"></div>
+</div>
+
+    <div id="line"></div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+    </div>
+    
+    <main class="mt-3">
+        <h2 id="kpop-news-title">K-POP 뉴스</h2>
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+            <!-- 스피너 -->
+            <div id="spinner-box">
+                <div id="spinner" class="spinner-border text-info" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+        
+        <!-- 뉴스 붙이는곳 -->
+        <div id="news-container-box">
+
+            <a class="arrow-icons" href="#br" id="left-icon">
+                <svg id="arrow-left-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </a>
+
+            <div class="row" id="news-container">
+                <div class="container text-center">
+                    <div class="row" id="news-card-top3-append"></div>
+                    <div class="row" id="news-card-append"></div>
+                </div>
+            </div>   
+            
+            <a class="arrow-icons" href="#br" id="right-icon">
+                <svg id="arrow-right-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <br id="br">
+    </footer>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+    <%-include('./mainModal')%>
+
+    <!-- <script src="./static/js/main/main.Keywords.js"></script> -->
+    <!-- <script src="./static/js/main/main.search.video.js"></script> -->
+    <!-- <script src="./static/js/main/main.spotify.insta.button.js"></script> -->
+    <script src="./static/js/kpopNews/kpop.news.js"></script>
+    <script src="./static/js/kpopNews/kpop.news.top3.js"></script>
+    <script src="./static/js/kpopNews/kpop.news.loader.js"></script>
+    <script src="./static/js/kpopNews/kpop.news.search.js"></script>
+    <script src="./static/js/main/mian.handle.profile.button.js"></script>
+</body>
+</html>

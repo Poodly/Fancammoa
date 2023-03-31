@@ -1,0 +1,125 @@
+#idolImage-title {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    width: 17rem;
+}
+
+#card-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+
+.card {
+    max-height: 500px;
+    border: 0px;
+    align-items: center
+}
+
+.card img {
+    box-shadow: 0px 5px 10px rgba(0, 0, 1, 0.3);
+    border-radius: 5px;
+
+}
+
+@media (max-width: 768px) {
+    .card {
+      margin: 20px;
+    }
+}
+
+#first-card-img {
+    width: 17rem;
+    height: 17rem;
+    object-fit: cover;
+}
+
+#second-card-img {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center
+}
+  
+#rank-conut {
+    margin: 0px;
+    margin-right: 5px;
+}
+
+#rank-name {
+    margin: 0px;
+    margin-left: 5px;
+}
+
+#card-container {
+    
+    margin-left: 180px;
+    margin-right: 180px;
+}
+
+#trash-icon {
+    margin-top: 20px;
+}
+/* 모달속 카드 ----------------------- */
+
+.card img {
+    box-shadow: 0px 5px 10px rgba(0, 0, 1, 0.3);
+    border-radius: 5px;
+
+}
+
+@media (max-width: 768px) {
+    .card {
+      margin: 20px;
+    }
+}
+
+#first-card-img {
+    width: 17rem;
+    height: 17rem;
+    object-fit: cover;
+}
+
+#second-card-img {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center
+}
+  
+#rank-conut {
+    margin: 0px;
+    margin-right: 5px;
+}
+
+#rank-name {
+    margin: 0px;
+    margin-left: 5px;
+}
+
+#card-container {
+    
+    margin-left: 180px;
+    margin-right: 180px;
+}
+
+#trash-icon {
+    margin-top: 20px;
+}
+/* 모달속 카드 ----------------------- */
