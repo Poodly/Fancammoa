@@ -1,17 +1,19 @@
 $(document).ready(async function() {
-    $('#arrow-icon').hide()
+    $('#arrow-left-icon').hide()
+    $('#arrow-right-icon').hide()
     $("#spinner-box").show()
     await getKpopNews()
     await getTop3KpopNews()   
+    $('#arrow-left-icon').show()
+    $('#arrow-right-icon').show()
     $("#spinner-box").hide()
-    $('#arrow-icon').show()
     window.scrollTo(0, 175);
 });
 
 $("#right-icon").click(async function(event) {
     event.preventDefault();
-    $('#arrow-icon').hide()
-    // $('#spinner-box').show()
+    $('#arrow-left-icon').hide()
+    $('#arrow-right-icon').hide()
     if (cursorArr.length < maxCount-1) {
         cursorArr.push(cursor);
     }else {
@@ -19,20 +21,20 @@ $("#right-icon").click(async function(event) {
         cursor = 0
     }
     await getKpopNews()
-    $('#arrow-icon').show()
-    // $("#spinner-box").hide()
+    $('#arrow-left-icon').show()
+    $('#arrow-right-icon').show()
     // window.scrollTo(0, 175);
 });
 
 $("#left-icon").click(async function(event) {
     event.preventDefault();
-    $('#arrow-icon').hide()
-    // $('#spinner-box').show()
+    $('#arrow-left-icon').hide()
+    $('#arrow-right-icon').hide()
     console.log(cursorArr.pop())
     cursor = cursorArr[cursorArr.length - 1];
     
     await getLeftKpopNews()
-    $('#arrow-icon').show()
-    // $("#spinner-box").hide()
+    $('#arrow-left-icon').show()
+    $('#arrow-right-icon').show()
     // window.scrollTo(0, 175);
 });
