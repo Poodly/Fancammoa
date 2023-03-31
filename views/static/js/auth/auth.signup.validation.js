@@ -7,8 +7,8 @@ $(document).ready(async function() {
     const exNick     = urlParams.get('exNick');
 
     if(emailValue){
-        $('#signup-email').val(`${emailValue}`);
-        $('#signup-nick').val(`${nickValue}`);
+        $('#signUp-email').val(`${emailValue}`);
+        $('#signUp-nick').val(`${nickValue}`);
     }
 
     if (exEmial) {
