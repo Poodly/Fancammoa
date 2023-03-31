@@ -39,7 +39,7 @@ async function saveLikeVideoButton() {
     try{
         const videoId = saveVideoId;
         await axios.post('/user/likeVideo', { videoId });
-        console.log("saved Like Video -----------", saveVideoId);
+     
         let tempHtml = 
             `<div id="fillLikeButton">
                 <button onclick="deleteLikeVideoButton()" id="likeButton" type="button" class="icon-button">
@@ -60,7 +60,7 @@ async function deleteLikeVideoButton() {
     try {
         const videoId = saveVideoId;
         await axios.delete('/user/deleteLikeVideo', { data: { videoId } });
-        console.log("deleted Like Video -----------", saveVideoId);
+
         let tempHtml = 
                 `<div id="currentColorLikeButton">
                 <button onclick="saveLikeVideoButton()" id="likeButton" type="button" class="icon-button">
