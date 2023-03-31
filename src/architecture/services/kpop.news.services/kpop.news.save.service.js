@@ -43,7 +43,7 @@ class KpopNewsService {
         const imageElements = await tabBlockSmall.findElements(By.tagName('img'));
         const titleContents = await tabBlockSmall.findElements(By.className('text-overflow2'));
         const pressATags    = await tabBlockSmall.findElements(By.css('li > div > div.info > div.article-info.d-flex > a'));
-        const dates         = await tabBlockSmall.findElements(By.css('li > div > div.info > div.article-info.d-flex > span'));
+        const dates         = await tabBlockSmall.findElements(By.css('li > div > div.info > div.article-info > span'));
         const link          = await tabBlockSmall.findElements(By.css('li > div > div.box-share > a'));
 
         for (let i = 0; i < imageElements.length; i++) {

@@ -35,7 +35,7 @@ class IdolInfoRepository {
         }
     }
 
-    updateIdolScore = async (idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore) => {
+    updateIdolScore = async (idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) => {
         try {
             await IdolRankScore.update({ 
                 youtubeScore, 

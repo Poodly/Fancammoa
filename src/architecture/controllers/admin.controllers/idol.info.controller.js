@@ -21,8 +21,8 @@ class IdolInfoController {
     
     updateIdolScore = async (req, res, next) => {
         try {
-            const { idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore } = req.body;
-            await this.idolInfoService.updateIdolScore(idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore)          
+            const { idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId } = req.body;
+            await this.idolInfoService.updateIdolScore(idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId)          
             res.status(200).json({ message: `idolId:${idolId}, idolName: ${idolId}의 점수 데이터 수정 성공!!` });
 
         }catch (error) {

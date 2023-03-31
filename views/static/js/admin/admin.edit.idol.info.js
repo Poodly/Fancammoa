@@ -9,7 +9,7 @@ async function updateIdolScore() {
 
     try {
         idolId       = parseInt(idolId.replace(/,/g, ''))
-        idolName     = parseInt(idolName.replace(/,/g, ''))
+        idolName     = idolName
         youtubeScore = parseInt(youtubeScore.replace(/,/g, ''))
         spotifyScore = parseInt(spotifyScore.replace(/,/g, ''))
         instaScore   = parseInt(instaScore.replace(/,/g, ''))  

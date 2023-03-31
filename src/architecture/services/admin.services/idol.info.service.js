@@ -34,9 +34,9 @@ class IdolInfoService {
         };
     }
     
-    updateIdolScore = async (idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore) => {
+    updateIdolScore = async (idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) => {
         try {
-            await this.idolInfoRepository.updateIdolScore(idolId, idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore ); // 점수들을 업데이트
+            await this.idolInfoRepository.updateIdolScore(idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId ); // 점수들을 업데이트
             return
 
         }catch (error) {
