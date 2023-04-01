@@ -15,23 +15,29 @@ async function makeRankCard() {
         const response = await axios.get(url);
         const rankCardItems = await response.data.RankInfoItems;
 
-        console.log("rankCardItems----------------",rankCardItems)
+        // console.log("rankCardItems----------------",rankCardItems)
         
         // 검색 결과에 따라 HTML 코드 생성
-
         const Top3tempHtmlArray = [];
         const tempHtmlArray = [];
         let rankCount = 0;
         for (let i = 0; i < rankCardItems.length; i++) {
             const rankCardItem = rankCardItems[i];
-            let idolImage = rankCardItem.idolImage.img
-            let idolName = rankCardItem.idolName
+            let idolImage    = rankCardItem.idolImage.img
+            let idolName     = rankCardItem.idolName
+            let youtubeScore = parseInt(rankCardItem.youtubeScore).toLocaleString()
+            let spotifyScore = parseInt(rankCardItem.spotifyScore).toLocaleString()
+            let instaScore   = parseInt(rankCardItem.instaScore).toLocaleString()
+            let googleScore  = parseInt(rankCardItem.googleScore).toLocaleString()
+            let overallScore = parseInt(rankCardItem.overallScore).toLocaleString()
             
+            idolName = idolName.charAt(0).toUpperCase() + idolName.slice(1);
+
             rankCount += 1;
             if (rankCount <= 3) {
                 const top3TempHtml = `<div class="col-md-4">
                                     <div class="card">
-                                        <a href = /?term=${encodeURIComponent(idolName)}>
+                                        <a onclick="IdolRankModalInfo('${youtubeScore}','${spotifyScore}','${instaScore}','${googleScore}','${overallScore}','${idolName}','${idolImage}','${rankCount}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
                                             <div style="width: 17rem;">
                                             <img src="${idolImage}" id="first-card-img" class="card-img-top" alt="...">
                                             <div class="card-body">
@@ -46,7 +52,7 @@ async function makeRankCard() {
 
                 const tempHtml2 = `<div class="col-md-3 mb-8">
                                   <div class="card">
-                                      <a href = /?term=${encodeURIComponent(idolName)}>
+                                      <a onclick="IdolRankModalInfo('${youtubeScore}','${spotifyScore}','${instaScore}','${googleScore}','${overallScore}','${idolName}','${idolImage}','${rankCount}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
                                           <div style="width: 12rem;">
                                               <img src="${idolImage}" id="second-card-img" class="card-img-top" alt="...">
                                               <div class="card-body">
@@ -62,7 +68,7 @@ async function makeRankCard() {
             } else if (rankCount <= 40) {
                 const tempHtml = `<div class="col-md-3 mb-8">
                                     <div class="card">
-                                        <a href = /?term=${encodeURIComponent(idolName)}>
+                                        <a onclick="IdolRankModalInfo('${youtubeScore}','${spotifyScore}','${instaScore}','${googleScore}','${overallScore}','${idolName}','${idolImage}','${rankCount}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
                                             <div style="width: 12rem;">
                                                 <img src="${idolImage}" id="second-card-img" class="card-img-top" alt="...">
                                                 <div class="card-body">
