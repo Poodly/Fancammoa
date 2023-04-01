@@ -1,8 +1,7 @@
-function IdolRankModalInfo(youtubeScore, spotifyScore, instaScore, googleScore, idolName, idolImage, rankCount) {
+function IdolRankModalInfo(youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolName, idolImage, rankCount) {
     const handleModalSize = document.getElementById('modal-container')
     handleModalSize.style.maxWidth = '55%';
 
-    // let idolNameIdolName = idolName.toUpperCase()
     $('#exampleModalLabel').html(`<h4>${rankCount}. ${idolName}</h4>`)
 
     $('#modal-idol-info').html(`<div id="modal-card-img-body">
@@ -17,6 +16,7 @@ function IdolRankModalInfo(youtubeScore, spotifyScore, instaScore, googleScore, 
                                                     <th scope="col">Spotify Score</th>
                                                     <th scope="col">Instagram Score</th>
                                                     <th scope="col">Google Score</th>
+                                                    <th scope="col">Overall</th>
                                                 </tr>
     
                                                 <tbody>
@@ -25,6 +25,7 @@ function IdolRankModalInfo(youtubeScore, spotifyScore, instaScore, googleScore, 
                                                         <td>${spotifyScore}</td>
                                                         <td>${instaScore}</td>
                                                         <td>${googleScore}</td>
+                                                        <td>${overallScore}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
