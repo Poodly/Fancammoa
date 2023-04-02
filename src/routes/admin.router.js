@@ -57,7 +57,8 @@ router.put('/replaceIdolImg'    , onlyAdmin, isLoggedIn, imageConrtoller.replace
 
 // K-POP 뉴스 관리
 router.get('/getAllnews'        , onlyAdmin, isLoggedIn, kpopNewsGetController.getAllnews);       // /admin/getKpopNews 
-router.post('/saveKpopNews'     , onlyAdmin, isLoggedIn, kpopNewsSaveController.saveKpopNews);    // /news/saveKpopNews
+router.post('/saveKpopNews'     , onlyAdmin, isLoggedIn, kpopNewsSaveController.saveKpopNews);    // /admin/saveKpopNews
+router.put('/editNewsInfo'      , onlyAdmin, isLoggedIn, kpopNewsEditController.editNewsInfo);    // /admin/editNewsInfo
 router.delete('/deleteNews'     , onlyAdmin, isLoggedIn, kpopNewsEditController.deleteNews);      // /admin/getKpopNews 
 
 // 키워드 관련
