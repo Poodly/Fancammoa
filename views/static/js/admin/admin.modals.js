@@ -338,9 +338,9 @@ function editNewsInfoModal(newsId, newsLink, newsImg, newsDate) {
         newsLink = newsLink.slice(0, 40) + " ...";
     }
 
-    if (newsImg.length >= 40) {
-        newsImgText = newsImg.slice(0, 40) + " ...";
-    }
+    // if (newsImg.length >= 40) {
+    //     newsImg = newsImg.slice(0, 40) + " ...";
+    // }
 
     $('#modal-idol-info').html(`<div id="modal-card-img-body">
                                     <img src="${newsImg}" id="modal-card-img" class="" alt="...">
@@ -370,7 +370,7 @@ function editNewsInfoModal(newsId, newsLink, newsImg, newsDate) {
                                                 <tr>
                                                     <td id="modal-news-eidt-newsId">${newsId}</td>
                                                     <td><input style="width: 250px;" id="modal-newsLink-input" value="${newsLink}"></td>
-                                                    <td><input style="width: 600px;" id="modal-newsImgText-input" value="${newsImgText}"></td>
+                                                    <td><input style="width: 600px;" id="modal-newsImg-input" value="${newsImg}"></td>
                                                     <td><input style="width: 70px;" id="modal-newsDate-input" value="${newsDate}"></td>
                                                 </tr>
                                             </tbody>

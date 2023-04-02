@@ -14,7 +14,7 @@ editNewsInfo = async () => {
   try {
     const newsId   = document.getElementById('modal-news-eidt-newsId').textContent;                                                
     const newsLink = document.getElementById('modal-newsLink-input').value;                                                
-    const newsImg  = document.getElementById('modal-newsImgText-input').value;                                                
+    const newsImg  = document.getElementById('modal-newsImg-input').value;                                                
     const newsDate = document.getElementById('modal-newsDate-input').value;                                                
     await axios.put('/admin/editNewsInfo', {
       newsId,
