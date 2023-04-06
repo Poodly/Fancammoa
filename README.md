@@ -1,5 +1,5 @@
 # ✨ K-POP 영상, 뉴스, 순위 콘텐츠를 제공합니다! ✨
-<img src="./docs/fancammoa.title.png" width=60%>
+<img src="./docs/fancammoa.title.png" width=40%>
 사이트 대표사진, 사이트 설명글 넣기
 
 <br>
