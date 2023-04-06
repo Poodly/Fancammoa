@@ -68,6 +68,8 @@
 아키텍처 사진
 
 <div>
+  <!-- Node.js -->
+  <img src="https://img.shields.io/badge/node-2B037A?style=flat-square&logo=node&logoColor=white"/>
   <!-- PM2 -->
   <img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>
   <!-- MySQL -->
@@ -76,8 +78,6 @@
   <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=Redis&logoColor=white"/>
   <!-- GitHub -->
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
-  <!-- Docker -->
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
 </div>
 
 <br>
