@@ -69,7 +69,7 @@
 
 <div>
   <!-- Node.js -->
-  <img src="https://img.shields.io/badge/node-2B037A?style=flat-square&logo=node&logoColor=white"/>
+  <img src="https://img.shields.io/badge/NODE.JS-339933?style=flat-square&logo=NODE.JS&logoColor=white"/>
   <!-- PM2 -->
   <img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>
   <!-- MySQL -->
