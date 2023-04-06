@@ -107,29 +107,24 @@
 ## 🗂 프로젝트 구조
 
 <details>
-  <summary><b>Back-End (Nest.js)</b></summary>
+  <summary><b>Back-End (Node.js)</b></summary>
   
 ```html
 📦src
- ┣ 📂admin                  # 관리자 API
- ┣ 📂auth                   # 사용자 API
- ┣ 📂chat                   # 채팅 API
- ┣ 📂collections            # 콜렉션 API
- ┣ 📂common
- ┃ ┣ 📂aws                  # AWS S3 세팅 관련
- ┃ ┣ 📂config               # cache, typeorm 등의 세팅 관련
- ┃ ┣ 📂logging              # winston을 통한 로깅 관련
- ┃ ┗ 📂multer               # 이미지 업로드용 multer
- ┣ 📂googleVision           # Google vision API
- ┣ 📂guide                  # 서비스 이용안내 API
- ┣ 📂mailer                 # 메일 시스템 관련
- ┣ 📂meetups                # 같이찍어요 API
- ┣ 📂photospot              # 포토스팟 API
- ┣ 📂social                 # 소셜 로그인 관련
- ┣ 📜app.controller.ts
- ┣ 📜app.module.ts
- ┣ 📜app.service.ts
- ┗ 📜main.ts
+ ┣📂architecture                  
+ ┣ ┣📂controllers
+ ┣ ┣📂repositories
+ ┣ ┗📂services
+ ┣📂config                   
+ ┣📂middlewares                  
+ ┣📂models           
+ ┣📂routes
+ ┣📂seeders                 
+ ┗📜app.js
+📦views
+ ┣📂static
+ ┣ ┣📂css
+ ┗ ┗📂js
 ```
 </details>
 
