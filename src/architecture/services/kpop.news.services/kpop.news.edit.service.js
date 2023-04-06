@@ -3,6 +3,17 @@ const KpopNewsEditRepository = require('../../repositories/kpop.news.repositorie
 class KpopNewsEditService {
     kpopNewsEditRepository = new KpopNewsEditRepository();
 
+    editNewsInfo = async (newsId, newsLink, newsImg, newsDate) => {
+        try {
+            await this.kpopNewsEditRepository.editNewsInfo(newsId, newsLink, newsImg, newsDate)
+            return
+
+        }catch(error) {
+            console.error(error);
+            next();
+        };
+    };
+
     deleteNews = async (newsId) => {
         try {
             await this.kpopNewsEditRepository.deleteNews(newsId)

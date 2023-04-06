@@ -1,7 +1,6 @@
 require("dotenv").config();
 const redis = require('redis');
 
-
 let redisClient = ''
 if (process.env.NODE_ENV === 'production') {
     redisClient = redis.createClient({
@@ -15,6 +14,10 @@ if (process.env.NODE_ENV === 'production') {
         port: 6379,                         
   });
 }
+// const redisClient = redis.createClient({
+//   legacyMode: true,
+//   port: 6379,                         
+// });
 
 redisClient.connect();
 

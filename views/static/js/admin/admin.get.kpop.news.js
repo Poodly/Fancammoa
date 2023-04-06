@@ -30,6 +30,7 @@ async function adminGetKpopNews() {
             let newsTitle = kpopNewsItem.newsTitle;
             let press     = kpopNewsItem.press;
             let newsDate  = kpopNewsItem.newsDate;
+            let newsType  = kpopNewsItem.newsType;
 
             if (newsTitle.length >= 30) {
                 newsTitle = newsTitle.slice(0, 30) + " ...";
@@ -48,8 +49,11 @@ async function adminGetKpopNews() {
                                         <div class="card-body">
                                           <p class="card-title-blank">${newsTitle}</p>
                                           <div class="card-body2">
-                                          <p class="card-text"><small class="text-muted">${press} ${newsDate}</p>
+                                          <p class="card-text"><small class="text-muted">${newsType} ${press} ${newsDate}</p>
+                                          
+                                          <button onclick="editNewsInfoModal('${newsId}','${newsLink}','${newsImg}','${newsDate}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">수정</button>
                                           <a id="news-trash-icon-delete" onclick="modalEditNews(${newsId})" data-bs-toggle="modal" data-bs-target="#confirmModal-delete">${newsTrashIcon}</a>
+                                          
                                           </div>
                                         </div>
                                       </div>
@@ -68,8 +72,11 @@ async function adminGetKpopNews() {
                                         <div class="card-body">
                                           <p class="card-title">${newsTitle}</p>
                                           <div class="card-body2">
-                                          <p class="card-text"><small class="text-muted">${press} ${newsDate}</p>
+                                          <p class="card-text"><small class="text-muted">${newsType} ${press} ${newsDate}</p>
+
+                                          <button onclick="editNewsInfoModal('${newsId}','${newsLink}','${newsImg}','${newsDate}')" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">수정</button>
                                           <a id="news-trash-icon-delete" onclick="modalEditNews(${newsId})" data-bs-toggle="modal" data-bs-target="#confirmModal-delete">${newsTrashIcon}</a>
+                                          
                                           </div>
                                         </div>
                                       </div>
