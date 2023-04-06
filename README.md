@@ -65,13 +65,33 @@
 
 ## ⚙️ 서비스 아키텍처
 
-아키텍처 사진
+<img src="./docs/service.architecture.jpg" width=100%>
 
 <div>
   <!-- Node.js -->
   <img src="https://img.shields.io/badge/NODE.JS-339933?style=flat-square&logo=NODE.JS&logoColor=white"/>
+  <!-- Express -->
+  <img src="https://img.shields.io/badge/EXPRESS-000000?style=flat-square&logo=EXPRESS&logoColor=white"/>
   <!-- PM2 -->
   <img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>
+</div>
+
+<div>
+  <!-- EJS -->
+  <img src="https://img.shields.io/badge/EJS-style=flat-square&logo=EJS&logoColor=black"/>
+  <!-- CSS -->
+  <img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS&logoColor=black"/>
+  <!-- JS -->
+  <img src="https://img.shields.io/badge/JS-F7DF1E?style=flat-square&logo=JS&logoColor=black"/>
+</div>
+
+<div>
+  <!-- AWS -->
+  <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat-square&logo=Amazon EC2&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat-square&logo=Amazon RDS&logoColor=white"/>
+</div>
+
+<div>
   <!-- MySQL -->
   <img src="https://img.shields.io/badge/Mysql-4479A1?style=flat-square&logo=Mysql&logoColor=white"/>
   <!-- Redis -->
