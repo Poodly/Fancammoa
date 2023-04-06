@@ -22,7 +22,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <details>
   <summary>K-POP스타의 순위</summary>
   <img src="./docs/fancammoa.rank.png" width=100%>
-  <img src="./docs/fancammoa.modal.png" width=100%>
+  <img src="./docs/fancammoa.rank.modal.png" width=100%>
 </details>
 
 <br>
