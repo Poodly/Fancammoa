@@ -24,7 +24,7 @@
 <br>
 
 ## K-POP스타들의 영상을 모아보세요!
-[💜 팬캠모아 사이트로 이동하기 💚](https://www.chalkak.site)  
+[💜 팬캠모아 사이트로 이동하기 💚](https://www.fancammoa.com/)  
 
 <br>
 <br>
