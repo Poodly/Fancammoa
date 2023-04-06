@@ -82,7 +82,7 @@
   <!-- CSS -->
   <img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS&logoColor=black"/>
   <!-- JS -->
-  <img src="https://img.shields.io/badge/JS-F7DF1E?style=flat-square&logo=JS&logoColor=black"/>
+  <img src="https://img.shields.io/badge/JS-#F7DF1E?style=flat-square&logo=JS&logoColor=black"/>
 </div>
 
 <div>
