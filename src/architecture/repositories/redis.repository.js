@@ -2,19 +2,23 @@ require("dotenv").config();
 const redis = require('redis');
 
 
-let redisClient = ''
-if (process.env.NODE_ENV === 'production') {
-    redisClient = redis.createClient({
-        url: `redis://${process.env.REDIS_HOST}`,          
-        password: process.env.REDIS_PW,                                  
-        legacyMode: true,
-  });
-}else {
-    redisClient = redis.createClient({
-        legacyMode: true,
-        port: 6379,                         
-  });
-}
+// let redisClient = ''
+// if (process.env.NODE_ENV === 'production') {
+//     redisClient = redis.createClient({
+//         url: `redis://${process.env.REDIS_HOST}`,          
+//         password: process.env.REDIS_PW,                                  
+//         legacyMode: true,
+//   });
+// }else {
+//     redisClient = redis.createClient({
+//         legacyMode: true,
+//         port: 6379,                         
+//   });
+// }
+const redisClient = redis.createClient({
+  legacyMode: true,
+  port: 6379,                         
+});
 
 redisClient.connect();
 
