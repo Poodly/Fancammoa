@@ -107,8 +107,6 @@
 ## 🗂 프로젝트 구조
 
 <details>
-  <summary><b>Back-End (Node.js)</b></summary>
-  
 ```html
 📦src
  ┣📂architecture                  
