@@ -6,9 +6,12 @@
 <br>
 
 ## K-POP스타들의 영상을 검색하고 시청해 보세요!
-평소에 좋아하던 K-POP스타를 검색해 보세요.
-토글로 스샷1
-토글로 스샷2
+<details>
+  <summary>평소에 좋아하던 K-POP스타를 검색하고 시청 보세요.</summary>
+  <img src="./docs/fancammoa.search.png" width=100%>
+  <img src="./docs/fancammoa.search.modal.png" width=100%>
+</details>
+
 <br>
 
 ## K-POP스타들의 순위를 확인하세요!
