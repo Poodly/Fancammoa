@@ -13,7 +13,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <details>
   <summary>평소에 좋아하던 K-POP스타를 검색하고 시청 보세요.</summary>
   <img src="./docs/fancammoa.search.png" width=100%>
-  <br>
+     
   <img src="./docs/fancammoa.search.modal.png" width=100%>
 </details>
 
