@@ -65,7 +65,7 @@
 
 ## ⚙️ 서비스 아키텍처
 
-<img src="./docs/service.architecture.jpg" width=100%>
+<img src="./docs/service.architecture.png" width=100%>
 
 <div>
   <!-- Node.js -->
