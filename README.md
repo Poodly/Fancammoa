@@ -1,8 +1,12 @@
 # ✨ K-POP 영상, 뉴스, 순위 콘텐츠를 제공합니다! ✨
-<img src="./docs/fancammoa.title.png" width=100%>
-사이트 대표사진, 사이트 설명글 넣기
+[<img src="./docs/fancammoa.title.png" width=40%>](https://www.fancammoa.com/)  
 
 <br>
+
+K-POP 아이돌 팬들을 위한 사이트   
+각 아이돌의 직캠, 뮤직비디오, 인터뷰 등을 검색하고 소장해 보세요.  
+그리고, 최신 K-POP 뉴스와 순위를 확인하실수 있습니다.  
+
 <br>
 
 ## K-POP스타들의 영상을 검색하고 시청해 보세요!
