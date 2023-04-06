@@ -44,7 +44,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 
 ## 💚 팬캠모아 사이트로 이동하기 💚
-https://www.fancammoa.com/
+<a href="https://www.fancammoa.com/" target="_blank" style="font-size: 25px;">fancammoa.com</a>
 
 <br>
 <br>
@@ -152,11 +152,23 @@ https://www.fancammoa.com/
 
 ## 🛠 설계
 
-## 🌏 지원하는 브라우저
+<details>
+  <summary><b>ERD</b></summary>
+  <div markdown="1">
+    <ul>
+      <div><img src="./docs/fancammoa.erd.png" width=100%></div>
+    </ul>
+  </div>
+</details>
 
-| <img src='./docs/지원브라우저/chrome.png' width=60> | <img src='./docs/지원브라우저/edge.png' width=60> | <img src='./docs/지원브라우저/safari.png' width=60> |
-| :-: | :-: | :-: |
-| Chrome | Edge | Safari |
+<details>
+  <summary><b>API</b></summary>
+  <div markdown="1">
+    <ul>
+      API
+    </ul>
+  </div>
+</details>
 
 <br>
 <br>
