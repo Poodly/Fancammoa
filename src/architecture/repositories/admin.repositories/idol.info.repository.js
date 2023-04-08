@@ -7,10 +7,10 @@ class IdolInfoRepository {
             const idolNameSvae = await IdolData.create({ idolName });
             return idolNameSvae
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        }
+            throw new Error('아이돌 생성 실패');
+        };
     } 
 
     craeteIdolRankScore = async (idolId) => {
@@ -18,22 +18,22 @@ class IdolInfoRepository {
             await IdolRankScore.create( { idolId } );
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        }
-    } 
+            throw new Error('아이돌 순위 점수 생성 실패');
+        };
+    };
 
     exIdolName = async (idolName) => {
         try {
             const exIdolName = await IdolData.findOne({ where: { idolName } });
             return exIdolName
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        }
-    }
+            throw new Error('아이돌 이름 조회 실패');
+        };
+    };
 
     updateIdolScore = async (idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) => {
         try {
@@ -49,9 +49,9 @@ class IdolInfoRepository {
 
         }catch (error) {
             console.error(error);
-            next();
+            throw new Error('아이돌 점수 업데이트 실패');
         };
-    }
+    };
 
     deleteIdol = async (idolId) => {
         try {
@@ -62,9 +62,9 @@ class IdolInfoRepository {
 
         }catch (error) {
             console.error(error);
-            next();
+            throw new Error('아이돌 삭제 실패');
         };
-    }
+    };
 };
 
 module.exports = IdolInfoRepository;
