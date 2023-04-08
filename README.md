@@ -73,11 +73,17 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 
 <details>
-  <summary>배포환경에서 크롤링 에러</summary>
+  <summary>배포환경 에러</summary>
   <div markdown="1">
 
   - 뉴스페이지 크롤링:   
     배포환경 Selenium 크롬 크롤링 실행이 되지 않는 이슈를 Linux 에서 chromedriver, xvfb 설치를 통해 해결
+    
+  - CORS 해결:   
+    CORS 미들웨어 함수를 app.js 미들웨어 가장 상단에 두어 클라이언트와 서버 간의 자유로운 데이터 교환을 가능하게 변경
+    
+  - RDS MySql error “is blocked because of many connection errors. Unblock with 'mysqladmin flush-hosts” 에러:   
+    RDS 파라미터 그룹에서 max_connect_errors 값을 수정후 해결
 
   </div>
 </details>
