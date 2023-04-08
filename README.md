@@ -70,11 +70,17 @@ K-POP 아이돌 팬들을 위한 사이트
   </div>
 </details>
 
-
-
 <br>
 
-### ~~~
+<details>
+  <summary>배포환경에서 크롤링 에러</summary>
+  <div markdown="1">
+
+  - 뉴스페이지 크롤링:   
+    배포환경 Selenium 크롬 크롤링 실행이 되지 않는 이슈를 Linux 에서 chromedriver, xvfb 설치를 통해 해결
+
+  </div>
+</details>
 
 <br>
 
