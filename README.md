@@ -171,7 +171,7 @@ K-POP 아이돌 팬들을 위한 사이트
 
 <br>
 
-<img src="./docs/fancammoa.erd.png" width=100%>
+[notion/FancamMoa API](https://www.notion.so/API-cb924349c9ec450384a894e9f456fe14?pvs=4)
 
 <br>
 <br>
