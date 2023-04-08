@@ -174,3 +174,11 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 
 ## 👨‍🚀 제작자
+
+<br>
+
+| <img src='https://github.com/boleesystem.png' width=120> 
+| :-: |
+| 정성훈 |
+| [<img src='./docs/github_logo.png' width=20>GitHub](https://github.com/boleesystem), [블로그](https://boleesystem.tistory.com) | 
+| boleesystem@gmail.com |
