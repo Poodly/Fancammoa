@@ -16,6 +16,36 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
+## 기능구현
+
+<br>
+  - 회원가입, 로그인, 유효성 검사  
+      - express-session, passport, joi를 통한 구현  
+      - joi 유효성검사: 서버에서 유효성 검사를 간결, 정확하게 수행하고, 서버에 전달되는 데이터의 정확성과 일관성을 보장하기 위해 사용  
+<br>
+  - 아이돌 영상검색 및 시청  
+      - 유튜브 API를 이용하여 검색로직 구하였고 키워드를 통해 K-POP과 상관없는 검색결과를 걸러낼수있도록 구현  
+<br>
+  - K-POP 순위보기  
+      - Spotify API, Last FM API, 유튜브API 등을 활용하여 저장된 K-POP 가수들의 각종 수치들을 이용해 순위를 산정  
+<br>
+  - K-POP 뉴스보기  
+      - 웹 페이지의 동적 로딩 등에 대응하기 위해 Selenium을 이용하여 뉴스픽 사이트 크롤링을 하여 구현  
+      - Server side 페이지네이션:  뉴스데이터는 자주 업데이트 되므로  offset이 아니라 cursor페이지네이션을 id순서 기반으로 구현  
+<br>
+  - 마이페이지  
+      - 유저와 영상을 N:M 관계 설정을 통해 CRUD를 적용하여 영상 좋아요 기능을 구현 하였고, 좋아요한 영상들을 모아 볼 수 있습니다.  
+<br>
+  - 어드민 페이지  
+      - 등록된 관리자 아이디만 들어갈수있도록 미들웨어에서 막아주었으며, 관리자 로그인을 해야 버튼이 나오도록 구현  
+      - 아이돌 정보, 점수 업데이트: Spotify API, 유튜브 API등을 호출하여 전체, 개인별 점수 업데이트를 할 수 있으며, 아이돌을 CRUD 할 수 있도록 구현  
+      - 아이돌 순위 이미지 업데이트: 아이돌 순위 이미지를 CRUD를 통해 업데이트 할 수 있도록 구현  
+      - K-POP뉴스 업데이트: Selenium을 이용하여 뉴스픽 사이트 크롤링을 하여 업데이트 할 수 있으며, CRUD를 통해 업데이트  
+      - 키워드 업데이트:  CRUD를 통해 업데이트 할 수 있도록 구현  
+        
+<br>
+<br>
+
 ## 트러블슈팅
 
 <details>
@@ -40,13 +70,13 @@ K-POP 아이돌 팬들을 위한 사이트
   <summary>배포환경 에러</summary>
   <div markdown="1">
 
-  - 뉴스페이지 크롤링:   
+  - 뉴스페이지 크롤링   
     배포환경 Selenium 크롬 크롤링 실행이 되지 않는 이슈를 Linux 에서 chromedriver, xvfb 설치를 통해 해결
     
-  - CORS 해결:   
+  - CORS 해결   
     CORS 미들웨어 함수를 app.js 미들웨어 가장 상단에 두어 클라이언트와 서버 간의 자유로운 데이터 교환을 가능하게 변경
     
-  - RDS MySql error “is blocked because of many connection errors. Unblock with 'mysqladmin flush-hosts” 에러:   
+  - RDS MySql error “is blocked because of many connection errors. Unblock with 'mysqladmin flush-hosts” 에러   
     RDS 파라미터 그룹에서 max_connect_errors 값을 수정후 해결
 
   </div>
