@@ -1,8 +1,6 @@
 # ✨ K-POP 영상, 뉴스, 순위 콘텐츠를 제공합니다! ✨
 [<img src="./docs/fancammoa.title.png" width=40%>](https://www.fancammoa.com/)  
 이미지를 클릭하면 사이트로 이동 합니다.
-
-## 💚 팬캠모아 사이트로 이동하기 💚
 <a href="https://www.fancammoa.com/" target="_blank" style="font-size: 25px;">fancammoa.com</a>
 
 <br>
