@@ -7,11 +7,27 @@ const path         = require('path');
 const passport     = require('passport'); 
 const bcrypt       = require('bcrypt');
 const cors         = require('cors')
+const redis        = require('redis');
+const RedisStore   = require('connect-redis').default;
 
 const { sequelize } = require('./models');
 
 require("dotenv").config();
 
+let redisClient = ''
+if (process.env.NODE_ENV === 'production') {
+    redisClient = redis.createClient({
+        url: `redis://${process.env.REDIS_HOST}`,          
+        password: process.env.REDIS_PW,                                  
+        legacyMode: true,
+  });
+}else {
+    redisClient = redis.createClient({
+        legacyMode: true,
+        port: 6379,                         
+  });
+}
+redisClient.connect().catch(console.error);
 // ----------------------------------------- connect routes ----------------------------------------
 const userRouter   = require('./routes/user.router');
 const pagesRouter  = require('./routes/pages.router');
@@ -76,11 +92,14 @@ app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../views")));
 
 // ------------------------------------------ parser -----------------------------------------------
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended:false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended:false} ));
 app.use(cookieParser(process.env.COOKIE_SECRET)); 
+
+// store값은 기본값이 메모리 이다.
 const sessionOption = {
+    store: new RedisStore({ client: redisClient, prefix: "myapp:" }),
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
@@ -90,19 +109,13 @@ const sessionOption = {
         secure: false,
     }
 };
+
 if(process.env.NODE_ENV === 'production') {
     sessionOption.proxy = true;
     sessionOption.cookie.secure = true;
 }
-app.use(session({resave: false,
-    saveUninitialized: false,
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-        maxAge: 1 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: false,
-    }
-}));
+
+app.use(session({ sessionOption })); // 변수에 sessionOption객체를 담아 전달
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 

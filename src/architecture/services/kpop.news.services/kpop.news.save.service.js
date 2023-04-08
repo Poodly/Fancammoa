@@ -142,9 +142,9 @@ class KpopNewsService {
             }
             return
     
-        } catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error(error.message);
             
         } finally {
             driver.quit();

@@ -8,10 +8,10 @@ class KpopNewsController {
             await this.kpopNewsService.saveKpopNews();
             res.status(200).json({ message: "News saved success" })
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error })    
-        } 
+            next(error); 
+        };
     }
 }
 

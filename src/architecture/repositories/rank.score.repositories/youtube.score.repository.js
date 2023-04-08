@@ -11,10 +11,10 @@ class YoutubeScoreRepository {
             });
             return allIdolDatas;
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     getIdolData = async (idolId) => {
@@ -22,10 +22,10 @@ class YoutubeScoreRepository {
             const idolData = await IdolData.findOne({ where: { idolId } });
             return idolData;
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     updateYoutubeScore = async (youtubeScore, idolId) => {
@@ -33,10 +33,10 @@ class YoutubeScoreRepository {
             await IdolRankScore.update({ youtubeScore }, { where: { idolId } }); // 비디오id를 가지로 얻은 점수를 db에 저장
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     }
 };
 

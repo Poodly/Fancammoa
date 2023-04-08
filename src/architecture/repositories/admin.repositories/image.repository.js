@@ -7,11 +7,11 @@ class ImageRepository {
             await IdolImage.create({ img, idolId });
             return
 
-        } catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('Spotify 이미지 생성 실패');
         }
-    }
+    };
 
     getIdolDatas = async () => {
         try {
@@ -23,10 +23,10 @@ class ImageRepository {
             const idolNamesArr = allIdolDatas.map(allIdolData => allIdolData.dataValues);
             return idolNamesArr;
 
-        } catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error('아이돌 이름 전체 조회 실패');
+        }
     };
 
     replaceIdolImg = async (imgId, idolImage) => {
@@ -35,9 +35,9 @@ class ImageRepository {
             return
 
         }catch (error) {
-            console.log(error);
-            next();
-        };
+            console.error(error);
+            throw new Error('아이돌 이미지 교체 실패');
+        }
     };
 }
 

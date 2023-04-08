@@ -12,9 +12,9 @@ class KpopNewsGetController {
             let kpopNews = await this.kpopNewsGetService.getKpopNews(limit, cursor)
             res.status(200).json({ kpopNews, maxCount });
     
-        } catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error });
+            next(error); 
         };
     };
     
@@ -23,9 +23,9 @@ class KpopNewsGetController {
             const top3KpopNews = await this.kpopNewsGetService.getTop3KpopNews()
             res.status(200).json({ top3KpopNews });
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error })
+            next(error); 
         };
     };
 
@@ -34,9 +34,9 @@ class KpopNewsGetController {
             const kpopNews = await this.kpopNewsGetService.getAllnews()
             res.status(200).json({ kpopNews });
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error })
+            next(error); 
         };
     };
 };

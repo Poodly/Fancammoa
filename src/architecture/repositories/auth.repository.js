@@ -8,6 +8,7 @@ class AuthRepository {
             const exUser = await User.findOne({ where: { email } });
             return exUser;
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -17,6 +18,7 @@ class AuthRepository {
             const exNick = await User.findOne({ where: { nick } });
             return exNick;
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -25,6 +27,7 @@ class AuthRepository {
         try {
             await User.create({ email, nick, password });
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -33,6 +36,7 @@ class AuthRepository {
         try {
             await User.destroy({ where: { email } });
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }

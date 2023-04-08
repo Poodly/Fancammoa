@@ -53,9 +53,9 @@ class SpotifyScoreService {
             }
             return spotifyArr
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error(error.message);
         }
     }
 
@@ -85,11 +85,10 @@ class SpotifyScoreService {
             } catch (error) {
                 console.log(`spotify 검색결과가 없습니다.`);
                 console.error(error);
-                next();
             }
         }catch (error) {
             console.error(error);
-            next();
+            throw new Error(error.message);
         }
     }
 }

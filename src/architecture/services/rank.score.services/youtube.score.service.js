@@ -7,38 +7,50 @@ class YoutubeScoreService {
     youtubeScoreRepository = new YoutubeScoreRepository();
 
     getVideoId = async (query, APIKEY, startDateTime, currentDateTime, SEARCHURL) => {
-        const params = {
-            part: 'snippet',
-            q: query,
-            type: 'video',
-            key: APIKEY,
-            maxResults: env.SCORE_MAX_RESULTS,
-            order: 'viewCount',
-            publishedAfter: startDateTime,   // 시작 기간
-            publishedBefore: currentDateTime // 현재
-        };
-        const response = await axios.get(SEARCHURL, { params });
-        const items = response.data.items;
-        const videoId = items.map(item => item.id.videoId);
-        return videoId;
+        try {
+            const params = {
+                part: 'snippet',
+                q: query,
+                type: 'video',
+                key: APIKEY,
+                maxResults: env.SCORE_MAX_RESULTS,
+                order: 'viewCount',
+                publishedAfter: startDateTime,   // 시작 기간
+                publishedBefore: currentDateTime // 현재
+            };
+            const response = await axios.get(SEARCHURL, { params });
+            const items = response.data.items;
+            const videoId = items.map(item => item.id.videoId);
+            return videoId;
+            
+        }catch (error) {
+            console.error(error);
+            throw new Error(error.message);
+        }
     }
 
     getVideoScore = async (videoId, APIKEY, VIDEOURL) => {
-        const params = {
-            part: 'snippet,statistics',
-            id: videoId,
-            key: APIKEY
-        };
-        const response = await axios.get(VIDEOURL, { params });
-        const item = response.data.items[0];
-        
-        const viewCount    = parseInt(item.statistics.viewCount);
-        const likeCount    = parseInt(item.statistics.likeCount);
-        const commentCount = parseInt(item.statistics.commentCount);
-
-        // const data = Math.round((viewCount + likeCount + commentCount)/10000);
-        const data = viewCount + likeCount + commentCount;
-        return data;
+        try {
+            const params = {
+                part: 'snippet,statistics',
+                id: videoId,
+                key: APIKEY
+            };
+            const response = await axios.get(VIDEOURL, { params });
+            const item = response.data.items[0];
+            
+            const viewCount    = parseInt(item.statistics.viewCount);
+            const likeCount    = parseInt(item.statistics.likeCount);
+            const commentCount = parseInt(item.statistics.commentCount);
+    
+            // const data = Math.round((viewCount + likeCount + commentCount)/10000);
+            const data = viewCount + likeCount + commentCount;
+            return data;
+        }
+        catch (error) {
+            console.error(error);
+            throw new Error(error.message);
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------------------------
@@ -74,9 +86,9 @@ class YoutubeScoreService {
             }
             return
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next(error);
+            throw new Error(error.message);
         }
     };
 
@@ -104,9 +116,9 @@ class YoutubeScoreService {
             await this.youtubeScoreRepository.updateYoutubeScore(youtubeScore, idolId); // 비디오id를 가지로 얻은 점수를 db에 저장   
             return youtubeScore
             
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next(error);
+            throw new Error(error.message);
         }
     };
 };

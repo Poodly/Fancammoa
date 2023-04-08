@@ -9,22 +9,21 @@ class KpopNewsEditController {
             await this.kpopNewsEditService.editNewsInfo(newsId, newsLink, newsImg, newsDate)
             res.status(200).json({ message: '뉴스 수정 성공' });
 
-        }catch(error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error })
+            next(error); 
         };
     };
 
     deleteNews = async (req, res, next) => {
         try {
             const { newsId } = req.body;
-            // console.log("newsId----------",newsId);
             await this.kpopNewsEditService.deleteNews(newsId)
             res.status(200).json({ message: '뉴스 삭제 성공' });
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error })
+            next(error); 
         };
     };
 };

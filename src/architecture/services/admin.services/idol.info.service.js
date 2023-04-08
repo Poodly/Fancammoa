@@ -30,29 +30,29 @@ class IdolInfoService {
 
         }catch (error) {
             console.error(error);
-            next();
-        };
-    }
+            throw new Error('아이돌 이름 생성 실패');
+        }
+    };
     
     updateIdolScore = async (idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId) => {
         try {
             await this.idolInfoRepository.updateIdolScore(idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId ); // 점수들을 업데이트
             return
 
-        }catch (error) {
-            console.error(error);
-            next();
+        }catch (err) {
+            console.error(err);
+            throw new Error('아이돌 점수 업데이트 실패');
         };
-    }
+    };
 
     deleteIdol = async (idolId) => {
         try {
             await this.idolInfoRepository.deleteIdol(idolId)
             return
 
-        }catch (error) {
-            console.error(error);
-            next();
+        }catch (err) {
+            console.error(err);
+            throw new Error('아이돌 삭제 실패');
         };
     }
 };

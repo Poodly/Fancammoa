@@ -8,9 +8,9 @@ class RankInfoController {
             const RankInfoItems = await this.rankInfoService.getRankInfoAllItems();
             res.status(200).json({ RankInfoItems });
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error });
+            next(error); 
         };
     };
 };
