@@ -1,5 +1,7 @@
 # ✨ K-POP 영상, 뉴스, 순위 콘텐츠를 제공합니다! ✨
 [<img src="./docs/fancammoa.title.png" width=40%>](https://www.fancammoa.com/)  
+이미지를 클릭하면 사이트로 이동 합니다.  
+<a href="https://www.fancammoa.com/" target="_blank" style="font-size: 25px;">fancammoa.com</a>
 
 <br>
 
@@ -41,30 +43,16 @@ K-POP 아이돌 팬들을 위한 사이트
   <img src="./docs/fancammoa.like.png" width=100%>
   <img src="./docs/fancammoa.like.video.png" width=100%>
 </details>
-<br>
-
-## 💚 팬캠모아 사이트로 이동하기 💚
-<a href="https://www.fancammoa.com/" target="_blank" style="font-size: 25px;">fancammoa.com</a>
 
 <br>
 <br>
 
-## 📌 목차 
+## 기술적 의사결정
 
 <br>
 <br>
 
-## 🎥 시연 영상
-
-<br>
-<br>
-
-## 👨‍⚖️ 기술적 의사결정
-
-<br>
-<br>
-
-## 🕵️‍♂️ 트러블슈팅
+## 트러블슈팅
 
 ### ~~~
 
@@ -83,7 +71,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## ⚙️ 서비스 아키텍처
+## 서비스 아키텍처
 
 <img src="./docs/service.architecture.png" width=100%>
 
@@ -124,7 +112,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## 🗂 프로젝트 구조
+## 프로젝트 구조
 
   <summary><b>Back-End (Node.js)</b></summary>
   
@@ -150,7 +138,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## 🛠 설계
+## 설계
 
 <details>
   <summary><b>ERD</b></summary>
