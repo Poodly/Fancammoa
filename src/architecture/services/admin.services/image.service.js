@@ -32,17 +32,18 @@ class ImageService {
                     const img    = result.body.artists.items[0].images[0].url;
 
                     await this.imageRepository.createImg(img, idolId);
-                }
-                catch (error) {
+                
+                }catch (error) {
                     console.log(`spotify 검색결과가 없습니다.`);
                     console.error(error);
                 }
             }
             return
-        } catch (error) {
+
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error('Spotify 이미지 저장 실패');
+        }
     };
 
     replaceIdolImg = async (imgId, idolImage) => {
@@ -51,9 +52,9 @@ class ImageService {
             return
 
         }catch (error) {
-            console.log(error);
-            next();
-        };
+            console.error(error);
+            throw new Error('순위 이미지 교체 실패');
+        }
     };
 
     querySaveSpotifyImg = async (idolId, idolName) => {
@@ -69,10 +70,10 @@ class ImageService {
             await this.imageRepository.createImg(img, idolId);                               // 스포티파이 단일 이미지 저장
             return
 
-        } catch (error) {
-            console.log(error);
-            next();
-        };
+        }catch (error) {
+            console.error(error);
+            throw new Error('Spotify 개별 이미지 저장 실패');
+        }
     }
 }
 

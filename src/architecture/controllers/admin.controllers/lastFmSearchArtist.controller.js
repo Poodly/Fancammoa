@@ -12,10 +12,10 @@ class LastFmSearchArtistController {
             await this.imageService.saveSpotifyImg();
             res.status(200).json({ message: response });
 
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Last Fm API artist Search failed or db save failed", error: error });
-        }
+        }catch (err) {
+            console.error(err);
+            next(err)
+        };
     };
 };
   

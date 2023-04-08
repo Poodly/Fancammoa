@@ -11,10 +11,10 @@ class SpotifyScoreRepository {
             });
             return allIdolDatas;
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     getIdolData = async (idolId) => {
@@ -22,10 +22,10 @@ class SpotifyScoreRepository {
             const idolData = await IdolData.findOne({ where: { idolId } });
             return idolData;
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     updateSpotifyScore = async (spotifyScore, idolId) => {
@@ -33,10 +33,10 @@ class SpotifyScoreRepository {
             await IdolRankScore.update({ spotifyScore }, { where: { idolId } });
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     }
 }
 

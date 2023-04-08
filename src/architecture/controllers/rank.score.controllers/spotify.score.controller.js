@@ -8,10 +8,10 @@ class SpotifyScoreController {
             const spotifyArr = await this.spotifyScoreService.saveSpotifyScore();
             res.status(200).json({ data: spotifyArr })
 
-        } catch (error) {
-            console.error(error)
-            res.status(400).json({ message: error });
-        }
+        }catch (error){
+            console.error(error);
+            next(error); 
+        };
     }
 
     IndividualUpdateSpotify = async (req, res, next) => {
@@ -20,10 +20,10 @@ class SpotifyScoreController {
             const followers = await this.spotifyScoreService.IndividualUpdateSpotify(idolId);
             res.status(200).json({ data: followers })
             
-        }catch (error) {
-            console.error(error)
-            res.status(400).json({ message: error });
-        }
+        }catch (error){
+            console.error(error);
+            next(error); 
+        };
     }
 }
 

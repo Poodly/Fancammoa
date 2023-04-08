@@ -8,6 +8,7 @@ class AuthService {
             const exUser = await this.authRepository.getExUser(email);
             return exUser;
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -17,6 +18,7 @@ class AuthService {
             const exNick = await this.authRepository.getExNick(nick);
             return exNick;
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -25,6 +27,7 @@ class AuthService {
         try {
             await this.authRepository.createUser(email, nick , password);
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }
@@ -33,6 +36,7 @@ class AuthService {
         try {
             await this.authRepository.deleteUser(email);
         }catch (error) {
+            console.error(error);
             throw new Error(error.message);
         }
     }

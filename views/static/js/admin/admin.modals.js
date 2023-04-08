@@ -26,7 +26,6 @@ $(document).ready(function() {
         $("#confirmModal-delete").modal("show");
     });
 
-
     // $(document).on("click", "#trash-icon", function() {
 
     // $("#confirmModal-delete").modal("show");
@@ -81,7 +80,7 @@ $(document).ready(function() {
         // 확인 모달의 "삭제" 버튼을 누르면 삭제 처리를 진행
         $("#confirmModal-delete").modal("hide"); 
 
-        await deleteIdol()
+        await deleteIdol();
         
         window.location.reload();
     });
@@ -90,7 +89,7 @@ $(document).ready(function() {
         // 확인 모달의 "삭제" 버튼을 누르면 삭제 처리를 진행
         $("#confirmModal-delete").modal("hide"); 
 
-        await deleteKeyword()
+        await deleteKeyword();
         
         window.location.reload();
     });
@@ -99,8 +98,15 @@ $(document).ready(function() {
         // 확인 모달의 "삭제" 버튼을 누르면 삭제 처리를 진행
         $("#confirmModal-delete").modal("hide"); 
 
-        await deleteNews()
+        await deleteNews();
         
+        window.location.reload();
+    });
+
+    $("#register-news-btn").click(async function() {
+        await editNewsInfo();
+
+        $("#exampleModal").modal("hide");
         window.location.reload();
     });
 });
@@ -321,4 +327,68 @@ function modalEditNews(newsId) {
                             
     $('#confirm-btn-delete-keyword').hide()
     $('#confirm-btn-delete-press').show()
+}
+
+
+function editNewsInfoModal(newsId, newsLink, newsImg, newsDate) {
+    const handleModalSize = document.getElementById('modal-container')
+    handleModalSize.style.maxWidth = '60%';
+
+    if (newsLink.length >= 40) {
+        newsLink = newsLink.slice(0, 40) + " ...";
+    }
+
+    // if (newsImg.length >= 40) {
+    //     newsImg = newsImg.slice(0, 40) + " ...";
+    // }
+
+    $('#modal-idol-info').html(`<div id="modal-card-img-body">
+                                    <img src="${newsImg}" id="modal-card-img" class="" alt="...">
+                                </div>
+                                    
+                                <div class="modal-card-content">
+
+                                    <div class="info-table">          
+                                        <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">newsId</th>
+                                                <th scope="col">newsLink</th>
+                                                <th scope="col">newsImg</th>
+                                                <th scope="col">newsDate</th>
+                                            </tr>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td id="modal-news-eidt-newsId">${newsId}</td>
+                                                    <td>${newsLink}</td>
+                                                    <td>${newsImg}</td>
+                                                    <td>${newsDate}</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td id="modal-news-eidt-newsId">${newsId}</td>
+                                                    <td><input style="width: 250px;" id="modal-newsLink-input" value="${newsLink}"></td>
+                                                    <td><input style="width: 600px;" id="modal-newsImg-input" value="${newsImg}"></td>
+                                                    <td><input style="width: 70px;" id="modal-newsDate-input" value="${newsDate}"></td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>`)
+
+    // $('#confirm-craete-btn').hide()
+    // $('#confirm-register-btn').hide()
+    // $('#confirm-btn-keyword').hide()
+    // $('#confirm-btn-delete-keyword').hide()
+    // $('#confirm-btn-replace-keyword').hide()
+
+    // $('#register-btn-delete').hide()
+    // $('#register-btn-delete-keyword').hide()
+    // $('#register-btn-replace-keyword').hide()
+    // $('#register-btn').hide()
+    // $('#register-btn-replace').show()
 }

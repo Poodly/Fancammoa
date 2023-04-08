@@ -8,9 +8,9 @@ class OverallScoreController {
             await this.overallScoreService.saveOverallScore();
             res.status(200).json({ message: "Success saving overall score !!" });
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error });
+            next(error); 
         };
     };
 
@@ -19,9 +19,9 @@ class OverallScoreController {
             const ScoreDataArr = await this.overallScoreService.getOverallScore();
             res.status(200).json({ data: ScoreDataArr })
 
-        }catch (error) {
+        }catch (error){
             console.error(error);
-            res.status(400).json({ message: error });
+            next(error); 
         };
     }
 };

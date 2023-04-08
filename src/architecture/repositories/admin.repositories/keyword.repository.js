@@ -8,9 +8,9 @@ class KeywordRepository {
             const createKeyword = await Keyword.create({ keyword });               
             return createKeyword
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('키워드 생성 실패');
         }
     };
 
@@ -19,9 +19,9 @@ class KeywordRepository {
             const exKeyword = await Keyword.findOne({ where: { keyword } });               
             return exKeyword
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('키워드 개별 조회 실패');
         }
     };
 
@@ -30,9 +30,9 @@ class KeywordRepository {
             const keywords = await Keyword.findAll({});
             return keywords
             
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('키워드 전체 조회 실패');
         }
     }
       
@@ -40,9 +40,9 @@ class KeywordRepository {
         try {
             await Keyword.destroy({ where: { keyword } });
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('키워드 개별 삭제 실패');
         }
     }
 
@@ -50,9 +50,9 @@ class KeywordRepository {
         try {
             await Keyword.update({ keyword }, { where: { keywordId } });
 
-        } catch (error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error('키워드 개별 수정 실패');
         }
     }
 };

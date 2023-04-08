@@ -13,9 +13,9 @@ class IdolInfoController {
             const saveName = await this.idolInfoService.craeteIdol(idolName);
             res.status(200).json({ message: `idolName:${saveName} 생성 성공` });
 
-        }catch (error) {
-            console.error(error);
-            res.status(400).json({ message: error });
+        }catch (err) {
+            console.error(err);
+            next(err)
         };
     }
     
@@ -25,9 +25,9 @@ class IdolInfoController {
             await this.idolInfoService.updateIdolScore(idolName, youtubeScore, spotifyScore, instaScore, googleScore, overallScore, idolId)          
             res.status(200).json({ message: `idolId:${idolId}, idolName: ${idolId}의 점수 데이터 수정 성공!!` });
 
-        }catch (error) {
-            console.error(error);
-            res.status(400).json({ message: error });
+        }catch (err) {
+            console.error(err);
+            next(err)
         };
     }
 
@@ -37,9 +37,9 @@ class IdolInfoController {
             await this.idolInfoService.deleteIdol(idolId)
             res.status(200).json({ message: `idolId:${idolId} 삭제 성공` });
 
-        }catch (error) {
-            console.error(error);
-            res.status(400).json({ message: error });
+        }catch (err) {
+            console.error(err);
+            next(err)
         };
     }
 };

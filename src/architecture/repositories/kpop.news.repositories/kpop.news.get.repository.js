@@ -12,10 +12,10 @@ class KpopNewsGetRepository {
             });
             return kpopNews
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     getNextBeforeKpopNews = async (limit, cursor) => {
@@ -30,10 +30,10 @@ class KpopNewsGetRepository {
             });
             return kpopNews
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     maxCount = async () => {
@@ -41,10 +41,10 @@ class KpopNewsGetRepository {
             let maxCount = await KpopNews.count();
             return maxCount
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
     
     getTop3KpopNews = async () => {
@@ -55,10 +55,10 @@ class KpopNewsGetRepository {
             });
             return top3KpopNews
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     getAllnews = async (req, res, next) => {
@@ -66,10 +66,10 @@ class KpopNewsGetRepository {
             const kpopNews = await KpopNews.findAll({});
             return kpopNews
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 };
 

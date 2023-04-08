@@ -16,9 +16,9 @@ class OverallScoreRepository {
             });
             return allIdolScores;
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
+            throw new Error(error.message);
         }
     }
 
@@ -27,10 +27,10 @@ class OverallScoreRepository {
             await IdolRankScore.update({ overallScore }, { where: { idolId } }); // 합산 점수를 db에 저장
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     getOverallScore = async () => {
@@ -45,10 +45,10 @@ class OverallScoreRepository {
             });
             return allIdolScores
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 };
 

@@ -18,10 +18,9 @@ class ImageConrtoller {
             await this.imageService.saveSpotifyImg();
             res.status(200).json({ message: "Success saving spotify img" });
 
-        } catch (error) {
-            console.error(error);
-            next();
-            res.status(500).json({ message: "spotify img save failed", error: error });
+        }catch (err) {
+            console.error(err);
+            next(err)
         };
     };
 
@@ -31,9 +30,9 @@ class ImageConrtoller {
             await this.imageService.replaceIdolImg(imgId, idolImage); // 이미지 교체
             res.status(200).json({ message: "Success replace img" });
 
-        }catch (error) {
-            console.error(error);
-            res.status(500).json({ message: error });
+        }catch (err) {
+            console.error(err);
+            next(err)
         };
     }
 }

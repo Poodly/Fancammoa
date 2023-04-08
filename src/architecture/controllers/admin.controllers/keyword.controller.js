@@ -11,10 +11,10 @@ class SaveKeywordController {
             const saveKeywordResult = await this.saveKeywordService.saveKeywords(keyword);
             res.status(200).json({ message: 'Keywords saved successfully', data: saveKeywordResult });
 
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: error.message });
-        }
+        }catch (err) {
+            console.error(err);
+            next(err)
+        };
     };
 
     getKeywords = async (req, res, next) => {
@@ -22,10 +22,10 @@ class SaveKeywordController {
             const keywords = await this.saveKeywordService.getKeywords();
             res.status(200).json({ message: 'Get Keywords successfully', keywords });
             
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: error.message });
-        }
+        }catch (err) {
+            console.error(err);
+            next(err)
+        };
     }
       
     deleteKeyword = async (req, res, next) => {
@@ -34,10 +34,10 @@ class SaveKeywordController {
             await this.saveKeywordService.deleteKeyword(keyword);
             res.status(200).json({ message: `${keyword} delete Keyword successfully`});
 
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: error.message });
-        }
+        }catch (err) {
+            console.error(err);
+            next(err)
+        };
     }
 
     editKeywords = async (req, res, next) => {
@@ -46,10 +46,10 @@ class SaveKeywordController {
             await this.saveKeywordService.editKeywords(keywordId, keyword);
             res.status(200).json({ message: `${keyword} edit Keyword successfully`});
 
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: error.message });
-        }
+        }catch (err) {
+            console.error(err);
+            next(err)
+        };
     }
 
 

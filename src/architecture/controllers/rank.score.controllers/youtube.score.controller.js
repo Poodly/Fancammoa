@@ -8,10 +8,10 @@ class YoutubeScoreController {
             await this.youtubeScoreService.saveYoutubeScore();
             res.status(200).json({ message: "Success saving youtube score !!" });
 
-        }catch (error) {
-            console.error(error)
-            res.status(500).json({ message: error });
-        }
+        }catch (error){
+            console.error(error);
+            next(error); 
+        };
     };
 
     IndividualSaveYoutubeScore = async (req, res, next) => {
@@ -20,10 +20,10 @@ class YoutubeScoreController {
             const youtubeVideoScore = await this.youtubeScoreService.IndividualSaveYoutubeScore(idolId);
             res.status(200).json({ data: youtubeVideoScore });
             
-        }catch (error) {
-            console.error(error)
-            res.status(500).json({ message: error });
-        }
+        }catch (error){
+            console.error(error);
+            next(error); 
+        };
     };
 };
 
