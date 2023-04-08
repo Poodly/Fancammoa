@@ -158,20 +158,20 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## 설계
+## ERD 설계
 
-ERD
-<div><img src="./docs/fancammoa.erd.png" width=100%></div>
+<br>
 
+<img src="./docs/fancammoa.erd.png" width=100%>
 
-<details>
-  <summary><b>API</b></summary>
-  <div markdown="1">
-    <ul>
-      API
-    </ul>
-  </div>
-</details>
+<br>
+<br>
+
+## API 설계
+
+<br>
+
+<img src="./docs/fancammoa.erd.png" width=100%>
 
 <br>
 <br>
