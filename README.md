@@ -57,7 +57,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <details>
   <summary>아이돌 영상검색 및 시청</summary>
   <div markdown="1">
-    <br>
+    </br>
     
       <li>검색결과 문제</li>
       <ul>
