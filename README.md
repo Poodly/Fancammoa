@@ -171,7 +171,15 @@ K-POP 아이돌 팬들을 위한 사이트
 
 <br>
 
-<a href="https://www.notion.so/API-cb924349c9ec450384a894e9f456fe14?pvs=4" target="_blank" style="font-size: 25px;">Notion/FancamMoa API</a>
+<img src="./docs/fancammoa.APIimg.png" width=100%>
+<details>
+  <summary>API 설계 더 보러가기</summary>
+  <div markdown="1">
+
+  <a href="https://www.notion.so/API-cb924349c9ec450384a894e9f456fe14?pvs=4" target="_blank" style="font-size: 25px;">Notion/FancamMoa API</a>
+
+  </div>
+</details>
 
 <br>
 <br>
