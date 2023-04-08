@@ -177,4 +177,4 @@ K-POP 아이돌 팬들을 위한 사이트
 
 <br>
 
-| Name: 정성훈 | GitHub: github.com/poodly | Email: qwe0238@naver.com |
+| Name: 정성훈 | GitHub: [github.com/poodly](https://github.com/Poodly) | Email: qwe0238@naver.com |
