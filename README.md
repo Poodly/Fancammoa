@@ -73,7 +73,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## ⚙️ 서비스 아키텍처
+## 서비스 아키텍처
 
 <img src="./docs/service.architecture.png" width=100%>
 
@@ -114,7 +114,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## 🗂 프로젝트 구조
+## 프로젝트 구조
 
   <summary><b>Back-End (Node.js)</b></summary>
   
@@ -140,7 +140,7 @@ K-POP 아이돌 팬들을 위한 사이트
 <br>
 <br>
 
-## 🛠 설계
+## 설계
 
 <details>
   <summary><b>ERD</b></summary>
