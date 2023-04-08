@@ -14,12 +14,8 @@ if (process.env.NODE_ENV === 'production') {
         port: 6379,                         
   });
 }
-// const redisClient = redis.createClient({
-//   legacyMode: true,
-//   port: 6379,                         
-// });
 
-redisClient.connect();
+redisClient.connect().catch(console.error);
 
 class RedisRepository {
   
