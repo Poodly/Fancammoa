@@ -11,42 +11,6 @@ K-POP 아이돌 팬들을 위한 사이트
 
 <br>
 
-## K-POP스타들의 영상을 검색하고 시청해 보세요!
-<details>
-  <summary>K-POP스타를 검색하고 시청</summary>
-  <img src="./docs/fancammoa.search.png" width=100%>
-  <img src="./docs/fancammoa.search.modal.png" width=100%>
-</details>
-
-<br>
-
-## K-POP스타들의 순위를 확인하세요!
-<details>
-  <summary>K-POP스타의 순위</summary>
-  <img src="./docs/fancammoa.rank.png" width=100%>
-  <img src="./docs/fancammoa.rank.modal.png" width=100%>
-</details>
-
-<br>
-
-## K-POP스타들의 최신 뉴스를 확인하세요!
-<details>
-  <summary>K-POP스타의 뉴스</summary>
-  <img src="./docs/fancammoa.news.png" width=100%>
-</details>
-
-<br>
-
-## K-POP스타들의 영상을 모아보세요!
-<details>
-  <summary>영상들을 좋아요하여 마이페이지에 모아보세요.</summary>
-  <img src="./docs/fancammoa.like.png" width=100%>
-  <img src="./docs/fancammoa.like.video.png" width=100%>
-</details>
-
-<br>
-<br>
-
 ## 기술적 의사결정
 
 <br>
