@@ -37,8 +37,8 @@ class OverallScoreService {
 
         }catch (error) {
             console.error(error);
-            next(error);
-        };
+            throw new Error(error.message);
+        }
     };
 
     getOverallScore = async () => {
@@ -64,8 +64,8 @@ class OverallScoreService {
 
         }catch (error) {
             console.error(error);
-            next(error);
-        };
+            throw new Error(error.message);
+        }
     }
 };
 

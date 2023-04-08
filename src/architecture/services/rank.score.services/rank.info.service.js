@@ -38,8 +38,8 @@ class RankInfoService {
 
         }catch (error) {
             console.error(error);
-            next(error);
-        };
+            throw new Error(error.message);
+        }
     };
 };
 

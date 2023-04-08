@@ -11,10 +11,10 @@ class KpopNewsEditRepository {
             }, { where: { newsId } }); // 뉴스 정보 업데이트
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     deleteNews = async (newsId) => {
@@ -22,10 +22,10 @@ class KpopNewsEditRepository {
             await KpopNews.destroy({ where: { newsId } });
             return 
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 };
 

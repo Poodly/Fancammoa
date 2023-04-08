@@ -45,10 +45,10 @@ class LastFmSearchArtistService {
             };
             return newIdolNameArr
             
-        }catch (err) {
-            console.error(err);
-            throw err;
-        };
+        }catch (error) {
+            console.error(error);
+            throw new Error('Last Fm 아이돌 이름 생성 실패');
+        }
     }
 };
   

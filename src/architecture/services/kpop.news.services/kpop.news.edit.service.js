@@ -8,10 +8,10 @@ class KpopNewsEditService {
             await this.kpopNewsEditRepository.editNewsInfo(newsId, newsLink, newsImg, newsDate)
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 
     deleteNews = async (newsId) => {
@@ -19,10 +19,10 @@ class KpopNewsEditService {
             await this.kpopNewsEditRepository.deleteNews(newsId)
             return
 
-        }catch(error) {
+        }catch (error) {
             console.error(error);
-            next();
-        };
+            throw new Error(error.message);
+        }
     };
 };
 
