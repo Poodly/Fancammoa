@@ -14,19 +14,25 @@ const { sequelize } = require('./models');
 
 require("dotenv").config();
 
-let redisClient = ''
-if (process.env.NODE_ENV === 'production') {
-    redisClient = redis.createClient({
-        url: `redis://${process.env.REDIS_HOST}`,          
-        password: process.env.REDIS_PW,                                  
-        legacyMode: true,
-  });
-}else {
-    redisClient = redis.createClient({
-        legacyMode: true,
-        port: 6379,                         
-  });
-}
+// let redisClient = ''
+// if (process.env.NODE_ENV === 'production') {
+//     redisClient = redis.createClient({
+//         url: `redis://${process.env.REDIS_HOST}`,          
+//         password: process.env.REDIS_PW,                                  
+//         legacyMode: true,
+//   });
+// }else {
+//     redisClient = redis.createClient({
+//         legacyMode: true,
+//         port: 6379,                         
+//   });
+// }
+
+const redisClient = redis.createClient({
+    url: `redis://${process.env.REDIS_HOST}`,          
+    password: process.env.REDIS_PW,                                  
+    legacyMode: true,
+});
 redisClient.connect().catch(console.error);
 // ----------------------------------------- connect routes ----------------------------------------
 const userRouter   = require('./routes/user.router');

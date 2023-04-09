@@ -41,9 +41,10 @@ async function searchVideo() {
                 title = title.slice(0, 40) + " ...";
             }
 
-            const searchKeyword = await getKeywords()
-            const descriptionKeywords = isKeywordsIncluded(title , searchKeyword)
-            const titleKeywords = isKeywordsIncluded(description , searchKeyword)
+            // 비디오 id를 가지고 디테일한 정보들을 한번더 찾는 이유는 검색 결과를 좀더 디테일하게 잡아내기 위해서 였다..
+            const searchKeyword = await getKeywords();
+            const descriptionKeywords = isKeywordsIncluded(title , searchKeyword);
+            const titleKeywords = isKeywordsIncluded(description , searchKeyword);
             const tagesKeywords = isKeywordsIncludedArr(tags, searchKeyword);
 
             if (tagesKeywords || titleKeywords || descriptionKeywords) {

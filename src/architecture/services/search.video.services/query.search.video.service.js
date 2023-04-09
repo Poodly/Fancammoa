@@ -38,7 +38,7 @@ class QuerySearchVideoService {
             const response = await axios.get(SEARCHURL, { params });
             const items = response.data.items;
             const videoIds = items.map(item => item.id.videoId);
-                        
+         
             await this.redisRepository.redisSetEx(queryCacheKey, process.env.CACHE_EXPIRATION_TIME, JSON.stringify(videoIds))
             console.log("Cached search results in Redis");
             console.log("Query search video success!!")
