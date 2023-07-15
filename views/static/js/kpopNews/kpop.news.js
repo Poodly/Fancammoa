@@ -6,7 +6,7 @@ const limit = 8
 async function getKpopNews() {
     // 이전 검색 결과 지우기
     const newsContainer = document.getElementById('news-card-append');
-    newsContainer.innerHTML = '';
+    // newsContainer.innerHTML = '';
     
     try {
         const response = await axios.get('/news/getKpopNews', { params : { limit, cursor } });
@@ -45,7 +45,14 @@ async function getKpopNews() {
                             </div>`;
             tempHtmlArray.push(tempHtml);
         }
-        newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
+
+        // 변수에 새로운 HTML 코드 할당
+        const newHtml = tempHtmlArray.join('');
+        
+        // 기존의 HTML 코드 교체
+        newsContainer.innerHTML = newHtml;
+
+        // newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
         // window.scrollTo(0, 175);
         
     } catch (error) {
@@ -56,7 +63,7 @@ async function getKpopNews() {
 async function getLeftKpopNews() {
     // 이전 검색 결과 지우기
     const newsContainer = document.getElementById('news-card-append');
-    newsContainer.innerHTML = '';
+    // newsContainer.innerHTML = '';
     
     try {
         const response = await axios.get('/news/getKpopNews', { params : { limit, cursor: cursor } });
@@ -95,7 +102,13 @@ async function getLeftKpopNews() {
                             </div>`;
             tempHtmlArray.push(tempHtml);
             }
-        newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
+
+        // 변수에 새로운 HTML 코드 할당
+        const newHtml = tempHtmlArray.join('');
+        
+        // 기존의 HTML 코드 교체
+        newsContainer.innerHTML = newHtml;
+        // newsContainer.insertAdjacentHTML('beforeend', tempHtmlArray.join('')); 
         // window.scrollTo(0, 175);
 
     } catch (error) {
