@@ -7,7 +7,7 @@ COPY . .
 
 # WORKDIR /app/server/
 
-RUN npm install
+RUN npm ci
 
 EXPOSE 5000
 
