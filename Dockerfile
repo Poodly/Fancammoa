@@ -7,8 +7,9 @@ COPY . .
 
 # WORKDIR /app/server/
 
-RUN npm ci  && npm run build
+RUN npm install
 
 EXPOSE 5000
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
+# CMD [ "npm", "start" ]

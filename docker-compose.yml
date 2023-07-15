@@ -1,12 +1,12 @@
 version: '3'
 services:
 
-  api:
+  Fancammoa:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: .
     env_file:
-      - ./server/.env
+      - .env
     ports:
       - "5000:5000"
-    image: poodly/mianri-dockerhub:dev_0.0.3_server
+    image: poodly/fancammoa:dev_0.1.0
