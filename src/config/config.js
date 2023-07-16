@@ -1,7 +1,7 @@
 require("dotenv").config();
 const env = process.env;
 
-const development = {
+const dev = {
   username: env.MYSQL_AWS_USERNAME,
   password: env.MYSQL_AWS_PASSWORD,
   database: env.MYSQL_AWS_DATABASE,
@@ -23,4 +23,4 @@ const production = {
   dialect: "mysql",
 };
 
-module.exports = { development, test, production };
+module.exports = { dev, test, production };

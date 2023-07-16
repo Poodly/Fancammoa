@@ -1,12 +1,17 @@
 version: '3'
 services:
 
+  redis:
+    image: redis
+    env_file:
+      - .env
+
   Fancammoa:
     build:
       dockerfile: Dockerfile
       context: .
     env_file:
       - .env
-    ports:
-      - "5000:5000"
     image: poodly/fancammoa:dev_0.1.0
+    depends_on:                           #  Redis 서비스를 먼저 시작한 후 Fancammoa 서비스를 시작
+      - redis          

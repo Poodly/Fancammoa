@@ -8,7 +8,8 @@ if (process.env.NODE_ENV === 'production') {
         password: process.env.REDIS_PW,                                  
         legacyMode: true,
   });
-}else {
+}
+if (process.env.NODE_ENV === 'dev') {
     redisClient = redis.createClient({
         legacyMode: true,
         port: 6379,                         
