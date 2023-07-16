@@ -13,5 +13,7 @@ services:
     env_file:
       - .env
     image: poodly/fancammoa:dev_0.1.0
+    ports:
+      - "100:100"
     depends_on:                           #  Redis 서비스를 먼저 시작한 후 Fancammoa 서비스를 시작
       - redis          
