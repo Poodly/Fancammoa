@@ -88,40 +88,7 @@ K-POP 아이돌 팬들을 위한 사이트
 
 
 
-## 트러블슈팅
 
-<details>
-  <summary>아이돌 영상검색 및 시청</summary>
-  <div markdown="1">
-
-  - 검색결과 문제:   
-    K-POP과 상관없는 검색결과, 유저의 목적과 다른 검색 결과가 같이 검색되는 문제가 발생하였고, 검색결과 영상의 tag, title, description과 db에 저장되어있는 키워드들을 비교하여 키워드와 맞지 않으면 검색결과를 보여주지 않게 하였습니다.
-
-  - APIKEY노출 문제:   
-    유튜브 API KEY 노출등 보안적 이슈로인해 프론트엔드에 있던 검색로직을 백엔드쪽으로 옮겨 로직을 보이지 않게하였으며 .env를 활용하여 API KEY보안 강화하였습니다.
-
-  - 유튜브 API 할당량 문제:  
-    유튜브 API 할당량 소모시 검색 로직을 사용하지 못하는 상황이 발생 하였고, 매번 유튜브API 조회를 하지 않기 위해 redis 캐싱작업으로 유튜브API조회 최소화하였습니다.
-
-  </div>
-</details>
-
-<br>
-
-<details>
-  <summary>배포환경 에러</summary>
-  <div markdown="1">
-
-  - 뉴스페이지 크롤링   
-    배포환경 Selenium 크롬 크롤링 실행이 되지 않는 이슈를 Linux 에서 chromedriver, xvfb 설치를 통해 해결
-    
-  - CORS 해결   
-    CORS 미들웨어 함수를 app.js 미들웨어 가장 상단에 두어 클라이언트와 서버 간의 자유로운 데이터 교환을 가능하게 변경
-    
-  - RDS MySql error “is blocked because of many connection errors. Unblock with 'mysqladmin flush-hosts” 에러   
-    RDS 파라미터 그룹에서 max_connect_errors 값을 수정후 해결
-
-  </div>
 </details>
 
 <br>
